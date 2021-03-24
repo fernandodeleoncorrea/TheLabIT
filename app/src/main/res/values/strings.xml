@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TheLabIT</string>
+    <string name="usuario">usuario</string>
+    <string name="password">password</string>
 </resources>
