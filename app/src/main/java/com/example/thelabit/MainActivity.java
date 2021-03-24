@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         username    = (EditText) findViewById(R.id.username);
         password    = (EditText) findViewById(R.id.password);
-        btnlogin       = (Button) findViewById(R.id.btnLogin);
+        btnlogin    = (Button) findViewById(R.id.btnLogin);
         DB = new DBTheLabIT(this);
 
 
@@ -39,15 +39,11 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), Ingreso.class);
                     startActivity(intent);
                 } else {
-
                     Toast.makeText(MainActivity.this, "nooo", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "nooo2", Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
-
-
-
-
     }
 }

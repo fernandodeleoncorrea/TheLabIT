@@ -52,7 +52,7 @@ public class DBTheLabIT extends SQLiteOpenHelper {
     public Boolean chequearUsuarioPassword(String username, String password){
         SQLiteDatabase db =  this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM LOGIN WHERE USERNAME = ? and PASSWORD = ?", new String[]{username, password});
-        if(cursor.getCount()>0 )
+        if(cursor.getCount() > 0 )
             return true;
         else
             return false;
