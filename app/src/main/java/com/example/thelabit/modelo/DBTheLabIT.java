@@ -1,4 +1,4 @@
-package com.example.thelabit;
+package com.example.thelabit.modelo;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -72,7 +72,10 @@ public class DBTheLabIT extends SQLiteOpenHelper {
     }
 
 
-    public String chequearUsuarioPassword(String username, String password){
+    public String chequearUsuarioPassword(Login login){
+        String username = login.getUsername().toString();
+        String password = login.getPassword().toString();
+
         SQLiteDatabase db =  this.getWritableDatabase();
 
         Cursor cursor = db.rawQuery("SELECT * FROM LOGIN WHERE USERNAME = ? and PASSWORD = ?", new String[]{username, password});

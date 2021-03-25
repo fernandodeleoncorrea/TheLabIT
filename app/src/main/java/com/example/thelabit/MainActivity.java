@@ -9,6 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.thelabit.modelo.DBTheLabIT;
+import com.example.thelabit.modelo.Login;
+import com.example.thelabit.vista.HomeCorredor;
+import com.example.thelabit.vista.HomeEntrenador;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText username;
@@ -30,13 +35,19 @@ public class MainActivity extends AppCompatActivity {
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //esto es para iniciar la base de datos pero no sé si funciona
                 DB.inicio();
 
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
 
-                String tipo = DB.chequearUsuarioPassword(user, pass);
+                //creo un objeto Login para hacer el chequeo
+                Login login = new Login(user, pass);
 
+                String tipo = DB.chequearUsuarioPassword(login);
+
+                //chequeo de los datos ingresados
                 if (tipo == "corredor"){
                     Intent intent = new Intent(getApplicationContext(), HomeCorredor.class);
                     startActivity(intent);
