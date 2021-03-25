@@ -40,6 +40,16 @@
         android:layout_below="@+id/btnLogin"
         android:text="Registrarse"
         />
-    
-    
+
+    <Button
+        android:id="@+id/btnRecuperar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSigUp"
+        android:layout_marginTop="100dp"
+        android:text="Recuperar password"
+
+        />
+
+
 </RelativeLayout>
