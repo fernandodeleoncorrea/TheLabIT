@@ -25,7 +25,7 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         queryTablaLogin = "CREATE TABLE LOGIN(USERNAME STRING PRIMARY KEY, PASSWORD STRING)";
         db.execSQL(queryTablaLogin);
 
-        queryTablaLogin = "CREATE TABLE USUARIOS(USERNAME STRING PRIMARY KEY, NOMBRE STRING, FECHANACIMIENTO DATE, CIUDAD STRING, PAIS STRING, EMAIL STRING, COMENTARIO STRING)";
+        queryTablaLogin = "CREATE TABLE USUARIOS(USERNAME STRING PRIMARY KEY, NOMBRE STRING, FECHANACIMIENTO STRING, CIUDAD STRING, PAIS STRING, EMAIL STRING, COMENTARIO STRING)";
         db.execSQL(queryTablaLogin);
 
         queryTablaLogin = "CREATE TABLE ENTRENADORES(USERNAME STRING PRIMARY KEY, FORMACION STRING)";
@@ -88,6 +88,35 @@ public class DBTheLabIT extends SQLiteOpenHelper {
             return "entrenador";
         else
             return "sin_categoria";
+    }
+
+    public Boolean insertEntrenador (Entrenador E){
+
+        SQLiteDatabase db =  this.getWritableDatabase();
+
+        String username = E.getIdUsuario().toString();
+        String nombre   = E.getNombre().toString();
+        String fechanacimiento = E.getFechaNacimiento().toString();
+        String ciudad = E.getCiudad().toString();
+        String pais = E.getPais().toString();
+        String email = E.getEmail().toString();
+        String comentario = E.getComentario().toString();
+
+        String formacion = E.getFormacion().toString();
+
+        queryTablaLogin = "INSERT INTO USUARIOS(USERNAME, NOMBRE, FECHANACIMIENTO, CIUDAD, PAIS, EMAIL, COMENTARIO ) VALUES ("+ username +","+ nombre +","+ fechanacimiento +","+ ciudad +","+ pais +","+ email +","+ comentario +")";
+        db.execSQL(queryTablaLogin);
+
+        queryTablaLogin = "INSERT INTO ENTRENADORES(USERNAME, PASSWORD) VALUES ("+ username +","+ formacion +")";
+        db.execSQL(queryTablaLogin);
+
+        Cursor cursor = db.rawQuery("SELECT * FROM USUARIOS WHERE USERNAME = ?", new String[]{username});
+
+        if(cursor.getCount() > 0) {
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public void inicio(){ }

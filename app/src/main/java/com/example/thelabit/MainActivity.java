@@ -13,12 +13,14 @@ import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.modelo.Login;
 import com.example.thelabit.vista.HomeCorredor;
 import com.example.thelabit.vista.HomeEntrenador;
+import com.example.thelabit.vista.Registrarse;
 
 public class MainActivity extends AppCompatActivity {
 
     EditText username;
     EditText password;
     Button btnlogin;
+    Button btnSignUp;
     DBTheLabIT DB;
 
     @Override
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         username    = (EditText) findViewById(R.id.username);
         password    = (EditText) findViewById(R.id.password);
         btnlogin    = (Button) findViewById(R.id.btnLogin);
+        btnSignUp   = (Button) findViewById(R.id.btnSignUp);
+
         DB = new DBTheLabIT(this);
 
 
@@ -58,6 +62,15 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "nooo", Toast.LENGTH_SHORT).show();
                 }
 
+            }
+        });
+
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "error", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), Registrarse.class);
+                startActivity(intent);
             }
         });
     }
