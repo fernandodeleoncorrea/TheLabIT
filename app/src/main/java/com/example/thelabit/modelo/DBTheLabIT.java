@@ -92,8 +92,25 @@ public class DBTheLabIT extends SQLiteOpenHelper {
 
     public Boolean insertEntrenador (Entrenador E){
 
-        SQLiteDatabase db =  this.getWritableDatabase();
+        boolean createSuccessful = false;
 
+        ContentValues contenedor = new ContentValues();
+
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_USERNAME, E.getIdUsuario());
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_NOMBRE, E.getNombre());
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_FECHANACIMIENTO, E.getFechaNacimiento());
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_CIUDAD, E.getCiudad());
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_PAIS, E.getPais());
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_EMAIL, E.getEmail());
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_COMENTARIO, E.getComentario());
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        createSuccessful = db.insert("USUARIOS", null, contenedor) > 0;
+        db.close();
+
+        return createSuccessful;
+/*
         String username = E.getIdUsuario().toString();
         String nombre   = E.getNombre().toString();
         String fechanacimiento = E.getFechaNacimiento().toString();
@@ -116,7 +133,7 @@ public class DBTheLabIT extends SQLiteOpenHelper {
             return true;
         }else{
             return false;
-        }
+        }*/
     }
 
     public void inicio(){ }

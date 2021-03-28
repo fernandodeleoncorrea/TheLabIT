@@ -30,8 +30,8 @@ public class Registrarse extends AppCompatActivity {
 
         btnRegistro    = (Button) findViewById(R.id.btnRegistro);
         Rusername    = (EditText) findViewById(R.id.Rusername);
-        nombre    = (EditText) findViewById(R.id.nombre);
-        /*nacimiento    = (EditText) findViewById(R.id.nacimiento);
+        /*nombre    = (EditText) findViewById(R.id.nombre);
+        nacimiento    = (EditText) findViewById(R.id.nacimiento);
         ciudad    = (EditText) findViewById(R.id.ciudad);
         pais    = (EditText) findViewById(R.id.pais);
         email    = (EditText) findViewById(R.id.email);
@@ -43,8 +43,9 @@ public class Registrarse extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 String PRuser = Rusername.getText().toString();
-                String Pnombre = nombre.getText().toString();
+                String Pnombre = "FERNANDO";
                 String Pnacimiento = "123456";
                 String Pciudad = "Montevideo";
                 String Ppais = "Uruguay";
@@ -67,6 +68,7 @@ public class Registrarse extends AppCompatActivity {
                 }else{
                     Toast.makeText(Registrarse.this, "error", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
     }
