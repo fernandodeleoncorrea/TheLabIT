@@ -9,13 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.thelabit.MainActivity;
 import com.example.thelabit.R;
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.modelo.Entrenador;
-import com.example.thelabit.modelo.Login;
 
-public class Registrarse extends AppCompatActivity {
+public class RegistrarEntrenador extends AppCompatActivity {
 
     Button btnRegistro;
     EditText Rusername; //, nombre, nacimiento, ciudad, pais, email, comentario, formacion;
@@ -25,7 +23,7 @@ public class Registrarse extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registrarse);
+        setContentView(R.layout.activity_registrar_entrenador);
 
 
         btnRegistro    = (Button) findViewById(R.id.btnRegistro);
@@ -55,18 +53,18 @@ public class Registrarse extends AppCompatActivity {
 
                 Entrenador entrenador = new Entrenador(PRuser, Pnombre, Pnacimiento, Pciudad, Ppais, Pemail, Pcomentario, Pformacion);
 
-                Toast.makeText(Registrarse.this, Ppais.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegistrarEntrenador.this, Ppais.toString(), Toast.LENGTH_SHORT).show();
 
                 Boolean resultado = DB.insertEntrenador(entrenador);
 
                 if (resultado == true) {
-                    Toast.makeText(Registrarse.this, "exito", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistrarEntrenador.this, "exito", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(getApplicationContext(), HomeEntrenador.class);
                     startActivity(intent);
 
                 }else{
-                    Toast.makeText(Registrarse.this, "error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistrarEntrenador.this, "error", Toast.LENGTH_SHORT).show();
                 }
 
             }

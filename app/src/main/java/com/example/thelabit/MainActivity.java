@@ -13,7 +13,7 @@ import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.modelo.Login;
 import com.example.thelabit.vista.HomeCorredor;
 import com.example.thelabit.vista.HomeEntrenador;
-import com.example.thelabit.vista.Registrarse;
+import com.example.thelabit.vista.RegistrarEntrenador;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "error", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), Registrarse.class);
+                Intent intent = new Intent(getApplicationContext(), RegistrarEntrenador.class);
                 startActivity(intent);
             }
         });
