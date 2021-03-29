@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.thelabit.modelo.Corredor;
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.modelo.Login;
 import com.example.thelabit.vista.HomeCorredor;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //creo un objeto Login para hacer el chequeo
                 Login login = new Login(user, pass);
+                //Corredor corredor = new Corredor();
 
                 String tipo = DB.chequearUsuarioPassword(login);
 
