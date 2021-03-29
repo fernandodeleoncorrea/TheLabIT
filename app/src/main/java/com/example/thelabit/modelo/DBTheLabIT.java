@@ -10,9 +10,7 @@ import androidx.annotation.Nullable;
 
 public class DBTheLabIT extends SQLiteOpenHelper {
 
-    public static final String DBNAME = "DBTheLabIT.db";
     public String queryTablaLogin;
-    public String queryInsert;
 
 
     public DBTheLabIT(@Nullable Context context) {
@@ -31,7 +29,7 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         queryTablaLogin = "CREATE TABLE ENTRENADORES(USERNAME STRING PRIMARY KEY, FORMACION STRING)";
         db.execSQL(queryTablaLogin);
 
-        queryTablaLogin = "CREATE TABLE CORREDORES(USERNAME STRING PRIMARY KEY, EDAD INTEGER)";
+        queryTablaLogin = "CREATE TABLE CORREDORES(USERNAME STRING PRIMARY KEY, PESO STRING, GENERO STRING, ALTURA STRING, FCREPOSO STRING, FCMAXIMA STRING, OBJETIVO STRING, TIEMPOESTIMADO STRING)";
         db.execSQL(queryTablaLogin);
 
         //INSERTO UNOS DATOS DE PRUEBA
@@ -57,7 +55,7 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         queryTablaLogin = "INSERT INTO ENTRENADORES(USERNAME, FORMACION) VALUES ('1', 'ED FISICA')";
         db.execSQL(queryTablaLogin);
 
-        queryTablaLogin = "INSERT INTO CORREDORES(USERNAME, EDAD) VALUES ('2', 35)";
+        queryTablaLogin = "INSERT INTO CORREDORES(USERNAME, EDAD ) VALUES ('2', '70', 'MASCULINO', '170', '60', '180', '10', '50')";
         db.execSQL(queryTablaLogin);
 
     }
@@ -92,10 +90,7 @@ public class DBTheLabIT extends SQLiteOpenHelper {
 
     public Boolean insertEntrenador (Entrenador E){
 
-        boolean createSuccessful = false;
-
         ContentValues contenedor = new ContentValues();
-
         contenedor.put(ConstantesDB.TABLA_USUARIOS_USERNAME, E.getIdUsuario());
         contenedor.put(ConstantesDB.TABLA_USUARIOS_NOMBRE, E.getNombre());
         contenedor.put(ConstantesDB.TABLA_USUARIOS_FECHANACIMIENTO, E.getFechaNacimiento());
@@ -104,36 +99,24 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         contenedor.put(ConstantesDB.TABLA_USUARIOS_EMAIL, E.getEmail());
         contenedor.put(ConstantesDB.TABLA_USUARIOS_COMENTARIO, E.getComentario());
 
+
+        ContentValues contenedor2 = new ContentValues();
+        contenedor2.put(ConstantesDB.TABLA_USUARIOS_USERNAME, E.getIdUsuario());
+        contenedor2.put(ConstantesDB.TABLA_ENTRENADORES_FORMACION, E.getFormacion());
+
         SQLiteDatabase db = this.getWritableDatabase();
 
-        createSuccessful = db.insert("USUARIOS", null, contenedor) > 0;
+        Boolean usu = db.insert("USUARIOS", null, contenedor) > 0;
+
+        Boolean ent = db.insert("ENTRENADORES", null, contenedor2) > 0;
         db.close();
 
-        return createSuccessful;
-/*
-        String username = E.getIdUsuario().toString();
-        String nombre   = E.getNombre().toString();
-        String fechanacimiento = E.getFechaNacimiento().toString();
-        String ciudad = E.getCiudad().toString();
-        String pais = E.getPais().toString();
-        String email = E.getEmail().toString();
-        String comentario = E.getComentario().toString();
-
-        String formacion = E.getFormacion().toString();
-
-        queryTablaLogin = "INSERT INTO USUARIOS(USERNAME, NOMBRE, FECHANACIMIENTO, CIUDAD, PAIS, EMAIL, COMENTARIO ) VALUES ("+ username +","+ nombre +","+ fechanacimiento +","+ ciudad +","+ pais +","+ email +","+ comentario +")";
-        db.execSQL(queryTablaLogin);
-
-        queryTablaLogin = "INSERT INTO ENTRENADORES(USERNAME, PASSWORD) VALUES ("+ username +","+ formacion +")";
-        db.execSQL(queryTablaLogin);
-
-        Cursor cursor = db.rawQuery("SELECT * FROM USUARIOS WHERE USERNAME = ?", new String[]{username});
-
-        if(cursor.getCount() > 0) {
+        if (usu == true & ent == true){
             return true;
-        }else{
+        }else {
             return false;
-        }*/
+        }
+
     }
 
     public void inicio(){ }

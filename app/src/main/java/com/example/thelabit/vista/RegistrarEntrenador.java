@@ -44,7 +44,7 @@ public class RegistrarEntrenador extends AppCompatActivity {
 
                 String PRuser = Rusername.getText().toString();
                 String Pnombre = "FERNANDO";
-                String Pnacimiento = "123456";
+                String Pnacimiento = "123456";  //YYYYMMDD
                 String Pciudad = "Montevideo";
                 String Ppais = "Uruguay";
                 String Pemail = "algo@algo.com";
