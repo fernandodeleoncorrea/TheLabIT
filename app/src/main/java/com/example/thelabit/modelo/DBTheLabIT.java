@@ -5,8 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
+import com.example.thelabit.MainActivity;
 
 public class DBTheLabIT extends SQLiteOpenHelper {
 
@@ -49,13 +52,21 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         queryTablaLogin = "INSERT INTO LOGIN(USERNAME, PASSWORD) VALUES ('5', 'pwcarol')";
         db.execSQL(queryTablaLogin);
 
-        queryTablaLogin = "INSERT INTO USUARIOS(USERNAME, NOMBRE, FECHANACIMIENTO, CIUDAD, PAIS, EMAIL, COMENTARIO ) VALUES (1, 'FERNANDO', '01/01/2021', 'MONTEVIDEO', 'URUGUAY', 'HOLA@HOLA.COM', '')";
+        queryTablaLogin = "INSERT INTO USUARIOS(USERNAME, NOMBRE, FECHANACIMIENTO, CIUDAD, PAIS, EMAIL, COMENTARIO ) VALUES ('2', 'FERNANDO2', '01/01/2021', 'MONTEVIDEO', 'URUGUAY', 'HOLA@HOLA.COM', '')";
+        db.execSQL(queryTablaLogin);
+        queryTablaLogin = "INSERT INTO USUARIOS(USERNAME, NOMBRE, FECHANACIMIENTO, CIUDAD, PAIS, EMAIL, COMENTARIO ) VALUES ('3', 'FERNANDO3', '01/01/2021', 'MONTEVIDEO', 'URUGUAY', 'HOLA@HOLA.COM', '')";
+        db.execSQL(queryTablaLogin);
+        queryTablaLogin = "INSERT INTO USUARIOS(USERNAME, NOMBRE, FECHANACIMIENTO, CIUDAD, PAIS, EMAIL, COMENTARIO ) VALUES ('4', 'FERNANDO4', '01/01/2021', 'MONTEVIDEO', 'URUGUAY', 'HOLA@HOLA.COM', '')";
         db.execSQL(queryTablaLogin);
 
         queryTablaLogin = "INSERT INTO ENTRENADORES(USERNAME, FORMACION) VALUES ('1', 'ED FISICA')";
         db.execSQL(queryTablaLogin);
 
-        queryTablaLogin = "INSERT INTO CORREDORES(USERNAME, EDAD ) VALUES ('2', '70', 'MASCULINO', '170', '60', '180', '10', '50')";
+        queryTablaLogin = "INSERT INTO CORREDORES(USERNAME, PESO, GENERO, ALTURA, FCREPOSO, FCMAXIMA, OBJETIVO, TIEMPOESTIMADO ) VALUES ('2fernando', '70', 'MASCULINO2', '170', '60', '180', '10', '50')";
+        db.execSQL(queryTablaLogin);
+        queryTablaLogin = "INSERT INTO CORREDORES(USERNAME, PESO, GENERO, ALTURA, FCREPOSO, FCMAXIMA, OBJETIVO, TIEMPOESTIMADO ) VALUES ('3adrian', '70', 'MASCULINO3', '170', '60', '180', '10', '50')";
+        db.execSQL(queryTablaLogin);
+        queryTablaLogin = "INSERT INTO CORREDORES(USERNAME, PESO, GENERO, ALTURA, FCREPOSO, FCMAXIMA, OBJETIVO, TIEMPOESTIMADO ) VALUES ('4joaquin', '70', 'MASCULINO4', '170', '60', '180', '10', '50')";
         db.execSQL(queryTablaLogin);
 
     }
@@ -120,4 +131,10 @@ public class DBTheLabIT extends SQLiteOpenHelper {
     }
 
     public void inicio(){ }
+
+    public Cursor obtenerCorredores(String ent){
+        SQLiteDatabase db =  this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT USERNAME FROM USUARIOS", null);
+        return cursor;
+    }
 }

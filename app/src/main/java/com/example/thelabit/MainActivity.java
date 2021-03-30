@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     EditText username;
     EditText password;
     Button btnlogin;
-    Button btnSignUp;
+    Button btnSignUp, btnLista;
     DBTheLabIT DB;
 
     @Override
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         password    = (EditText) findViewById(R.id.password);
         btnlogin    = (Button) findViewById(R.id.btnLogin);
         btnSignUp   = (Button) findViewById(R.id.btnSignUp);
+        btnLista   = (Button) findViewById(R.id.btnLista);
 
         DB = new DBTheLabIT(this);
 

@@ -47,22 +47,6 @@
         />
 
     <EditText
-        android:id="@+id/ciudad"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/nacimiento"
-        android:hint="ciudad"
-        />
-    <EditText
-        android:id="@+id/pais"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/ciudad"
-        android:hint="pais"
-        />
-    <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,27 +54,12 @@
         android:layout_below="@+id/pais"
         android:hint="email"
         />
-    <EditText
-        android:id="@+id/comentario"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/email"
-        android:hint="comentario"
-        />
-    <EditText
-        android:id="@+id/formacion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/comentario"
-        android:hint="formacion"
-        />
+
     <Button
         android:id="@+id/btnRegistro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:layout_below="@+id/formacion"
         android:text="Aceptar"
         />

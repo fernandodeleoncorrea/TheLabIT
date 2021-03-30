@@ -16,8 +16,7 @@ import com.example.thelabit.modelo.Entrenador;
 public class RegistrarEntrenador extends AppCompatActivity {
 
     Button btnRegistro;
-    EditText Rusername; //, nombre, nacimiento, ciudad, pais, email, comentario, formacion;
-    EditText nombre;
+    EditText Rusername, nombre, email, nacimiento;
     DBTheLabIT DB;
 
     @Override
@@ -28,13 +27,9 @@ public class RegistrarEntrenador extends AppCompatActivity {
 
         btnRegistro    = (Button) findViewById(R.id.btnRegistro);
         Rusername    = (EditText) findViewById(R.id.Rusername);
-        /*nombre    = (EditText) findViewById(R.id.nombre);
+        nombre    = (EditText) findViewById(R.id.nombre);
         nacimiento    = (EditText) findViewById(R.id.nacimiento);
-        ciudad    = (EditText) findViewById(R.id.ciudad);
-        pais    = (EditText) findViewById(R.id.pais);
         email    = (EditText) findViewById(R.id.email);
-        comentario    = (EditText) findViewById(R.id.comentario);
-        formacion    = (EditText) findViewById(R.id.formacion);*/
         DB = new DBTheLabIT(this);
 
         btnRegistro.setOnClickListener(new View.OnClickListener() {
@@ -43,17 +38,17 @@ public class RegistrarEntrenador extends AppCompatActivity {
 
 
                 String PRuser = Rusername.getText().toString();
-                String Pnombre = "FERNANDO";
-                String Pnacimiento = "123456";  //YYYYMMDD
-                String Pciudad = "Montevideo";
-                String Ppais = "Uruguay";
-                String Pemail = "algo@algo.com";
-                String Pcomentario = "comentario";
-                String Pformacion = "Formacion EDF";
+                String Pnombre = nombre.getText().toString();
+                String Pnacimiento = nacimiento.getText().toString();  //YYYYMMDD
+                String Pciudad = null;
+                String Ppais = null;
+                String Pemail = email.getText().toString();
+                String Pcomentario = null;
+                String Pformacion = null;
 
                 Entrenador entrenador = new Entrenador(PRuser, Pnombre, Pnacimiento, Pciudad, Ppais, Pemail, Pcomentario, Pformacion);
 
-                Toast.makeText(RegistrarEntrenador.this, Ppais.toString(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RegistrarEntrenador.this, Ppais.toString(), Toast.LENGTH_SHORT).show();
 
                 Boolean resultado = DB.insertEntrenador(entrenador);
 
