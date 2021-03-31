@@ -9,7 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheLabIT">
-        <activity android:name=".vista.RegistrarEntrenador"></activity>
+        <activity android:name=".vista.EjemploMapa"></activity>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/maps_api_key" />
+
+        <activity android:name=".vista.RegistrarEntrenador" />
         <activity android:name=".vista.FormSignUp" />
         <activity android:name=".vista.HomeEntrenador" />
         <activity android:name=".vista.HomeCorredor" />

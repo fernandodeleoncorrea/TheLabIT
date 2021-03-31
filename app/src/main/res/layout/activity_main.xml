@@ -48,8 +48,14 @@
         android:layout_below="@+id/btnSignUp"
         android:layout_marginTop="100dp"
         android:text="@string/recupero_password"
-
         />
 
-
+    <Button
+        android:id="@+id/btnMapa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnRecuperar"
+        android:layout_marginTop="100dp"
+        android:text="BTN mapa"
+        />
 </RelativeLayout>

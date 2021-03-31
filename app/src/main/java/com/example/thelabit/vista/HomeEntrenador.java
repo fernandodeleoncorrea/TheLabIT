@@ -2,6 +2,8 @@ package com.example.thelabit.vista;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +24,18 @@ public class HomeEntrenador extends AppCompatActivity {
     ArrayList<String> listitem = new ArrayList<String>();
     ArrayAdapter adapter;
     ListView corredores;
+    // creating constant keys for shared preferences.
+    public static final String SHARED_PREFS = "shared_prefs";
+
+    // key for storing email.
+    public static final String USERNAME_KEY = "username_key";
+
+    // key for storing password.
+    public static final String PASSWORD_KEY = "password_key";
+
+    // variable for shared preferences.
+    SharedPreferences sharedpreferences;
+    String SPusername, SPpassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +43,12 @@ public class HomeEntrenador extends AppCompatActivity {
         setContentView(R.layout.activity_home_entrenador);
 
         corredores = findViewById(R.id.listacorredores);
+        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
 
+        // getting data from shared prefs and
+        // storing it in our string variable.
+        String logueado = sharedpreferences.getString(USERNAME_KEY, null);
+        Toast.makeText(HomeEntrenador.this, logueado, Toast.LENGTH_SHORT).show();
         viewdata();
     /*
         corredores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
