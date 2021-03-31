@@ -18,7 +18,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/maps_api_key" />
 
-        <activity android:name=".vista.RegistrarEntrenador" />
+        <activity android:name=".vista.RegistrarUsuario" />
         <activity android:name=".vista.FormSignUp" />
         <activity android:name=".vista.HomeEntrenador" />
         <activity android:name=".vista.HomeCorredor" />

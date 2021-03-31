@@ -99,30 +99,65 @@ public class DBTheLabIT extends SQLiteOpenHelper {
             return "sin_categoria";
     }
 
-    public Boolean insertEntrenador (Entrenador E){
-
-        ContentValues contenedor = new ContentValues();
-        contenedor.put(ConstantesDB.TABLA_USUARIOS_USERNAME, E.getIdUsuario());
-        contenedor.put(ConstantesDB.TABLA_USUARIOS_NOMBRE, E.getNombre());
-        contenedor.put(ConstantesDB.TABLA_USUARIOS_FECHANACIMIENTO, E.getFechaNacimiento());
-        contenedor.put(ConstantesDB.TABLA_USUARIOS_CIUDAD, E.getCiudad());
-        contenedor.put(ConstantesDB.TABLA_USUARIOS_PAIS, E.getPais());
-        contenedor.put(ConstantesDB.TABLA_USUARIOS_EMAIL, E.getEmail());
-        contenedor.put(ConstantesDB.TABLA_USUARIOS_COMENTARIO, E.getComentario());
-
-
-        ContentValues contenedor2 = new ContentValues();
-        contenedor2.put(ConstantesDB.TABLA_USUARIOS_USERNAME, E.getIdUsuario());
-        contenedor2.put(ConstantesDB.TABLA_ENTRENADORES_FORMACION, E.getFormacion());
-
+    public Boolean insertUsuario (String Tipo, Entrenador E, Corredor C, Login L){
         SQLiteDatabase db = this.getWritableDatabase();
+        Boolean usu = false;
+        Boolean ent = false;
+        Boolean corr = false;
+        Boolean log = false;
 
-        Boolean usu = db.insert("USUARIOS", null, contenedor) > 0;
+        if (Tipo == "Entrenador") {
 
-        Boolean ent = db.insert("ENTRENADORES", null, contenedor2) > 0;
+            ContentValues contenedor = new ContentValues();
+            contenedor.put(ConstantesDB.TABLA_USUARIOS_USERNAME, E.getIdUsuario());
+            contenedor.put(ConstantesDB.TABLA_USUARIOS_NOMBRE, E.getNombre());
+            contenedor.put(ConstantesDB.TABLA_USUARIOS_FECHANACIMIENTO, E.getFechaNacimiento());
+            contenedor.put(ConstantesDB.TABLA_USUARIOS_CIUDAD, E.getCiudad());
+            contenedor.put(ConstantesDB.TABLA_USUARIOS_PAIS, E.getPais());
+            contenedor.put(ConstantesDB.TABLA_USUARIOS_EMAIL, E.getEmail());
+            contenedor.put(ConstantesDB.TABLA_USUARIOS_COMENTARIO, E.getComentario());
+
+            ContentValues contenedor2 = new ContentValues();
+            contenedor2.put(ConstantesDB.TABLA_USUARIOS_USERNAME, E.getIdUsuario());
+            contenedor2.put(ConstantesDB.TABLA_ENTRENADORES_FORMACION, E.getFormacion());
+
+            usu = db.insert("USUARIOS", null, contenedor) > 0;
+            ent = db.insert("ENTRENADORES", null, contenedor2) > 0;
+
+        }else {
+
+            ContentValues contenedor = new ContentValues();
+            contenedor.put(ConstantesDB.TABLA_USUARIOS_USERNAME,C.getIdUsuario());
+            contenedor.put(ConstantesDB.TABLA_USUARIOS_NOMBRE, C.getNombre());
+            contenedor.put(ConstantesDB.TABLA_USUARIOS_FECHANACIMIENTO, C.getFechaNacimiento());
+            contenedor.put(ConstantesDB.TABLA_USUARIOS_CIUDAD, C.getCiudad());
+            contenedor.put(ConstantesDB.TABLA_USUARIOS_PAIS, C.getPais());
+            contenedor.put(ConstantesDB.TABLA_USUARIOS_EMAIL, C.getEmail());
+            contenedor.put(ConstantesDB.TABLA_USUARIOS_COMENTARIO, C.getComentario());
+
+            ContentValues contenedor2 = new ContentValues();
+            contenedor2.put(ConstantesDB.TABLA_USUARIOS_USERNAME, C.getIdUsuario());
+            contenedor2.put(ConstantesDB.TABLA_CORREDORES_PESO,C.getPeso());
+            contenedor2.put(ConstantesDB.TABLA_CORREDORES_GENERO,C.getGenero());
+            contenedor2.put(ConstantesDB.TABLA_CORREDORES_ALTURA,C.getAltura());
+            contenedor2.put(ConstantesDB.TABLA_CORREDORES_FCREPOSO,C.getFCReposo());
+            contenedor2.put(ConstantesDB.TABLA_CORREDORES_FCMAXIMA,C.getFCMaxima());
+            contenedor2.put(ConstantesDB.TABLA_CORREDORES_OBJETIVO,C.getDistanciaObjetivo());
+            contenedor2.put(ConstantesDB.TABLA_CORREDORES_TIEMPOESTIMADO,C.getTiempoEstimado());
+
+            usu = db.insert("USUARIOS", null, contenedor) > 0;
+            corr = db.insert("CORREDORES", null, contenedor2) > 0;
+        }
+        ContentValues contenedor3 = new ContentValues();
+        contenedor3.put(ConstantesDB.TABLA_USUARIOS_USERNAME, L.getUsername());
+        contenedor3.put(ConstantesDB.TABLA_LOGIN_PASSWORD, L.getPassword());
+
+        log = db.insert("LOGIN", null, contenedor3) > 0;
         db.close();
 
-        if (usu == true & ent == true){
+        if (Tipo == "Entrenador" & usu == true & ent == true & log == true){
+            return true;
+        }else if (Tipo == "Corredor" & usu == true & corr == true & log == true){
             return true;
         }else {
             return false;

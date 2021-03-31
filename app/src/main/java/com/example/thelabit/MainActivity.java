@@ -11,13 +11,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.thelabit.modelo.Corredor;
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.modelo.Login;
 import com.example.thelabit.vista.EjemploMapa;
 import com.example.thelabit.vista.HomeCorredor;
 import com.example.thelabit.vista.HomeEntrenador;
-import com.example.thelabit.vista.RegistrarEntrenador;
+import com.example.thelabit.vista.RegistrarUsuario;
 
 public class MainActivity extends AppCompatActivity {
     //API KEY AIzaSyCcekE7ZB5tACXfm6SJ9uDnfDbcX3IBd7E
@@ -115,8 +114,8 @@ public class MainActivity extends AppCompatActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "error", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), RegistrarEntrenador.class);
+                //Toast.makeText(MainActivity.this, "error", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), RegistrarUsuario.class);
                 startActivity(intent);
             }
         });
@@ -124,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         btnMapa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "error", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, "error", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), EjemploMapa.class);
                 startActivity(intent);
             }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".vista.RegistrarEntrenador">
+    tools:context=".vista.RegistrarUsuario">
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -25,7 +25,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:hint="documento"
+        android:hint="username"
+        />
+        <EditText
+            android:id="@+id/Rpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/Rusername"
+            android:hint="password"
         />
 
     <EditText
@@ -55,6 +63,13 @@
         android:hint="email"
         />
 
+        <Spinner
+            android:id="@+id/spinnerTipoUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/email"
+            android:layout_marginTop="30dp"
+            android:prompt="@string/usuario" />
     <Button
         android:id="@+id/btnRegistro"
         android:layout_width="match_parent"
@@ -63,6 +78,10 @@
         android:layout_below="@+id/formacion"
         android:text="Aceptar"
         />
+
+
     </LinearLayout>
     </ScrollView>
+
+
 </RelativeLayout>
