@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.modelo.Login;
 import com.example.thelabit.vista.EjemploMapa;
+import com.example.thelabit.vista.EjemploMapa2;
 import com.example.thelabit.vista.HomeCorredor;
 import com.example.thelabit.vista.HomeEntrenador;
 import com.example.thelabit.vista.RegistrarUsuario;
@@ -124,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(MainActivity.this, "error", Toast.LENGTH_SHORT).show();
+                //Intent intent = new Intent(getApplicationContext(), EjemploMapa.class);
                 Intent intent = new Intent(getApplicationContext(), EjemploMapa.class);
                 startActivity(intent);
             }
