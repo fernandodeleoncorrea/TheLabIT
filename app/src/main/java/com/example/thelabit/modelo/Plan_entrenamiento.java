@@ -48,7 +48,7 @@ public class Plan_entrenamiento {
         Comentario = comentario;
     }
 
-    public Planes_entrenamiento(int id, String nombre, String distancia, String objetivo, String comentario) {
+    public Plan_entrenamiento(int id, String nombre, String distancia, String objetivo, String comentario) {
         this.id = id;
         Nombre = nombre;
         Distancia = distancia;
