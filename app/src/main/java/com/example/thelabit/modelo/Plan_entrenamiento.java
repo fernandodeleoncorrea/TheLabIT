@@ -1,6 +1,6 @@
 package com.example.thelabit.modelo;
 
-public class Planes_entrenamiento {
+public class Plan_entrenamiento {
 
     private int id;
     private String Nombre;
@@ -56,4 +56,3 @@ public class Planes_entrenamiento {
         Comentario = comentario;
     }
 }
-
