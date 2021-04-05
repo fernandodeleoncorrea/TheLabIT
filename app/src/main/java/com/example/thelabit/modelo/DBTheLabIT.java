@@ -60,6 +60,7 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         db.execSQL(queryTablaLogin);
 
         queryTablaLogin = "INSERT INTO ENTRENADORES(USERNAME, FORMACION) VALUES ('1', 'ED FISICA')";
+        queryTablaLogin = "INSERT INTO ENTRENADORES(USERNAME, FORMACION) VALUES ('4', 'ED FISICA')";
         db.execSQL(queryTablaLogin);
 
         queryTablaLogin = "INSERT INTO CORREDORES(USERNAME, PESO, GENERO, ALTURA, FCREPOSO, FCMAXIMA, OBJETIVO, TIEMPOESTIMADO ) VALUES ('2', '70', 'MASCULINO2', '170', '60', '180', '10', '50')";
