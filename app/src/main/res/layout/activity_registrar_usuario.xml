@@ -34,6 +34,7 @@
             android:layout_marginTop="20dp"
             android:layout_below="@+id/Rusername"
             android:hint="password"
+            android:inputType="textPassword"
         />
 
     <EditText
