@@ -6,12 +6,12 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TheLabIT"
-        android:requestLegacyExternalStorage="true"
-        >
-        <activity android:name=".vista.EjemploMapa2"></activity>
+        android:theme="@style/Theme.TheLabIT">
+        <activity android:name=".vista.HomePlanes"></activity>
+        <activity android:name=".vista.EjemploMapa2" />
         <activity android:name=".vista.EjemploMapa" />
 
         <meta-data

@@ -13,7 +13,8 @@ import com.example.thelabit.MainActivity;
 
 public class DBTheLabIT extends SQLiteOpenHelper {
 
-    public String queryTablaLogin;
+    public String queryCrearTabla;
+    public String queryInsert;
 
 
     public DBTheLabIT(@Nullable Context context) {
@@ -23,54 +24,75 @@ public class DBTheLabIT extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        queryTablaLogin = "CREATE TABLE LOGIN(USERNAME STRING PRIMARY KEY, PASSWORD STRING)";
-        db.execSQL(queryTablaLogin);
+        queryCrearTabla = "CREATE TABLE LOGIN(USERNAME STRING PRIMARY KEY, PASSWORD STRING)";
+        db.execSQL(queryCrearTabla);
 
-        queryTablaLogin = "CREATE TABLE USUARIOS(USERNAME STRING PRIMARY KEY, NOMBRE STRING, FECHANACIMIENTO STRING, CIUDAD STRING, PAIS STRING, EMAIL STRING, COMENTARIO STRING)";
-        db.execSQL(queryTablaLogin);
+        queryCrearTabla = "CREATE TABLE USUARIOS(USERNAME STRING PRIMARY KEY, NOMBRE STRING, FECHANACIMIENTO STRING, CIUDAD STRING, PAIS STRING, EMAIL STRING, COMENTARIO STRING)";
+        db.execSQL(queryCrearTabla);
 
-        queryTablaLogin = "CREATE TABLE ENTRENADORES(USERNAME STRING PRIMARY KEY, FORMACION STRING)";
-        db.execSQL(queryTablaLogin);
+        queryCrearTabla = "CREATE TABLE ENTRENADORES(USERNAME STRING PRIMARY KEY, FORMACION STRING)";
+        db.execSQL(queryCrearTabla);
 
-        queryTablaLogin = "CREATE TABLE CORREDORES(USERNAME STRING PRIMARY KEY, PESO STRING, GENERO STRING, ALTURA STRING, FCREPOSO STRING, FCMAXIMA STRING, OBJETIVO STRING, TIEMPOESTIMADO STRING)";
-        db.execSQL(queryTablaLogin);
+        queryCrearTabla = "CREATE TABLE CORREDORES(USERNAME STRING PRIMARY KEY, PESO STRING, GENERO STRING, ALTURA STRING, FCREPOSO STRING, FCMAXIMA STRING, OBJETIVO STRING, TIEMPOESTIMADO STRING)";
+        db.execSQL(queryCrearTabla);
+
+        queryCrearTabla = "CREATE TABLE PLANES_ENTRENAMIENTOS(ID INT PRIMARY KEY, NOMBRE STRING, DISTANCIA STRING, OBJETIVO STRING, COMENTARIO STRING)";
+        db.execSQL(queryCrearTabla);
+
+        queryCrearTabla = "CREATE TABLE ACTIVIDADES(ID INT PRIMARY KEY, SEMANA STRING, DIA STRING, TURNO STRING, DESCRIPCION STRING)";
+        db.execSQL(queryCrearTabla);
+
+        queryCrearTabla = "CREATE TABLE PLANES_DETALLE(IDENTRENADOR STRING, IDCORREDOR STRING, IDPLAN INT, IDACTIVIDAD INT)";
+        db.execSQL(queryCrearTabla);
 
         //INSERTO UNOS DATOS DE PRUEBA
         //INSERT DE USUARIOS Y PASSWORD
-        queryTablaLogin = "INSERT INTO LOGIN(USERNAME, PASSWORD) VALUES ('1', 'pwfernando')";
-        db.execSQL(queryTablaLogin);
+        queryInsert = "INSERT INTO LOGIN(USERNAME, PASSWORD) VALUES ('1', 'pwfernando')";
+        db.execSQL(queryInsert);
 
-        queryTablaLogin = "INSERT INTO LOGIN(USERNAME, PASSWORD) VALUES ('2', 'pwadrian')";
-        db.execSQL(queryTablaLogin);
+        queryInsert = "INSERT INTO LOGIN(USERNAME, PASSWORD) VALUES ('2', 'pwadrian')";
+        db.execSQL(queryInsert);
 
-        queryTablaLogin = "INSERT INTO LOGIN(USERNAME, PASSWORD) VALUES ('3', 'pwjoaquin')";
-        db.execSQL(queryTablaLogin);
+        queryInsert = "INSERT INTO LOGIN(USERNAME, PASSWORD) VALUES ('3', 'pwjoaquin')";
+        db.execSQL(queryInsert);
 
-        queryTablaLogin = "INSERT INTO LOGIN(USERNAME, PASSWORD) VALUES ('4', 'pwmario')";
-        db.execSQL(queryTablaLogin);
+        queryInsert = "INSERT INTO LOGIN(USERNAME, PASSWORD) VALUES ('4', 'pwmario')";
+        db.execSQL(queryInsert);
 
-        queryTablaLogin = "INSERT INTO LOGIN(USERNAME, PASSWORD) VALUES ('5', 'pwcarol')";
-        db.execSQL(queryTablaLogin);
+        queryInsert = "INSERT INTO LOGIN(USERNAME, PASSWORD) VALUES ('5', 'pwcarol')";
+        db.execSQL(queryInsert);
 
-        queryTablaLogin = "INSERT INTO USUARIOS(USERNAME, NOMBRE, FECHANACIMIENTO, CIUDAD, PAIS, EMAIL, COMENTARIO ) VALUES ('2', 'FERNANDO2', '01/01/2021', 'MONTEVIDEO', 'URUGUAY', 'HOLA@HOLA.COM', '')";
-        db.execSQL(queryTablaLogin);
-        queryTablaLogin = "INSERT INTO USUARIOS(USERNAME, NOMBRE, FECHANACIMIENTO, CIUDAD, PAIS, EMAIL, COMENTARIO ) VALUES ('3', 'FERNANDO3', '01/01/2021', 'MONTEVIDEO', 'URUGUAY', 'HOLA@HOLA.COM', '')";
-        db.execSQL(queryTablaLogin);
-        queryTablaLogin = "INSERT INTO USUARIOS(USERNAME, NOMBRE, FECHANACIMIENTO, CIUDAD, PAIS, EMAIL, COMENTARIO ) VALUES ('4', 'FERNANDO4', '01/01/2021', 'MONTEVIDEO', 'URUGUAY', 'HOLA@HOLA.COM', '')";
-        db.execSQL(queryTablaLogin);
+        queryInsert = "INSERT INTO USUARIOS(USERNAME, NOMBRE, FECHANACIMIENTO, CIUDAD, PAIS, EMAIL, COMENTARIO ) VALUES ('2', 'FERNANDO2', '01/01/2021', 'MONTEVIDEO', 'URUGUAY', 'HOLA@HOLA.COM', '')";
+        db.execSQL(queryInsert);
+        queryInsert = "INSERT INTO USUARIOS(USERNAME, NOMBRE, FECHANACIMIENTO, CIUDAD, PAIS, EMAIL, COMENTARIO ) VALUES ('3', 'FERNANDO3', '01/01/2021', 'MONTEVIDEO', 'URUGUAY', 'HOLA@HOLA.COM', '')";
+        db.execSQL(queryInsert);
+        queryInsert = "INSERT INTO USUARIOS(USERNAME, NOMBRE, FECHANACIMIENTO, CIUDAD, PAIS, EMAIL, COMENTARIO ) VALUES ('4', 'FERNANDO4', '01/01/2021', 'MONTEVIDEO', 'URUGUAY', 'HOLA@HOLA.COM', '')";
+        db.execSQL(queryInsert);
 
-        queryTablaLogin = "INSERT INTO ENTRENADORES(USERNAME, FORMACION) VALUES ('1', 'ED FISICA')";
-        db.execSQL(queryTablaLogin);
-        queryTablaLogin = "INSERT INTO ENTRENADORES(USERNAME, FORMACION) VALUES ('4', 'ED FISICA')";
-        db.execSQL(queryTablaLogin);
+        queryInsert = "INSERT INTO ENTRENADORES(USERNAME, FORMACION) VALUES ('1', 'ED FISICA')";
+        db.execSQL(queryInsert);
+        queryInsert = "INSERT INTO ENTRENADORES(USERNAME, FORMACION) VALUES ('4', 'ED FISICA')";
+        db.execSQL(queryInsert);
 
-        queryTablaLogin = "INSERT INTO CORREDORES(USERNAME, PESO, GENERO, ALTURA, FCREPOSO, FCMAXIMA, OBJETIVO, TIEMPOESTIMADO ) VALUES ('2', '70', 'MASCULINO2', '170', '60', '180', '10', '50')";
-        db.execSQL(queryTablaLogin);
-        queryTablaLogin = "INSERT INTO CORREDORES(USERNAME, PESO, GENERO, ALTURA, FCREPOSO, FCMAXIMA, OBJETIVO, TIEMPOESTIMADO ) VALUES ('3', '70', 'MASCULINO3', '170', '60', '180', '10', '50')";
-        db.execSQL(queryTablaLogin);
-        queryTablaLogin = "INSERT INTO CORREDORES(USERNAME, PESO, GENERO, ALTURA, FCREPOSO, FCMAXIMA, OBJETIVO, TIEMPOESTIMADO ) VALUES ('4', '70', 'MASCULINO4', '170', '60', '180', '10', '50')";
-        db.execSQL(queryTablaLogin);
+        queryInsert = "INSERT INTO CORREDORES(USERNAME, PESO, GENERO, ALTURA, FCREPOSO, FCMAXIMA, OBJETIVO, TIEMPOESTIMADO ) VALUES ('2', '70', 'MASCULINO2', '170', '60', '180', '10', '50')";
+        db.execSQL(queryInsert);
+        queryInsert = "INSERT INTO CORREDORES(USERNAME, PESO, GENERO, ALTURA, FCREPOSO, FCMAXIMA, OBJETIVO, TIEMPOESTIMADO ) VALUES ('3', '70', 'MASCULINO3', '170', '60', '180', '10', '50')";
+        db.execSQL(queryInsert);
+        queryInsert = "INSERT INTO CORREDORES(USERNAME, PESO, GENERO, ALTURA, FCREPOSO, FCMAXIMA, OBJETIVO, TIEMPOESTIMADO ) VALUES ('4', '70', 'MASCULINO4', '170', '60', '180', '10', '50')";
+        db.execSQL(queryInsert);
 
+
+        queryInsert = "INSERT INTO PLANES_ENTRENAMIENTOS(ID, NOMBRE, DISTANCIA, OBJETIVO , COMENTARIO) VALUES (1, 'PLAN 10K PRINCIPIANTE', '10K', '60 MIN', '8 SEMANAS')";
+        db.execSQL(queryInsert);
+
+        queryInsert = "INSERT INTO ACTIVIDADES(ID, SEMANA, DIA, TURNO , DESCRIPCION) VALUES (1, '1', '1', 'MATUTINO', '30 MIN TROTE SUAVE')";
+        db.execSQL(queryInsert);
+
+        queryInsert = "INSERT INTO ACTIVIDADES(ID, SEMANA, DIA, TURNO , DESCRIPCION) VALUES (2, '1', '2', 'VESPERTINO', '20 MIN TROTE + 10 CUESTAS')";
+        db.execSQL(queryInsert);
+
+        queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN, IDACTIVIDAD) VALUES ('4', '2', 1, 1)";
+        db.execSQL(queryInsert);
     }
 
 
@@ -172,6 +194,13 @@ public class DBTheLabIT extends SQLiteOpenHelper {
     public Cursor obtenerCorredores(String ent){
         SQLiteDatabase db =  this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT USERNAME FROM USUARIOS", null);
+        return cursor;
+    }
+
+    public Cursor obtenerPlanes(String ent){
+        SQLiteDatabase db =  this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT IDPLAN FROM PLANES_DETALLE", null);
+        int hola = cursor.getCount();
         return cursor;
     }
 }

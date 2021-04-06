@@ -3,12 +3,14 @@ package com.example.thelabit.vista;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -24,15 +26,15 @@ public class HomeEntrenador extends AppCompatActivity {
     ArrayList<String> listitem = new ArrayList<String>();
     ArrayAdapter adapter;
     ListView corredores;
+    Button btnPlanes;
+
+
     // creating constant keys for shared preferences.
     public static final String SHARED_PREFS = "shared_prefs";
-
     // key for storing email.
     public static final String USERNAME_KEY = "username_key";
-
     // key for storing password.
     public static final String PASSWORD_KEY = "password_key";
-
     // variable for shared preferences.
     SharedPreferences sharedpreferences;
     String SPusername, SPpassword;
@@ -44,6 +46,7 @@ public class HomeEntrenador extends AppCompatActivity {
 
         corredores = findViewById(R.id.listacorredores);
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        btnPlanes   = (Button) findViewById(R.id.btnPlanes);
 
         // getting data from shared prefs and
         // storing it in our string variable.
@@ -57,6 +60,16 @@ public class HomeEntrenador extends AppCompatActivity {
                 String text  = corredores.getItemAtPosition(i).toString();
                 Toast.makeText(HomeEntrenador.this, "bieeen", Toast.LENGTH_SHORT).show();
             }});*/
+
+        btnPlanes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), HomePlanes.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void viewdata(){

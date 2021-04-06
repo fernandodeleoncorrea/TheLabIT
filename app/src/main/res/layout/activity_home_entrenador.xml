@@ -18,6 +18,15 @@
     android:text="entrenador"
     />
 
+    <Button
+        android:id="@+id/btnPlanes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/tituloentrenador"
+        android:text="Planes"
+        />
+
     <ListView
     android:id="@+id/listacorredores"
     android:layout_width="wrap_content"
