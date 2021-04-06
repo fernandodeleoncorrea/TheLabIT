@@ -85,6 +85,9 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         queryInsert = "INSERT INTO PLANES_ENTRENAMIENTOS(ID, NOMBRE, DISTANCIA, OBJETIVO , COMENTARIO) VALUES (1, 'PLAN 10K PRINCIPIANTE', '10K', '60 MIN', '8 SEMANAS')";
         db.execSQL(queryInsert);
 
+        queryInsert = "INSERT INTO PLANES_ENTRENAMIENTOS(ID, NOMBRE, DISTANCIA, OBJETIVO , COMENTARIO) VALUES (2, 'PLAN 10K INTERMEDIO', '10K', '45 MIN', '12 SEMANAS')";
+        db.execSQL(queryInsert);
+
         queryInsert = "INSERT INTO ACTIVIDADES(ID, SEMANA, DIA, TURNO , DESCRIPCION) VALUES (1, '1', '1', 'MATUTINO', '30 MIN TROTE SUAVE')";
         db.execSQL(queryInsert);
 
@@ -92,6 +95,9 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         db.execSQL(queryInsert);
 
         queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN, IDACTIVIDAD) VALUES ('4', '2', 1, 1)";
+        db.execSQL(queryInsert);
+
+        queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN, IDACTIVIDAD) VALUES ('4', '3', 2, 1)";
         db.execSQL(queryInsert);
     }
 
@@ -199,7 +205,10 @@ public class DBTheLabIT extends SQLiteOpenHelper {
 
     public Cursor obtenerPlanes(String ent){
         SQLiteDatabase db =  this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT IDPLAN FROM PLANES_DETALLE", null);
+        Cursor cursor = db.rawQuery("SELECT T1.NOMBRE AS NOMBRE   " +
+                        " FROM PLANES_ENTRENAMIENTOS T1 " +
+                        "JOIN PLANES_DETALLE T2 ON T1.ID = T2.IDPLAN " +
+                        "WHERE T2.IDENTRENADOR = ?",new String[]{ent});
         int hola = cursor.getCount();
         return cursor;
     }
