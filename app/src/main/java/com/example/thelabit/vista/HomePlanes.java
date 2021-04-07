@@ -2,9 +2,12 @@ package com.example.thelabit.vista;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -23,14 +26,25 @@ public class HomePlanes extends AppCompatActivity {
     ListView planes;
     Sesion sesion;
 
-
+    // creating constant keys for shared preferences.
+    public static final String SHARED_PREFS = "shared_prefs";
+    // key for storing email.
+    public static final String USERNAME_KEY = "username_key";
+    // key for storing password.
+    public static final String PASSWORD_KEY = "password_key";
+    // variable for shared preferences.
+    SharedPreferences sharedpreferences;
+    String SPusername, SPpassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_planes);
 
         planes = findViewById(R.id.listaPlanes);
-        //Toast.makeText(HomePlanes.this, Pusername, Toast.LENGTH_LONG).show();
+        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+
+        String logueado = sharedpreferences.getString(USERNAME_KEY, null);
+        Toast.makeText(HomePlanes.this, logueado, Toast.LENGTH_SHORT).show();
         viewPlanes();
         //sesion.getusername();
     }

@@ -48,8 +48,6 @@ public class HomeEntrenador extends AppCompatActivity {
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         btnPlanes   = (Button) findViewById(R.id.btnPlanes);
 
-        // getting data from shared prefs and
-        // storing it in our string variable.
         String logueado = sharedpreferences.getString(USERNAME_KEY, null);
         Toast.makeText(HomeEntrenador.this, logueado, Toast.LENGTH_SHORT).show();
         viewCorredores();
