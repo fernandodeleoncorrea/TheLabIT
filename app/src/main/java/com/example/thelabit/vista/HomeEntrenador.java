@@ -52,14 +52,7 @@ public class HomeEntrenador extends AppCompatActivity {
         // storing it in our string variable.
         String logueado = sharedpreferences.getString(USERNAME_KEY, null);
         Toast.makeText(HomeEntrenador.this, logueado, Toast.LENGTH_SHORT).show();
-        viewdata();
-    /*
-        corredores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView adapterView, View viewm, int i,  long l) {
-                String text  = corredores.getItemAtPosition(i).toString();
-                Toast.makeText(HomeEntrenador.this, "bieeen", Toast.LENGTH_SHORT).show();
-            }});*/
+        viewCorredores();
 
         btnPlanes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +65,7 @@ public class HomeEntrenador extends AppCompatActivity {
 
     }
 
-    private void viewdata(){
+    private void viewCorredores(){
         DB = new DBTheLabIT(this);
         Cursor c = DB.obtenerCorredores("Fernando");
 

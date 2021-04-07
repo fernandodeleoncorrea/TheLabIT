@@ -13,8 +13,8 @@ import android.widget.Toast;
 
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.modelo.Login;
+import com.example.thelabit.modelo.Sesion;
 import com.example.thelabit.vista.EjemploMapa;
-import com.example.thelabit.vista.EjemploMapa2;
 import com.example.thelabit.vista.HomeCorredor;
 import com.example.thelabit.vista.HomeEntrenador;
 import com.example.thelabit.vista.RegistrarUsuario;
@@ -26,19 +26,10 @@ public class MainActivity extends AppCompatActivity {
     Button btnlogin;
     Button btnSignUp, btnMapa;
     DBTheLabIT DB;
-
-    // creating constant keys for shared preferences.
-    public static final String SHARED_PREFS = "shared_prefs";
-
-    // key for storing email.
-    public static final String USERNAME_KEY = "username_key";
-
-    // key for storing password.
-    public static final String PASSWORD_KEY = "password_key";
-
-    // variable for shared preferences.
+    Boolean LoginOK = false;
     SharedPreferences sharedpreferences;
     String SPusername, SPpassword;
+    private Sesion sesion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +42,6 @@ public class MainActivity extends AppCompatActivity {
         btnSignUp   = (Button) findViewById(R.id.btnSignUp);
         btnMapa   = (Button) findViewById(R.id.btnMapa);
         DB = new DBTheLabIT(this);
-        // getting the data which is stored in shared preferences.
-        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
 
 
         btnlogin.setOnClickListener(new View.OnClickListener() {
@@ -67,48 +56,25 @@ public class MainActivity extends AppCompatActivity {
 
                 //creo un objeto Login para hacer el chequeo
                 Login login = new Login(user, pass);
-                //Corredor corredor = new Corredor();
 
                 String tipo = DB.chequearUsuarioPassword(login);
 
                 //chequeo de los datos ingresados
                 if (tipo == "corredor"){
-                    SPusername = sharedpreferences.getString(USERNAME_KEY, null);
-                    SPpassword = sharedpreferences.getString(PASSWORD_KEY, null);
-                    SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                    // below two lines will put values for
-                    // email and password in shared preferences.
-                    editor.putString(USERNAME_KEY, user);
-                    editor.putString(PASSWORD_KEY, pass);
-
-                    // to save our data with key and value.
-                    editor.apply();
+                    sesion = new Sesion(MainActivity.this); //in oncreate
+                    sesion.setusername(login.getUsername());
 
                     Intent intent = new Intent(getApplicationContext(), HomeCorredor.class);
                     startActivity(intent);
                 }else if (tipo == "entrenador"){
-                    SPusername = sharedpreferences.getString(USERNAME_KEY, null);
-                    SPpassword = sharedpreferences.getString(PASSWORD_KEY, null);
-
-                    SPusername = sharedpreferences.getString(USERNAME_KEY, null);
-                    SPpassword = sharedpreferences.getString(PASSWORD_KEY, null);
-                    SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                    // below two lines will put values for
-                    // email and password in shared preferences.
-                    editor.putString(USERNAME_KEY, user);
-                    editor.putString(PASSWORD_KEY, pass);
-
-                    // to save our data with key and value.
-                    editor.apply();
+                    sesion = new Sesion(MainActivity.this); //in oncreate
+                    sesion.setusername(login.getUsername());
 
                     Intent intent = new Intent(getApplicationContext(), HomeEntrenador.class);
                     startActivity(intent);
                 }else {
                     Toast.makeText(MainActivity.this, "nooo", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 
