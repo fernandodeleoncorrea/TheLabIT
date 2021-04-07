@@ -35,6 +35,7 @@ public class HomePlanes extends AppCompatActivity {
     // variable for shared preferences.
     SharedPreferences sharedpreferences;
     String SPusername, SPpassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +47,7 @@ public class HomePlanes extends AppCompatActivity {
         String logueado = sharedpreferences.getString(USERNAME_KEY, null);
         Toast.makeText(HomePlanes.this, logueado, Toast.LENGTH_SHORT).show();
         viewPlanes();
-        //sesion.getusername();
+
     }
 
     private void viewPlanes(){
