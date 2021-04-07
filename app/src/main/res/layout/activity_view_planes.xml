@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".vista.ViewPlanes">
+
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <EditText
+                android:id="@+id/txtVistaPlanes"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Vista Planes"
+                />
+
+            <EditText
+                android:id="@+id/idPlan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/txtVistaPlanes"
+                android:hint="idPlan"
+                />
+
+            <EditText
+                android:id="@+id/nombrePlan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/idPlan"
+                android:hint="nombre"
+                />
+
+            <EditText
+                android:id="@+id/distanciaPlan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/nombrePlan"
+                android:hint="distancia"
+                />
+
+            <EditText
+                android:id="@+id/objetivoPlan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/distanciaPlan"
+                android:hint="Objetivo"
+                />
+            <EditText
+                android:id="@+id/comentarioPlan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/objetivoPlan"
+                android:hint="Comentario"
+                />
+
+            <Button
+                android:id="@+id/btnModificar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_below="@+id/comentarioPlan"
+                android:text="Modificar"
+                />
+
+            <Button
+                android:id="@+id/btnEliminar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_below="@+id/btnModificar"
+                android:text="Eliminar"
+            />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -3,9 +3,12 @@ package com.example.thelabit.vista;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -16,6 +19,7 @@ import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.modelo.Sesion;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class HomePlanes extends AppCompatActivity {
@@ -48,7 +52,23 @@ public class HomePlanes extends AppCompatActivity {
         Toast.makeText(HomePlanes.this, logueado, Toast.LENGTH_SHORT).show();
         viewPlanes();
 
+        planes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView <? > arg0, View view, int position, long id) {
+
+                String nombrePlan =(String)arg0.getItemAtPosition(position);
+
+                Intent intent = new Intent(HomePlanes.this, ViewPlanes.class);
+                Bundle b = new Bundle();
+                b.putString("nombrePlan", nombrePlan); //Your id
+                intent.putExtras(b);
+                startActivity(intent);
+                finish();
+
+                Toast.makeText(HomePlanes.this, nombrePlan, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
 
     private void viewPlanes(){
         DB = new DBTheLabIT(this);
@@ -61,6 +81,5 @@ public class HomePlanes extends AppCompatActivity {
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listitem);
         planes.setAdapter(adapter);
-
     }
 }

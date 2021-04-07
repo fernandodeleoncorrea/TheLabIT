@@ -13,7 +13,6 @@
         android:layout_height="300dp">
 
 
-
     <TableRow>
         <EditText
             android:id="@+id/tituloentrenador"
