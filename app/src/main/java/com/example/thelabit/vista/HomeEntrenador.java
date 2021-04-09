@@ -48,7 +48,11 @@ public class HomeEntrenador extends AppCompatActivity {
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         btnPlanes   = (Button) findViewById(R.id.btnPlanes);
 
-        String logueado = sharedpreferences.getString(USERNAME_KEY, null);
+        Bundle b = getIntent().getExtras();
+        String logueado = b.getString("logueado");
+
+
+        //String logueado = sharedpreferences.getString(USERNAME_KEY, null);
         Toast.makeText(HomeEntrenador.this, logueado, Toast.LENGTH_SHORT).show();
         viewCorredores();
 
@@ -56,7 +60,10 @@ public class HomeEntrenador extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(), HomePlanes.class);
+                Intent intent = new Intent(HomeEntrenador.this, HomePlanes.class);
+                Bundle b = new Bundle();
+                b.putString("logueado", logueado);
+                intent.putExtras(b);
                 startActivity(intent);
             }
         });

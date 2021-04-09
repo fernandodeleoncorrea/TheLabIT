@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.thelabit.R;
+import com.example.thelabit.ViewNuevoPlan;
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.modelo.Sesion;
 
@@ -29,6 +30,7 @@ public class HomePlanes extends AppCompatActivity {
     ArrayAdapter adapter;
     ListView planes;
     Sesion sesion;
+    Button btnNuevoPlan;
 
     // creating constant keys for shared preferences.
     public static final String SHARED_PREFS = "shared_prefs";
@@ -45,10 +47,13 @@ public class HomePlanes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_planes);
 
+        btnNuevoPlan    = (Button) findViewById(R.id.btnNuevoPlan);
         planes = findViewById(R.id.listaPlanes);
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
 
-        String logueado = sharedpreferences.getString(USERNAME_KEY, null);
+        Bundle b = getIntent().getExtras();
+        String logueado = b.getString("logueado");
+        //String logueado = sharedpreferences.getString(USERNAME_KEY, null);
         Toast.makeText(HomePlanes.this, logueado, Toast.LENGTH_SHORT).show();
         viewPlanes();
 
@@ -65,6 +70,18 @@ public class HomePlanes extends AppCompatActivity {
                 finish();
 
                 Toast.makeText(HomePlanes.this, nombrePlan, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnNuevoPlan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(HomePlanes.this, ViewNuevoPlan.class);
+                Bundle b = new Bundle();
+                b.putString("logueado", logueado);
+                intent.putExtras(b);
+                startActivity(intent);
             }
         });
     }

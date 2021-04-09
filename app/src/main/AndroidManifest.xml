@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheLabIT">
-        <activity android:name=".vista.ViewPlanesDetalle"></activity>
+        <activity android:name=".ViewNuevoPlan"></activity>
+        <activity android:name=".vista.ViewPlanesDetalle" />
         <activity android:name=".vista.ViewPlanes" />
         <activity android:name=".vista.HomePlanes" />
         <activity android:name=".vista.EjemploMapa2" />

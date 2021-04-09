@@ -18,4 +18,23 @@ public final class ConstantesDB {
     public static final String TABLA_CORREDORES_FCMAXIMA = "FCMAXIMA";
     public static final String TABLA_CORREDORES_OBJETIVO = "OBJETIVO";
     public static final String TABLA_CORREDORES_TIEMPOESTIMADO = "TIEMPOESTIMADO";
+
+    //TABLA PLANES ID, NOMBRE, DISTANCIA, OBJETIVO , COMENTARIO
+    public static final String TABLA_PLANES_ID = "ID";
+    public static final String TABLA_PLANES_NOMBRE = "NOMBRE";
+    public static final String TABLA_PLANES_DISTANCIA = "DISTANCIA";
+    public static final String TABLA_PLANES_OBJETIVO = "OBJETIVO";
+    public static final String TABLA_PLANES_COMENTARIO = "COMENTARIO";
+
+    //TABLA ACTIVIDADES
+    public static final String TABLA_ACTIVIDADES_ID = "ID";
+    public static final String TABLA_ACTIVIDADES_SEMANA = "SEMANA";
+    public static final String TABLA_ACTIVIDADES_DIA = "DIA";
+    public static final String TABLA_ACTIVIDADES_TURNO = "TURNO";
+    public static final String TABLA_ACTIVIDADES_DESCRIPCION = "DESCRIPCION";
+
+    //TABLA PLANES DETALLE IDENTRENADOR STRING, IDCORREDOR STRING, IDPLAN INT
+    public static final String TABLA_PLANESDETALLE_IDENT = "IDENTRENADOR";
+    public static final String TABLA_PLANESDETALLE_IDCORR = "IDCORREDOR";
+    public static final String TABLA_PLANESDETALLE_IDPLAN = "IDPLAN";
 }

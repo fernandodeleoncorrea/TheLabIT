@@ -1,6 +1,6 @@
 package com.example.thelabit.modelo;
 
-public class Plan_entrenamiento {
+public class PlanEntrenamiento {
 
     private int id;
     private String Nombre;
@@ -48,7 +48,7 @@ public class Plan_entrenamiento {
         Comentario = comentario;
     }
 
-    public Plan_entrenamiento(int id, String nombre, String distancia, String objetivo, String comentario) {
+    public PlanEntrenamiento(int id, String nombre, String distancia, String objetivo, String comentario) {
         this.id = id;
         Nombre = nombre;
         Distancia = distancia;

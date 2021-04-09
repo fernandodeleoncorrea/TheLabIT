@@ -6,17 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".vista.HomePlanes">
 
+    <TableLayout
+        android:id="@+id/tabla"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+        <TableRow>
+            <EditText
+                android:id="@+id/tituloPlanes"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Planes"
+                />
+        </TableRow>
+        <TableRow>
+            <Button
+                android:id="@+id/btnNuevoPlan"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:text="Nuevo"
+                />
+        </TableRow>
+    </TableLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-        <EditText
-            android:id="@+id/tituloPlanes"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Planes"
-            />
+        android:orientation="vertical"
+        android:layout_below="@+id/tabla">
 
        <ListView
             android:id="@+id/listaPlanes"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".vista.ViewPlanesDetalle">
+    tools:context=".ViewNuevoPlan">
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -21,63 +21,51 @@
             android:orientation="vertical" >
 
             <EditText
-                android:id="@+id/altaActividad"
+                android:id="@+id/idPlan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="AltaActividad"
+                android:hint="Id"
                 />
             <EditText
-                android:id="@+id/semana"
+                android:id="@+id/nombrePlan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_below="@+id/altaActividad"
-                android:hint="Semana" />
+                android:layout_below="@+id/idPlan"
+                android:hint="Nombre"
+                />
             <EditText
-                android:id="@+id/dia"
+                android:id="@+id/distanciaPlan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_below="@+id/semana"
-                android:hint="Dia" />
+                android:layout_below="@+id/nombrePlan"
+                android:hint="Distancia"
+                />
             <EditText
-                android:id="@+id/turno"
+                android:id="@+id/objetivoPlan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="Turno" />
+                android:layout_below="@+id/distanciaPlan"
+                android:hint="objetivo"
+                />
             <EditText
-                android:id="@+id/descripcion"
+                android:id="@+id/comentarioPlan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_below="@+id/turno"
-                android:hint="Descripcion" />
+                android:layout_below="@+id/objetivoPlan"
+                android:hint="comentario"
+                />
             <Button
-                android:id="@+id/btnAceptarDia"
+                android:id="@+id/btnAceptarYContinuar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:layout_below="@+id/descripcion"
-                android:text="Aceptar Dia"
-                />
-
-            <Button
-                android:id="@+id/btnFinalizar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
-                android:layout_below="@+id/btnAceptarDia"
-                android:text="Finalizar"
-                />
-            <Button
-                android:id="@+id/btnImportarPlan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_below="@+id/btnAceptarDia"
-                android:text="Importar PLan"
+                android:layout_below="@+id/formacion"
+                android:text="Aceptar y Continuar"
                 />
         </LinearLayout>
     </ScrollView>

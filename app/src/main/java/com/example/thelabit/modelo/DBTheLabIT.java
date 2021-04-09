@@ -36,13 +36,13 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         queryCrearTabla = "CREATE TABLE CORREDORES(USERNAME STRING PRIMARY KEY, PESO STRING, GENERO STRING, ALTURA STRING, FCREPOSO STRING, FCMAXIMA STRING, OBJETIVO STRING, TIEMPOESTIMADO STRING)";
         db.execSQL(queryCrearTabla);
 
-        queryCrearTabla = "CREATE TABLE PLANES_ENTRENAMIENTOS(ID INT PRIMARY KEY, NOMBRE STRING, DISTANCIA STRING, OBJETIVO STRING, COMENTARIO STRING)";
+        queryCrearTabla = "CREATE TABLE PLANES_ENTRENAMIENTOS(ID INTEGER PRIMARY KEY, NOMBRE STRING, DISTANCIA STRING, OBJETIVO STRING, COMENTARIO STRING)";
         db.execSQL(queryCrearTabla);
 
-        queryCrearTabla = "CREATE TABLE ACTIVIDADES(ID INT PRIMARY KEY, SEMANA STRING, DIA STRING, TURNO STRING, DESCRIPCION STRING)";
+        queryCrearTabla = "CREATE TABLE ACTIVIDADES(ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, SEMANA STRING, DIA STRING, TURNO STRING, DESCRIPCION STRING)";
         db.execSQL(queryCrearTabla);
 
-        queryCrearTabla = "CREATE TABLE PLANES_DETALLE(IDENTRENADOR STRING, IDCORREDOR STRING, IDPLAN INT, IDACTIVIDAD INT)";
+        queryCrearTabla = "CREATE TABLE PLANES_DETALLE(IDENTRENADOR STRING, IDCORREDOR STRING, IDPLAN INT)";
         db.execSQL(queryCrearTabla);
 
         //INSERTO UNOS DATOS DE PRUEBA
@@ -94,10 +94,10 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         queryInsert = "INSERT INTO ACTIVIDADES(ID, SEMANA, DIA, TURNO , DESCRIPCION) VALUES (2, '1', '2', 'VESPERTINO', '20 MIN TROTE + 10 CUESTAS')";
         db.execSQL(queryInsert);
 
-        queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN, IDACTIVIDAD) VALUES ('4', '2', 1, 1)";
+        queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('4', '2', 1)";
         db.execSQL(queryInsert);
 
-        queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN, IDACTIVIDAD) VALUES ('4', '3', 2, 1)";
+        queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('4', '3', 2)";
         db.execSQL(queryInsert);
     }
 
@@ -211,5 +211,53 @@ public class DBTheLabIT extends SQLiteOpenHelper {
                         "WHERE T2.IDENTRENADOR = ?",new String[]{ent});
         int hola = cursor.getCount();
         return cursor;
+    }
+
+    public Boolean insertNuevoPlan (PlanEntrenamiento P, String ent){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Boolean plan = false;
+
+        ContentValues contenedor = new ContentValues();
+        contenedor.put(ConstantesDB.TABLA_PLANES_ID, P.getId());
+        contenedor.put(ConstantesDB.TABLA_PLANES_NOMBRE, P.getNombre());
+        contenedor.put(ConstantesDB.TABLA_PLANES_DISTANCIA, P.getDistancia());
+        contenedor.put(ConstantesDB.TABLA_PLANES_OBJETIVO, P.getObjetivo());
+        contenedor.put(ConstantesDB.TABLA_PLANES_COMENTARIO, P.getComentario());
+
+        plan = db.insert("PLANES_ENTRENAMIENTOS", null, contenedor) > 0;
+        db.close();
+
+        return plan;
+    }
+
+    public Boolean insertActividad (Actividad A){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Boolean actividad = false;
+
+        ContentValues contenedor = new ContentValues();
+        contenedor.put(ConstantesDB.TABLA_ACTIVIDADES_SEMANA, A.getSemana());
+        contenedor.put(ConstantesDB.TABLA_ACTIVIDADES_DIA, A.getDia());
+        contenedor.put(ConstantesDB.TABLA_ACTIVIDADES_TURNO, A.getTurno());
+        contenedor.put(ConstantesDB.TABLA_ACTIVIDADES_DESCRIPCION, A.getDescripcion());
+
+        actividad = db.insert("ACTIVIDADES", null, contenedor) > 0;
+        db.close();
+
+        return actividad;
+    }
+
+    public Boolean insertDetallePlan (String idEntrenador, String idCorredor, Integer idPlan){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Boolean detalleplan = false;
+
+        ContentValues contenedor = new ContentValues();
+        contenedor.put(ConstantesDB.TABLA_PLANESDETALLE_IDENT, idEntrenador);
+        contenedor.put(ConstantesDB.TABLA_PLANESDETALLE_IDCORR, idCorredor);
+        contenedor.put(ConstantesDB.TABLA_PLANESDETALLE_IDPLAN, idPlan);
+
+        detalleplan = db.insert("PLANES_DETALLE", null, contenedor) > 0;
+        db.close();
+
+        return detalleplan;
     }
 }

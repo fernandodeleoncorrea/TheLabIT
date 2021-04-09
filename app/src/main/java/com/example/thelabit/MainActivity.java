@@ -18,6 +18,7 @@ import com.example.thelabit.vista.EjemploMapa;
 import com.example.thelabit.vista.HomeCorredor;
 import com.example.thelabit.vista.HomeEntrenador;
 import com.example.thelabit.vista.RegistrarUsuario;
+import com.example.thelabit.vista.ViewPlanesDetalle;
 
 public class MainActivity extends AppCompatActivity {
     //API KEY AIzaSyCcekE7ZB5tACXfm6SJ9uDnfDbcX3IBd7E
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 DB.inicio();
 
                 String user = username.getText().toString();
+                String logueado = username.getText().toString();
                 String pass = password.getText().toString();
 
                 //creo un objeto Login para hacer el chequeo
@@ -70,8 +72,12 @@ public class MainActivity extends AppCompatActivity {
                     sesion = new Sesion(MainActivity.this); //in oncreate
                     sesion.setusername(login.getUsername());
 
-                    Intent intent = new Intent(getApplicationContext(), HomeEntrenador.class);
+                    Intent intent = new Intent(MainActivity.this, HomeEntrenador.class);
+                    Bundle b = new Bundle();
+                    b.putString("logueado", logueado);
+                    intent.putExtras(b);
                     startActivity(intent);
+
                 }else {
                     Toast.makeText(MainActivity.this, "nooo", Toast.LENGTH_SHORT).show();
                 }
