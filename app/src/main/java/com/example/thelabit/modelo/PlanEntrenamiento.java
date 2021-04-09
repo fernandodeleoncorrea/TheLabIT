@@ -48,6 +48,10 @@ public class PlanEntrenamiento {
         Comentario = comentario;
     }
 
+    public PlanEntrenamiento() {
+
+    }
+
     public PlanEntrenamiento(int id, String nombre, String distancia, String objetivo, String comentario) {
         this.id = id;
         Nombre = nombre;

@@ -63,9 +63,10 @@ public class HomePlanes extends AppCompatActivity {
                 Intent intent = new Intent(HomePlanes.this, ViewPlanes.class);
                 Bundle b = new Bundle();
                 b.putString("nombrePlan", nombrePlan); //Your id
+                b.putString("logueado", logueado);
                 intent.putExtras(b);
                 startActivity(intent);
-                finish();
+
 
                 Toast.makeText(HomePlanes.this, nombrePlan, Toast.LENGTH_SHORT).show();
             }

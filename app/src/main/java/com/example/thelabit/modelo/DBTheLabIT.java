@@ -205,12 +205,35 @@ public class DBTheLabIT extends SQLiteOpenHelper {
 
     public Cursor obtenerPlanes(String ent){
         SQLiteDatabase db =  this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT T1.NOMBRE AS NOMBRE   " +
+        Cursor cursor = db.rawQuery("SELECT T1.NOMBRE AS NOMBRE " +
                         " FROM PLANES_ENTRENAMIENTOS T1 " +
                         "JOIN PLANES_DETALLE T2 ON T1.ID = T2.IDPLAN " +
                         "WHERE T2.IDENTRENADOR = ?",new String[]{ent});
         int hola = cursor.getCount();
         return cursor;
+    }
+
+    public Boolean obtenerPlan(String entrenador, String nombrePlan){
+        SQLiteDatabase db =  this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT T1.ID, T1.NOMBRE, T1.DISTANCIA, T1.OBJETIVO, T1.COMENTARIO " +
+                "FROM PLANES_ENTRENAMIENTOS T1 " +
+                "JOIN PLANES_DETALLE T2 ON T1.ID = T2.IDPLAN " +
+                "WHERE T2.IDENTRENADOR = ? " +
+                "AND T1.NOMBRE = ? ",new String[]{entrenador, nombrePlan});
+
+        int hola = cursor.getCount();
+        //ID, NOMBRE, DISTANCIA, OBJETIVO , COMENTARIO
+
+        /*Integer id = cursor.getInt(cursor.getColumnIndex("ID"));
+        String nomPlan = cursor.getString(cursor.getColumnIndex("NOMBRE"));
+        String distanciaPlan = cursor.getString(cursor.getColumnIndex("DISTANCIA"));
+        String objetivoPlan = cursor.getString(cursor.getColumnIndex("OBJETIVO"));
+        String comentarioPlan = cursor.getString(cursor.getColumnIndex("COMENTARIO"));
+
+        PlanEntrenamiento plan = new PlanEntrenamiento(id, nomPlan, distanciaPlan, objetivoPlan, comentarioPlan);
+         */
+        return true;
+
     }
 
     public Boolean insertNuevoPlan (PlanEntrenamiento P, String ent){
