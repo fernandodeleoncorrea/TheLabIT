@@ -14,7 +14,7 @@ import com.example.thelabit.MainActivity;
 public class DBTheLabIT extends SQLiteOpenHelper {
 
     public String queryCrearTabla;
-    public String queryInsert;
+    public String queryInsert, queryUpdate;
 
 
     public DBTheLabIT(@Nullable Context context) {
@@ -213,7 +213,7 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public Boolean obtenerPlan(String entrenador, String nombrePlan){
+    public PlanEntrenamiento obtenerPlan(String entrenador, String nombrePlan){
         SQLiteDatabase db =  this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT T1.ID, T1.NOMBRE, T1.DISTANCIA, T1.OBJETIVO, T1.COMENTARIO " +
                 "FROM PLANES_ENTRENAMIENTOS T1 " +
@@ -221,18 +221,16 @@ public class DBTheLabIT extends SQLiteOpenHelper {
                 "WHERE T2.IDENTRENADOR = ? " +
                 "AND T1.NOMBRE = ? ",new String[]{entrenador, nombrePlan});
 
-        int hola = cursor.getCount();
-        //ID, NOMBRE, DISTANCIA, OBJETIVO , COMENTARIO
 
-        /*Integer id = cursor.getInt(cursor.getColumnIndex("ID"));
+        cursor.moveToNext();
+        Integer id = cursor.getInt(cursor.getColumnIndex("ID"));
         String nomPlan = cursor.getString(cursor.getColumnIndex("NOMBRE"));
         String distanciaPlan = cursor.getString(cursor.getColumnIndex("DISTANCIA"));
         String objetivoPlan = cursor.getString(cursor.getColumnIndex("OBJETIVO"));
         String comentarioPlan = cursor.getString(cursor.getColumnIndex("COMENTARIO"));
 
         PlanEntrenamiento plan = new PlanEntrenamiento(id, nomPlan, distanciaPlan, objetivoPlan, comentarioPlan);
-         */
-        return true;
+        return plan;
 
     }
 
@@ -282,5 +280,21 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         db.close();
 
         return detalleplan;
+    }
+
+    public Boolean modificarPlanCabezal(PlanEntrenamiento P){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Boolean modificoOK = false;
+
+        Integer id = P.getId();
+
+        ContentValues contenedor = new ContentValues();
+        contenedor.put(ConstantesDB.TABLA_PLANES_NOMBRE, P.getNombre());
+        contenedor.put(ConstantesDB.TABLA_PLANES_DISTANCIA, P.getDistancia());
+        contenedor.put(ConstantesDB.TABLA_PLANES_OBJETIVO, P.getObjetivo());
+        contenedor.put(ConstantesDB.TABLA_PLANES_COMENTARIO, P.getComentario());
+
+        modificoOK = db.update("PLANES_ENTRENAMIENTOS", contenedor, "ID = ?", new String[]{id.toString()}) > 0;
+        return modificoOK;
     }
 }
