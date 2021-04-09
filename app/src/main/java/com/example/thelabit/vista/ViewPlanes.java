@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ public class ViewPlanes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_planes);
 
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         idPlan    = (EditText) findViewById(R.id.idPlan);
         nombrePlan    = (EditText) findViewById(R.id.nombrePlan);
         distanciaPlan    = (EditText) findViewById(R.id.distanciaPlan);

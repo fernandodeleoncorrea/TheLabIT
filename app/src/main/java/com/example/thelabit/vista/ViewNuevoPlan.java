@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ public class ViewNuevoPlan extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_nuevo_plan);
 
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         btnAceptarYContinuar    = (Button) findViewById(R.id.btnAceptarYContinuar);
         idPlan       = (EditText) findViewById(R.id.idPlan);
         nombrePlan       = (EditText) findViewById(R.id.nombrePlan);
