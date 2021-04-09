@@ -297,4 +297,13 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         modificoOK = db.update("PLANES_ENTRENAMIENTOS", contenedor, "ID = ?", new String[]{id.toString()}) > 0;
         return modificoOK;
     }
+
+    public Boolean eliminarPlan(Integer idPlan) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Boolean eliminoOK = false;
+
+        eliminoOK = db.delete("PLANES_ENTRENAMIENTOS", "ID = ?", new String[]{idPlan.toString()}) > 0;
+        eliminoOK = db.delete("PLANES_DETALLE", "IDPLAN = ?", new String[]{idPlan.toString()}) > 0;
+        return eliminoOK;
+    }
 }

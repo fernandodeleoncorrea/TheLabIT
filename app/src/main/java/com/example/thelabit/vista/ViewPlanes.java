@@ -15,7 +15,7 @@ import com.example.thelabit.modelo.PlanEntrenamiento;
 
 public class ViewPlanes extends AppCompatActivity {
 
-    Button btnModificar;
+    Button btnModificar, btnEliminar;
     DBTheLabIT DB;
     EditText idPlan, nombrePlan, distanciaPlan, objetivoPlan, comentarioPlan;
 
@@ -30,6 +30,7 @@ public class ViewPlanes extends AppCompatActivity {
         objetivoPlan    = (EditText) findViewById(R.id.objetivoPlan);
         comentarioPlan    = (EditText) findViewById(R.id.comentarioPlan);
         btnModificar    = (Button) findViewById(R.id.btnModificar);
+        btnEliminar    = (Button) findViewById(R.id.btnEliminar);
         DB = new DBTheLabIT(this);
 
         Bundle b = getIntent().getExtras();
@@ -68,6 +69,18 @@ public class ViewPlanes extends AppCompatActivity {
                 b.putString("logueado", logueado);
                 intent.putExtras(b);
                 startActivity(intent);
+            }
+        });
+
+        btnEliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Integer idPlanEliminar = Integer.parseInt(idPlan.getText().toString());
+
+                Boolean modificoOK = DB.eliminarPlan(idPlanEliminar);
+
+                Toast.makeText(ViewPlanes.this, "plan eliminado con exito", Toast.LENGTH_SHORT).show();
             }
         });
     }
