@@ -2,22 +2,15 @@ package com.example.thelabit.vista;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.thelabit.MainActivity;
 import com.example.thelabit.R;
-import com.example.thelabit.ViewNuevoPlan;
 import com.example.thelabit.modelo.Actividad;
 import com.example.thelabit.modelo.DBTheLabIT;
-import com.example.thelabit.modelo.PlanEntrenamiento;
 
 public class ViewPlanesDetalle extends AppCompatActivity {
 

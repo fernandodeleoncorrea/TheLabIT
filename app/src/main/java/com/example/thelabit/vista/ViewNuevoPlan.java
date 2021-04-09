@@ -1,8 +1,7 @@
-package com.example.thelabit;
+package com.example.thelabit.vista;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,13 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.thelabit.R;
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.modelo.PlanEntrenamiento;
-import com.example.thelabit.vista.HomeEntrenador;
-import com.example.thelabit.vista.HomePlanes;
-import com.example.thelabit.vista.RegistrarUsuario;
-import com.example.thelabit.vista.ViewPlanes;
-import com.example.thelabit.vista.ViewPlanesDetalle;
 
 public class ViewNuevoPlan extends AppCompatActivity {
 

@@ -15,12 +15,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.thelabit.R;
-import com.example.thelabit.ViewNuevoPlan;
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.modelo.Sesion;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 
 public class HomePlanes extends AppCompatActivity {
@@ -88,8 +86,10 @@ public class HomePlanes extends AppCompatActivity {
 
 
     private void viewPlanes(){
+        Bundle b = getIntent().getExtras();
+        String logueado = b.getString("logueado");
         DB = new DBTheLabIT(this);
-        Cursor c = DB.obtenerPlanes("4");
+        Cursor c = DB.obtenerPlanes(logueado);
 
         while (c.moveToNext()) {
             String nombrePlan = c.getString(c.getColumnIndex("NOMBRE"));
