@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="Id"
+                android:hint="@string/id"
                 />
             <EditText
                 android:id="@+id/nombrePlan"
@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/idPlan"
-                android:hint="Nombre"
+                android:hint="@string/nombre_nuevo_plan"
                 />
             <EditText
                 android:id="@+id/distanciaPlan"
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/nombrePlan"
-                android:hint="Distancia"
+                android:hint="@string/distancia"
                 />
             <EditText
                 android:id="@+id/objetivoPlan"
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/distanciaPlan"
-                android:hint="objetivo"
+                android:hint="@string/objetivo"
                 />
             <EditText
                 android:id="@+id/comentarioPlan"
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/objetivoPlan"
-                android:hint="comentario"
+                android:hint="@string/comentario"
                 />
             <Button
                 android:id="@+id/btnAceptarYContinuar"
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:layout_below="@+id/formacion"
-                android:text="Aceptar y Continuar"
+                android:text="@string/boton_aceptar_plan"
                 />
         </LinearLayout>
     </ScrollView>

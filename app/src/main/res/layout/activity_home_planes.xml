@@ -15,7 +15,7 @@
                 android:id="@+id/tituloPlanes"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Planes"
+                android:text="@string/planes"
                 />
         </TableRow>
         <TableRow>
@@ -24,7 +24,7 @@
                 android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
-                android:text="Nuevo"
+                android:text="@string/boton_alta_planes"
                 />
         </TableRow>
     </TableLayout>
