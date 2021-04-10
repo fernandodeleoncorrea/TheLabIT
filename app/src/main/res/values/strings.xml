@@ -47,6 +47,7 @@
     <string name="distancia">distancia</string>
     <string name="objetivo">objetivo</string>
     <string name="comentario">comentario</string>
+    <string name="nombre_nuevo_plan">nombre nuevo plan</string>
     <string name="boton_aceptar_plan">Aceptar y Continuar</string>
 
     /view_planes

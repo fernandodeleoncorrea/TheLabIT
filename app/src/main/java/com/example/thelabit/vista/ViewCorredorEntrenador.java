@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.thelabit.R;
+import com.example.thelabit.ViewDetalleActividad;
 import com.example.thelabit.modelo.DBTheLabIT;
 
 import java.util.ArrayList;
@@ -40,15 +41,14 @@ public class ViewCorredorEntrenador extends AppCompatActivity {
         actividadesrecientes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView <? > arg0, View view, int position, long id) {
 
-                String nombreCorredor =(String)arg0.getItemAtPosition(position);
+                String nombreActividad =(String)arg0.getItemAtPosition(position);
 
-                Intent intent = new Intent(ViewCorredorEntrenador.this, ViewCorredorEntrenador.class);
+                Intent intent = new Intent(ViewCorredorEntrenador.this, EjemploMapa.class);
                 Bundle b = new Bundle();
-                b.putString("nombreCorredor", nombreCorredor); //Your id
+                b.putString("NombreActividad", nombreActividad);
                 b.putString("logueado", logueado);
                 intent.putExtras(b);
                 startActivity(intent);
-
 
                 Toast.makeText(ViewCorredorEntrenador.this, nombreCorredor, Toast.LENGTH_SHORT).show();
             }

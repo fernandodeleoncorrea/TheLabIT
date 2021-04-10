@@ -1,5 +1,6 @@
 package com.example.thelabit.vista;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
@@ -43,6 +44,7 @@ public class EjemploMapa extends FragmentActivity implements OnMapReadyCallback 
     //LatLng TamWorth = new LatLng(-34.8994235634112, -56.146923351021535);
     //LatLng NewCastle = new LatLng(-34.90087381940635, -56.152679284578724);
     LatLng Brisbane = new LatLng(-34.9003114782847, -56.159716319335146);
+    LatLng Inicio;
     //File gpxFile = new File(Environment.getDataDirectory().toString() + "/data/com.example.thelabit/prueba.gpx");
     //List<Location> gpxList = decodeGPX(gpxFile);
 
@@ -53,6 +55,10 @@ public class EjemploMapa extends FragmentActivity implements OnMapReadyCallback 
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        File gpxFile = new File(Environment.getDataDirectory().toString() + "/data/com.example.thelabit/prueba.gpx");
+        List<Double> gpxListele = decodeGPXele(gpxFile);
+
     }
 
     private List<LatLng> decodeGPX(File file){
@@ -75,7 +81,7 @@ public class EjemploMapa extends FragmentActivity implements OnMapReadyCallback 
                 String newLatitude = attributes.getNamedItem("lat").getTextContent();
                 Double newLatitude_double = Double.parseDouble(newLatitude);
 
-                Toast.makeText(EjemploMapa.this, newLatitude, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(EjemploMapa.this, newLatitude, Toast.LENGTH_SHORT).show();
 
                 String newLongitude = attributes.getNamedItem("lon").getTextContent();
                 Double newLongitude_double = Double.parseDouble(newLongitude);
@@ -86,6 +92,9 @@ public class EjemploMapa extends FragmentActivity implements OnMapReadyCallback 
                 //newLocation.setLatitude(newLatitude_double);
                 //newLocation.setLongitude(newLongitude_double);
 
+                if(i==0){
+                    Inicio = punto;
+                }
                 list.add(punto);
 
             }
@@ -108,6 +117,42 @@ public class EjemploMapa extends FragmentActivity implements OnMapReadyCallback 
         return list;
     }
 
+
+    private List<Double> decodeGPXele(File file){
+        List<Double> list = new ArrayList<>();
+
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        try {
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            FileInputStream fileInputStream = new FileInputStream(file);
+            Document document = documentBuilder.parse(fileInputStream);
+            Element elementRoot = document.getDocumentElement();
+
+            NodeList nodelist_ele = elementRoot.getElementsByTagName("ele");
+
+            for(int i = 0; i < nodelist_ele.getLength(); i++){
+
+                String valor = nodelist_ele.item(i).getChildNodes().item(0).getNodeValue();
+                Double ele = Double.parseDouble(valor);
+
+                list.add(ele);
+            }
+            fileInputStream.close();
+        } catch (ParserConfigurationException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SAXException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return list;
+    }
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -119,15 +164,15 @@ public class EjemploMapa extends FragmentActivity implements OnMapReadyCallback 
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
         File gpxFile = new File(Environment.getDataDirectory().toString() + "/data/com.example.thelabit/prueba.gpx");
 
         List<LatLng> gpxList = decodeGPX(gpxFile);
 
-
         mMap = googleMap;
         mMap.addPolyline(( new PolylineOptions()).addAll(gpxList).width(5).color(Color.RED).geodesic(true));
 
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Brisbane, 13));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Inicio, 13));
     }
 
 
