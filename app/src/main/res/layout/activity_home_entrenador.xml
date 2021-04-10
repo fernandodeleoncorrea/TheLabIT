@@ -18,7 +18,7 @@
             android:id="@+id/tituloentrenador"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="entrenador"
+            android:text="@string/entrenador"
             />
     </TableRow>
     <TableRow>
@@ -27,7 +27,7 @@
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
-            android:text="Planes"
+            android:text="@string/planes_entrenador"
             />
     </TableRow>
     <TableRow>
@@ -36,7 +36,7 @@
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
-            android:text="Corredores"
+            android:text="@string/corredores"
             />
     </TableRow>
     <TableRow>
@@ -45,7 +45,7 @@
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
-            android:text="Editar Perfil"
+            android:text="@string/boton_editar_perfil"
             />
     </TableRow>
     </TableLayout>

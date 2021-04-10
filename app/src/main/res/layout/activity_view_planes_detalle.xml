@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="AltaActividad"
+                android:hint="@string/alta_actividad"
                 />
             <EditText
                 android:id="@+id/semana"
@@ -33,34 +33,34 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/altaActividad"
-                android:hint="Semana" />
+                android:hint="@string/semana" />
             <EditText
                 android:id="@+id/dia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/semana"
-                android:hint="Dia" />
+                android:hint="@string/dia"/>
             <EditText
                 android:id="@+id/turno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="Turno" />
+                android:hint="@string/turno" />
             <EditText
                 android:id="@+id/descripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/turno"
-                android:hint="Descripcion" />
+                android:hint="@string/descripcion" />
             <Button
                 android:id="@+id/btnAceptarDia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:layout_below="@+id/descripcion"
-                android:text="Aceptar Dia"
+                android:text="@string/boton_aceptar_día"
                 />
 
             <Button
@@ -77,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/btnAceptarDia"
-                android:text="Importar PLan"
+                android:text="@string/importar_plan"
                 />
         </LinearLayout>
     </ScrollView>

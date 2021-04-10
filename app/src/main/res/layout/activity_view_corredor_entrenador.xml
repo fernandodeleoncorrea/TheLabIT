@@ -18,7 +18,7 @@
                 android:id="@+id/titulocorredor_entrenador"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="alumno tal"
+                android:text="@string/nombre_alumno"
                 />
         </TableRow>
         <TableRow>
@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
-                android:text="Perfil"
+                android:text="@string/boton_perfil"
                 />
         </TableRow>
         <TableRow>
@@ -37,7 +37,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/btnPerfil"
-                android:text="Historico Actividades"
+                android:text="@string/boton_historico"
                 />
         </TableRow>
     </TableLayout>

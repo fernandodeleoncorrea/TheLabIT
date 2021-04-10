@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:hint="username"
+        android:hint="@string/username"
         />
         <EditText
             android:id="@+id/Rpassword"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_below="@+id/Rusername"
-            android:hint="password"
+            android:hint="@string/contraseña_usuario"
             android:inputType="textPassword"
         />
 
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/Rusername"
-        android:hint="nombre"
+        android:hint="@string/nombre"
         />
 
     <EditText
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/nombre"
-        android:hint="fecha nacimiento"
+        android:hint="@string/fecha"
         />
 
     <EditText
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/pais"
-        android:hint="email"
+        android:hint="@string/correo"
         />
 
         <Spinner
@@ -77,7 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_below="@+id/formacion"
-        android:text="Aceptar"
+        android:text="@string/boton_aceptar"
         />
 
 

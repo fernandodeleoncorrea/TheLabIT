@@ -5,6 +5,62 @@
     <string name="recupero_password">recuperar password</string>
     <string name="maps_api_key">AIzaSyCcekE7ZB5tACXfm6SJ9uDnfDbcX3IBd7E</string>
 
-
+    /activity_main
+    <string name="boton_login">Login</string>
+    <string name="boton_registrase">Registrarse</string>
+    <string name="recuperar_contraseña">Recuperar contraseña</string>
+    /login
     <string name="mensaje">login incorrecto</string>
+
+    /sing_up
+    <string name="formulario">formualrio ingreso</string>
+
+    /corredor
+    <string name="corredor">corredor</string>
+
+    /home_entrenador
+    <string name="entrenador">entrenador</string>
+    <string name="planes_entrenador">Planes</string>
+    <string name="corredores">Corredores</string>
+    <string name="boton_editar_perfil">Editar Perfil</string>
+
+    /home_planes
+    <string name="planes">planes</string>
+    <string name="boton_alta_planes">Nuevo</string>
+
+    /registrar_usuario
+    <string name="username">usuario</string>
+    <string name="contraseña_usuario">contraseña</string>
+    <string name="nombre">nombre</string>
+    <string name="fecha">fecha nacimiento</string>
+    <string name="correo">email</string>
+    <string name="boton_aceptar">Aceptar</string>
+
+    /view_corredor_entrenador
+    <string name="nombre_alumno">alumno fulanito de tal</string>
+    <string name="boton_perfil">Perfil</string>
+    <string name="boton_historico">Historico Actividades</string>
+
+    /view_nuevo_plan y view_planes
+    <string name="id">id</string>
+    <string name="nombre_plan">nombre</string>
+    <string name="distancia">distancia</string>
+    <string name="objetivo">objetivo</string>
+    <string name="comentario">comentario</string>
+    <string name="boton_aceptar_plan">Aceptar y Continuar</string>
+
+    /view_planes
+    <string name="vista_planes">Vista Planes</string>
+    <string name="boton_modificar">Modificar</string>
+    <string name="boton_eliminar">Eliminar</string>
+
+    /view_planes_detalle
+    <string name="alta_actividad">Alta actividad</string>
+    <string name="semana">semana</string>
+    <string name="dia">día</string>
+    <string name="turno">turno</string>
+    <string name="descripcion">descripcion</string>
+    <string name="boton_aceptar_día">Aceptar día</string>
+    <string name="boton_finalizar">Finalizar</string>
+    <string name="importar_plan">Importar plan</string>
 </resources>

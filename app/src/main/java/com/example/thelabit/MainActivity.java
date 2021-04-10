@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }else {
                     //Toast.makeText(MainActivity.this, "nooo", Toast.LENGTH_SHORT).show();
-                    Snackbar.make(v, getResources().getString(R.string.mensaje), Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(v, getResources().getString(R.string.mensaje), Snackbar.LENGTH_LONG).show();
 
                 }
             }
