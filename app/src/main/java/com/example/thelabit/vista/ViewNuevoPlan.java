@@ -44,8 +44,10 @@ public class ViewNuevoPlan extends AppCompatActivity {
         objetivoPlan       = (EditText) findViewById(R.id.objetivoPlan);
         comentarioPlan       = (EditText) findViewById(R.id.comentarioPlan);
         DB = new DBTheLabIT(this);
+
         Bundle b = getIntent().getExtras();
         String logueado = b.getString("logueado");
+
         Toast.makeText(ViewNuevoPlan.this, logueado, Toast.LENGTH_SHORT).show();
 
         btnAceptarYContinuar.setOnClickListener(new View.OnClickListener() {

@@ -6,6 +6,8 @@ public class Actividad {
     private String Dia;
     private String Turno;
     private String Descripcion;
+    private int completada;
+    private int idPlan;
 
     public int getId() {
         return id;
@@ -47,15 +49,34 @@ public class Actividad {
         Descripcion = descripcion;
     }
 
+
+    public int getCompletada() {
+        return completada;
+    }
+
+    public void setCompletada(int completada) {
+        this.completada = completada;
+    }
+
+    public int getIdPlan() {
+        return idPlan;
+    }
+
+    public void setIdPlan(int idPlan) {
+        this.idPlan = idPlan;
+    }
+
     public Actividad() {
 
     }
 
-    public Actividad(int id, String semana, String dia, String turno, String descripcion) {
+    public Actividad(int id, String semana, String dia, String turno, String descripcion, int completada, int idPlan) {
         this.id = id;
         Semana = semana;
         Dia = dia;
         Turno = turno;
         Descripcion = descripcion;
+        this.completada = completada;
+        this.idPlan = idPlan;
     }
 }

@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.thelabit.MainActivity;
@@ -44,7 +45,9 @@ public class HomeEntrenador extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         String logueado = b.getString("logueado");
-
+        TextView textView = new TextView(this);
+        textView.setText("Lista Corredores");
+        listacorredores.addHeaderView(textView);
 
         //String logueado = sharedpreferences.getString(USERNAME_KEY, null);
         Toast.makeText(HomeEntrenador.this, logueado, Toast.LENGTH_SHORT).show();

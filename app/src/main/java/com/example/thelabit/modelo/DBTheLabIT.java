@@ -39,7 +39,7 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         queryCrearTabla = "CREATE TABLE PLANES_ENTRENAMIENTOS(ID INTEGER PRIMARY KEY, NOMBRE STRING, DISTANCIA STRING, OBJETIVO STRING, COMENTARIO STRING)";
         db.execSQL(queryCrearTabla);
 
-        queryCrearTabla = "CREATE TABLE ACTIVIDADES(ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, SEMANA STRING, DIA STRING, TURNO STRING, DESCRIPCION STRING)";
+        queryCrearTabla = "CREATE TABLE ACTIVIDADES(ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, SEMANA STRING, DIA STRING, TURNO STRING, DESCRIPCION STRING, COMPLETADA INTEGER, IDPLAN INTEGER)";
         db.execSQL(queryCrearTabla);
 
         queryCrearTabla = "CREATE TABLE PLANES_DETALLE(IDENTRENADOR STRING, IDCORREDOR STRING, IDPLAN INT)";
@@ -97,23 +97,26 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         queryInsert = "INSERT INTO PLANES_ENTRENAMIENTOS(ID, NOMBRE, DISTANCIA, OBJETIVO , COMENTARIO) VALUES (4, 'PLAN 4 10K INTERMEDIO', '10K', '45 MIN', '12 SEMANAS')";
         db.execSQL(queryInsert);
 
-        queryInsert = "INSERT INTO ACTIVIDADES(ID, SEMANA, DIA, TURNO , DESCRIPCION) VALUES (1, '1', '1', 'MATUTINO', '30 MIN TROTE SUAVE')";
+
+        queryInsert = "INSERT INTO ACTIVIDADES(ID, SEMANA, DIA, TURNO , DESCRIPCION, COMPLETADA, IDPLAN) VALUES (1, '1', '1', 'MATUTINO', '30 MIN TROTE SUAVE', 0, 1)";
         db.execSQL(queryInsert);
 
-        queryInsert = "INSERT INTO ACTIVIDADES(ID, SEMANA, DIA, TURNO , DESCRIPCION) VALUES (2, '1', '2', 'VESPERTINO', '20 MIN TROTE + 10 CUESTAS')";
+        queryInsert = "INSERT INTO ACTIVIDADES(ID, SEMANA, DIA, TURNO , DESCRIPCION, COMPLETADA, IDPLAN) VALUES (2, '1', '2', 'VESPERTINO', '20 MIN TROTE + 10 CUESTAS', 0, 1)";
         db.execSQL(queryInsert);
+
 
         queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('4', '2', 1)";
-        db.execSQL(queryInsert);
-
-        queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('4', '3', 2)";
         db.execSQL(queryInsert);
 
         queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('1', '2', 3)";
         db.execSQL(queryInsert);
 
+        queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('4', '3', 2)";
+        db.execSQL(queryInsert);
+
         queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('1', '3', 4)";
         db.execSQL(queryInsert);
+
 
         queryInsert = "INSERT INTO ENTRENADORES_CORREDORES(IDENTRENADOR, IDCORREDOR) VALUES ('1', '2')";
         db.execSQL(queryInsert);
@@ -283,6 +286,8 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         contenedor.put(ConstantesDB.TABLA_ACTIVIDADES_DIA, A.getDia());
         contenedor.put(ConstantesDB.TABLA_ACTIVIDADES_TURNO, A.getTurno());
         contenedor.put(ConstantesDB.TABLA_ACTIVIDADES_DESCRIPCION, A.getDescripcion());
+        contenedor.put(ConstantesDB.TABLA_ACTIVIDADES_COMPLETADA, A.getCompletada());
+        contenedor.put(ConstantesDB.TABLA_ACTIVIDADES_IDPLAN, A.getIdPlan());
 
         actividad = db.insert("ACTIVIDADES", null, contenedor) > 0;
         db.close();
@@ -329,4 +334,18 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         eliminoOK = db.delete("PLANES_DETALLE", "IDPLAN = ?", new String[]{idPlan.toString()}) > 0;
         return eliminoOK;
     }
+
+    public Cursor obtenerActividadesRecientes(String corr){
+        SQLiteDatabase db =  this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT T3.SEMANA, T3.DIA, T3.TURNO, T3.DESCRIPCION " +
+                "FROM USUARIOS T1 " +
+                "JOIN PLANES_DETALLE T2 ON T1.USERNAME = T2.IDCORREDOR " +
+                "JOIN ACTIVIDADES T3 ON T2.IDPLAN = T3.IDPLAN " +
+                "WHERE T1.NOMBRE = ? AND T2.IDPLAN = 1 AND T3.COMPLETADA = 0 " +
+                "ORDER BY DIA DESC LIMIT 7",new String[]{corr});
+
+        Integer cantidad = cursor.getCount();
+        return cursor;
+    }
+
 }

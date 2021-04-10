@@ -32,6 +32,8 @@ public final class ConstantesDB {
     public static final String TABLA_ACTIVIDADES_DIA = "DIA";
     public static final String TABLA_ACTIVIDADES_TURNO = "TURNO";
     public static final String TABLA_ACTIVIDADES_DESCRIPCION = "DESCRIPCION";
+    public static final String TABLA_ACTIVIDADES_COMPLETADA = "COMPLETADA";
+    public static final String TABLA_ACTIVIDADES_IDPLAN = "IDPLAN";
 
     //TABLA PLANES DETALLE IDENTRENADOR STRING, IDCORREDOR STRING, IDPLAN INT
     public static final String TABLA_PLANESDETALLE_IDENT = "IDENTRENADOR";
