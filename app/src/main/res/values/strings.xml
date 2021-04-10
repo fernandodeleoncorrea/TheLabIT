@@ -4,4 +4,7 @@
     <string name="password">password</string>
     <string name="recupero_password">recuperar password</string>
     <string name="maps_api_key">AIzaSyCcekE7ZB5tACXfm6SJ9uDnfDbcX3IBd7E</string>
+
+
+    <string name="mensaje">login incorrecto</string>
 </resources>
