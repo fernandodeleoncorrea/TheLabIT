@@ -19,6 +19,8 @@ import com.example.thelabit.vista.HomeCorredor;
 import com.example.thelabit.vista.HomeEntrenador;
 import com.example.thelabit.vista.RegistrarUsuario;
 import com.example.thelabit.vista.ViewPlanesDetalle;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
     //API KEY AIzaSyCcekE7ZB5tACXfm6SJ9uDnfDbcX3IBd7E
@@ -79,7 +81,9 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
 
                 }else {
-                    Toast.makeText(MainActivity.this, "nooo", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MainActivity.this, "nooo", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(v, getResources().getString(R.string.mensaje), Snackbar.LENGTH_SHORT).show();
+
                 }
             }
         });
