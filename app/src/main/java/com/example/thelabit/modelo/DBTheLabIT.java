@@ -45,6 +45,9 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         queryCrearTabla = "CREATE TABLE PLANES_DETALLE(IDENTRENADOR STRING, IDCORREDOR STRING, IDPLAN INT)";
         db.execSQL(queryCrearTabla);
 
+        queryCrearTabla = "CREATE TABLE ENTRENADORES_CORREDORES(IDENTRENADOR STRING, IDCORREDOR STRING)";
+        db.execSQL(queryCrearTabla);
+
         //INSERTO UNOS DATOS DE PRUEBA
         //INSERT DE USUARIOS Y PASSWORD
         queryInsert = "INSERT INTO LOGIN(USERNAME, PASSWORD) VALUES ('1', 'pwfernando')";
@@ -62,6 +65,8 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         queryInsert = "INSERT INTO LOGIN(USERNAME, PASSWORD) VALUES ('5', 'pwcarol')";
         db.execSQL(queryInsert);
 
+        queryInsert = "INSERT INTO USUARIOS(USERNAME, NOMBRE, FECHANACIMIENTO, CIUDAD, PAIS, EMAIL, COMENTARIO ) VALUES ('1', 'FERNANDO1', '01/01/2021', 'MONTEVIDEO', 'URUGUAY', 'HOLA@HOLA.COM', '')";
+        db.execSQL(queryInsert);
         queryInsert = "INSERT INTO USUARIOS(USERNAME, NOMBRE, FECHANACIMIENTO, CIUDAD, PAIS, EMAIL, COMENTARIO ) VALUES ('2', 'FERNANDO2', '01/01/2021', 'MONTEVIDEO', 'URUGUAY', 'HOLA@HOLA.COM', '')";
         db.execSQL(queryInsert);
         queryInsert = "INSERT INTO USUARIOS(USERNAME, NOMBRE, FECHANACIMIENTO, CIUDAD, PAIS, EMAIL, COMENTARIO ) VALUES ('3', 'FERNANDO3', '01/01/2021', 'MONTEVIDEO', 'URUGUAY', 'HOLA@HOLA.COM', '')";
@@ -78,14 +83,18 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         db.execSQL(queryInsert);
         queryInsert = "INSERT INTO CORREDORES(USERNAME, PESO, GENERO, ALTURA, FCREPOSO, FCMAXIMA, OBJETIVO, TIEMPOESTIMADO ) VALUES ('3', '70', 'MASCULINO3', '170', '60', '180', '10', '50')";
         db.execSQL(queryInsert);
-        queryInsert = "INSERT INTO CORREDORES(USERNAME, PESO, GENERO, ALTURA, FCREPOSO, FCMAXIMA, OBJETIVO, TIEMPOESTIMADO ) VALUES ('4', '70', 'MASCULINO4', '170', '60', '180', '10', '50')";
+
+
+        queryInsert = "INSERT INTO PLANES_ENTRENAMIENTOS(ID, NOMBRE, DISTANCIA, OBJETIVO , COMENTARIO) VALUES (1, 'PLAN 1 10K PRINCIPIANTE', '10K', '60 MIN', '8 SEMANAS')";
         db.execSQL(queryInsert);
 
-
-        queryInsert = "INSERT INTO PLANES_ENTRENAMIENTOS(ID, NOMBRE, DISTANCIA, OBJETIVO , COMENTARIO) VALUES (1, 'PLAN 10K PRINCIPIANTE', '10K', '60 MIN', '8 SEMANAS')";
+        queryInsert = "INSERT INTO PLANES_ENTRENAMIENTOS(ID, NOMBRE, DISTANCIA, OBJETIVO , COMENTARIO) VALUES (2, 'PLAN 2 10K INTERMEDIO', '10K', '45 MIN', '12 SEMANAS')";
         db.execSQL(queryInsert);
 
-        queryInsert = "INSERT INTO PLANES_ENTRENAMIENTOS(ID, NOMBRE, DISTANCIA, OBJETIVO , COMENTARIO) VALUES (2, 'PLAN 10K INTERMEDIO', '10K', '45 MIN', '12 SEMANAS')";
+        queryInsert = "INSERT INTO PLANES_ENTRENAMIENTOS(ID, NOMBRE, DISTANCIA, OBJETIVO , COMENTARIO) VALUES (3, 'PLAN 3 10K PRINCIPIANTE', '10K', '60 MIN', '8 SEMANAS')";
+        db.execSQL(queryInsert);
+
+        queryInsert = "INSERT INTO PLANES_ENTRENAMIENTOS(ID, NOMBRE, DISTANCIA, OBJETIVO , COMENTARIO) VALUES (4, 'PLAN 4 10K INTERMEDIO', '10K', '45 MIN', '12 SEMANAS')";
         db.execSQL(queryInsert);
 
         queryInsert = "INSERT INTO ACTIVIDADES(ID, SEMANA, DIA, TURNO , DESCRIPCION) VALUES (1, '1', '1', 'MATUTINO', '30 MIN TROTE SUAVE')";
@@ -98,6 +107,18 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         db.execSQL(queryInsert);
 
         queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('4', '3', 2)";
+        db.execSQL(queryInsert);
+
+        queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('1', '2', 3)";
+        db.execSQL(queryInsert);
+
+        queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('1', '3', 4)";
+        db.execSQL(queryInsert);
+
+        queryInsert = "INSERT INTO ENTRENADORES_CORREDORES(IDENTRENADOR, IDCORREDOR) VALUES ('1', '2')";
+        db.execSQL(queryInsert);
+
+        queryInsert = "INSERT INTO ENTRENADORES_CORREDORES(IDENTRENADOR, IDCORREDOR) VALUES ('1', '3')";
         db.execSQL(queryInsert);
     }
 
@@ -199,7 +220,10 @@ public class DBTheLabIT extends SQLiteOpenHelper {
 
     public Cursor obtenerCorredores(String ent){
         SQLiteDatabase db =  this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT USERNAME FROM USUARIOS", null);
+        Cursor cursor = db.rawQuery("SELECT T2.NOMBRE " +
+                "FROM ENTRENADORES_CORREDORES T1 " +
+                "JOIN USUARIOS T2 ON T1.IDCORREDOR = T2.USERNAME " +
+                "WHERE T1.IDENTRENADOR = ?",new String[]{ent});
         return cursor;
     }
 
@@ -209,7 +233,6 @@ public class DBTheLabIT extends SQLiteOpenHelper {
                         " FROM PLANES_ENTRENAMIENTOS T1 " +
                         "JOIN PLANES_DETALLE T2 ON T1.ID = T2.IDPLAN " +
                         "WHERE T2.IDENTRENADOR = ?",new String[]{ent});
-        int hola = cursor.getCount();
         return cursor;
     }
 

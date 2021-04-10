@@ -31,15 +31,6 @@ public class HomePlanes extends AppCompatActivity {
     Sesion sesion;
     Button btnNuevoPlan;
 
-    // creating constant keys for shared preferences.
-    public static final String SHARED_PREFS = "shared_prefs";
-    // key for storing email.
-    public static final String USERNAME_KEY = "username_key";
-    // key for storing password.
-    public static final String PASSWORD_KEY = "password_key";
-    // variable for shared preferences.
-    SharedPreferences sharedpreferences;
-    String SPusername, SPpassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +40,7 @@ public class HomePlanes extends AppCompatActivity {
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         btnNuevoPlan    = (Button) findViewById(R.id.btnNuevoPlan);
         planes = findViewById(R.id.listaPlanes);
-        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+
 
         Bundle b = getIntent().getExtras();
         String logueado = b.getString("logueado");

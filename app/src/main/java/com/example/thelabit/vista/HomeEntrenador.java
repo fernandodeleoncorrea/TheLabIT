@@ -28,17 +28,9 @@ public class HomeEntrenador extends AppCompatActivity {
     ArrayAdapter adapter;
     ListView corredores;
     Button btnPlanes;
+    ListView listacorredores;
 
 
-    // creating constant keys for shared preferences.
-    public static final String SHARED_PREFS = "shared_prefs";
-    // key for storing email.
-    public static final String USERNAME_KEY = "username_key";
-    // key for storing password.
-    public static final String PASSWORD_KEY = "password_key";
-    // variable for shared preferences.
-    SharedPreferences sharedpreferences;
-    String SPusername, SPpassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +39,8 @@ public class HomeEntrenador extends AppCompatActivity {
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         corredores = findViewById(R.id.listacorredores);
-        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         btnPlanes   = (Button) findViewById(R.id.btnPlanes);
+        listacorredores = findViewById(R.id.listacorredores);
 
         Bundle b = getIntent().getExtras();
         String logueado = b.getString("logueado");
@@ -70,20 +62,33 @@ public class HomeEntrenador extends AppCompatActivity {
             }
         });
 
+        listacorredores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView <? > arg0, View view, int position, long id) {
+
+                String nombreCorredor =(String)arg0.getItemAtPosition(position);
+
+                Intent intent = new Intent(HomeEntrenador.this, ViewCorredorEntrenador.class);
+                Bundle b = new Bundle();
+                b.putString("nombreCorredor", nombreCorredor); //Your id
+                b.putString("logueado", logueado);
+                intent.putExtras(b);
+                startActivity(intent);
+
+
+                Toast.makeText(HomeEntrenador.this, nombreCorredor, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void viewCorredores(){
+        Bundle b = getIntent().getExtras();
+        String logueado = b.getString("logueado");
         DB = new DBTheLabIT(this);
-        Cursor c = DB.obtenerCorredores("Fernando");
+        Cursor c = DB.obtenerCorredores(logueado);
 
-        //String algo = c.getString(c.getColumnIndex("USERNAME"));
-        if (c.moveToFirst()) {
-            c.getInt(c.getColumnIndex("USERNAME"));
-
-            while (c.moveToNext()) {
-                Integer algo = c.getInt(c.getColumnIndex("USERNAME"));
-                listitem.add(algo.toString());
-            }
+        while (c.moveToNext()) {
+            String nombreCorredor = c.getString(c.getColumnIndex("NOMBRE"));
+            listitem.add(nombreCorredor);
         }
 
 
