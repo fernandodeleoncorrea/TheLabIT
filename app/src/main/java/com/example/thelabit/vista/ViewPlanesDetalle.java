@@ -31,20 +31,26 @@ public class ViewPlanesDetalle extends AppCompatActivity {
         btnAceptarDia   = (Button) findViewById(R.id.btnAceptarDia);
         btnFinalizar   = (Button) findViewById(R.id.btnFinalizar);
         DB = new DBTheLabIT(this);
+
         Bundle b = getIntent().getExtras();
         Integer idPlan = Integer.parseInt(b.getString("idPlan"));
         String logueado = b.getString("logueado");
+
         Toast.makeText(ViewPlanesDetalle.this, logueado, Toast.LENGTH_SHORT).show();
         btnAceptarDia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(MainActivity.this, "error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ViewPlanesDetalle.this, "aca", Toast.LENGTH_SHORT).show();
                 Actividad actividad = new Actividad(
                         1
                         , semana.getText().toString()
                         , dia.getText().toString()
                         , turno.getText().toString()
-                        , descripcion.getText().toString());
+                        , descripcion.getText().toString()
+                        , 0
+                        , idPlan
+
+                );
 
                 Boolean resultado = DB.insertActividad(actividad);
 
