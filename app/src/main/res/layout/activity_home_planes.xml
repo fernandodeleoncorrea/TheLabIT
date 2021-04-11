@@ -19,13 +19,13 @@
                 />
         </TableRow>
         <TableRow>
-            <Button
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btnNuevoPlan"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:text="@string/boton_alta_planes"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:contentDescription="@string/boton_alta_planes"
+                android:src="@drawable/ic_baseline_add_24"/>
         </TableRow>
     </TableLayout>
 
