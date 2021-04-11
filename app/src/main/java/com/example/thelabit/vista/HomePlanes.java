@@ -18,6 +18,8 @@ import android.widget.Toast;
 import com.example.thelabit.R;
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.modelo.Sesion;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -40,6 +42,7 @@ public class HomePlanes extends AppCompatActivity {
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         btnNuevoPlan    = (Button) findViewById(R.id.btnNuevoPlan);
         planes = findViewById(R.id.listaPlanes);
+
 
 
         Bundle b = getIntent().getExtras();

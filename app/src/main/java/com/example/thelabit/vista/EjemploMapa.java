@@ -10,6 +10,12 @@ import android.widget.Toast;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.thelabit.R;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -45,6 +51,8 @@ public class EjemploMapa extends FragmentActivity implements OnMapReadyCallback 
     //LatLng NewCastle = new LatLng(-34.90087381940635, -56.152679284578724);
     LatLng Brisbane = new LatLng(-34.9003114782847, -56.159716319335146);
     LatLng Inicio;
+    LineChart lineChartEle, lineChartHr;
+    LineData lineDataEle, lineDataHr;
     //File gpxFile = new File(Environment.getDataDirectory().toString() + "/data/com.example.thelabit/prueba.gpx");
     //List<Location> gpxList = decodeGPX(gpxFile);
 
@@ -55,9 +63,44 @@ public class EjemploMapa extends FragmentActivity implements OnMapReadyCallback 
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        lineChartEle = findViewById(R.id.elevacionChart);
+        lineChartHr = findViewById(R.id.pulsacionesChart);
 
         File gpxFile = new File(Environment.getDataDirectory().toString() + "/data/com.example.thelabit/prueba.gpx");
-        List<Double> gpxListele = decodeGPXele(gpxFile);
+
+
+        //GRAFICO DESNIVEL
+        List<Entry> gpxListele = decodeGPXele(gpxFile);
+        LineDataSet lineDataSet = new LineDataSet(gpxListele,"Elevacion");
+        lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        lineDataSet.setDrawFilled(true);
+        lineDataSet.setDrawCircles(false);
+        lineDataSet.setFillAlpha(80);
+        lineDataSet.setFillColor(100);
+
+        lineDataEle = new LineData(lineDataSet);
+        lineChartEle.setData(lineDataEle);
+        Description description = new Description();
+        description.setText("");
+        lineChartEle.setDescription(description);
+        lineChartEle.getAxisRight().setEnabled(false);
+        lineChartEle.invalidate();
+
+        //GRAFICO PULSACIONES
+        List<Entry> gpxListHR = decodeGPXhr(gpxFile);
+        LineDataSet lineDataSet2 = new LineDataSet(gpxListHR,"Ritmo Cardiaco");
+        lineDataSet2.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        lineDataSet2.setDrawFilled(true);
+        lineDataSet2.setDrawCircles(false);
+        lineDataSet2.setFillAlpha(255);
+
+        lineDataHr = new LineData(lineDataSet2);
+        lineChartHr.setData(lineDataHr);
+        Description description2 = new Description();
+        description2.setText("");
+        lineChartHr.setDescription(description2);
+        lineChartHr.getAxisRight().setEnabled(false);
+        lineChartHr.invalidate();
 
     }
 
@@ -118,8 +161,8 @@ public class EjemploMapa extends FragmentActivity implements OnMapReadyCallback 
     }
 
 
-    private List<Double> decodeGPXele(File file){
-        List<Double> list = new ArrayList<>();
+    private List<Entry> decodeGPXele(File file){
+        List<Entry> list = new ArrayList<>();
 
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         try {
@@ -133,9 +176,45 @@ public class EjemploMapa extends FragmentActivity implements OnMapReadyCallback 
             for(int i = 0; i < nodelist_ele.getLength(); i++){
 
                 String valor = nodelist_ele.item(i).getChildNodes().item(0).getNodeValue();
-                Double ele = Double.parseDouble(valor);
+                Float ele = Float.parseFloat(valor);
 
-                list.add(ele);
+                list.add(new Entry(i,ele));
+            }
+            fileInputStream.close();
+        } catch (ParserConfigurationException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SAXException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    private List<Entry> decodeGPXhr(File file){
+        List<Entry> list = new ArrayList<>();
+
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        try {
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            FileInputStream fileInputStream = new FileInputStream(file);
+            Document document = documentBuilder.parse(fileInputStream);
+            Element elementRoot = document.getDocumentElement();
+
+            NodeList nodelist_hr = elementRoot.getElementsByTagName("gpxtpx:hr");
+
+            for(int i = 0; i < nodelist_hr.getLength(); i++){
+
+                String valor = nodelist_hr.item(i).getChildNodes().item(0).getNodeValue();
+                Float hr = Float.parseFloat(valor);
+
+                list.add(new Entry(i,hr));
             }
             fileInputStream.close();
         } catch (ParserConfigurationException e) {
@@ -170,7 +249,7 @@ public class EjemploMapa extends FragmentActivity implements OnMapReadyCallback 
         List<LatLng> gpxList = decodeGPX(gpxFile);
 
         mMap = googleMap;
-        mMap.addPolyline(( new PolylineOptions()).addAll(gpxList).width(5).color(Color.RED).geodesic(true));
+        mMap.addPolyline(( new PolylineOptions()).addAll(gpxList).width(6).color(Color.RED).geodesic(true));
 
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Inicio, 13));
     }
