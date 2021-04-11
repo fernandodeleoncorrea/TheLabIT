@@ -39,6 +39,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
 
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     def room_version = "2.2.6"
 
     implementation "androidx.room:room-runtime:$room_version"
