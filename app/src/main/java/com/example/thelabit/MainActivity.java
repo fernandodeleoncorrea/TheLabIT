@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Toast.makeText(MainActivity.this, "error", Toast.LENGTH_SHORT).show();
                 //Intent intent = new Intent(getApplicationContext(), EjemploMapa.class);
-                Intent intent = new Intent(getApplicationContext(), EjemploMapa.class);
+                Intent intent = new Intent(getApplicationContext(), EjemploLocation.class);
                 startActivity(intent);
             }
         });
