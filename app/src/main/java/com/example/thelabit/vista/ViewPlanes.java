@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.thelabit.R;
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.modelo.PlanEntrenamiento;
+import com.google.android.material.snackbar.Snackbar;
 
 public class ViewPlanes extends AppCompatActivity {
 
@@ -82,7 +83,8 @@ public class ViewPlanes extends AppCompatActivity {
 
                 Boolean modificoOK = DB.eliminarPlan(idPlanEliminar);
 
-                Toast.makeText(ViewPlanes.this, "plan eliminado con exito", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ViewPlanes.this, "plan eliminado con exito", Toast.LENGTH_SHORT).show();
+                Snackbar.make(v, getResources().getString(R.string.btn_eliminar), Snackbar.LENGTH_LONG).show();
             }
         });
     }
