@@ -104,6 +104,12 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         queryInsert = "INSERT INTO ACTIVIDADES(ID, SEMANA, DIA, TURNO , DESCRIPCION, COMPLETADA, IDPLAN) VALUES (2, '1', '2', 'VESPERTINO', '20 MIN TROTE + 10 CUESTAS', 0, 1)";
         db.execSQL(queryInsert);
 
+        queryInsert = "INSERT INTO ACTIVIDADES(ID, SEMANA, DIA, TURNO , DESCRIPCION, COMPLETADA, IDPLAN) VALUES (3, '1', '1', 'MATUTINO', '30 MIN TROTE SUAVE', 0, 2)";
+        db.execSQL(queryInsert);
+
+        queryInsert = "INSERT INTO ACTIVIDADES(ID, SEMANA, DIA, TURNO , DESCRIPCION, COMPLETADA, IDPLAN) VALUES (4, '1', '2', 'VESPERTINO', '20 MIN TROTE + 10 CUESTAS', 0, 2)";
+        db.execSQL(queryInsert);
+
 
         queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('4', '2', 1)";
         db.execSQL(queryInsert);
@@ -342,6 +348,19 @@ public class DBTheLabIT extends SQLiteOpenHelper {
                 "JOIN PLANES_DETALLE T2 ON T1.USERNAME = T2.IDCORREDOR " +
                 "JOIN ACTIVIDADES T3 ON T2.IDPLAN = T3.IDPLAN " +
                 "WHERE T1.NOMBRE = ? AND T2.IDPLAN = 1 AND T3.COMPLETADA = 0 " +
+                "ORDER BY DIA DESC LIMIT 7",new String[]{corr});
+
+        Integer cantidad = cursor.getCount();
+        return cursor;
+    }
+
+    public Cursor obtenerActividadesPendientes(String corr){
+        SQLiteDatabase db =  this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT T3.SEMANA, T3.DIA, T3.TURNO, T3.DESCRIPCION " +
+                "FROM USUARIOS T1 " +
+                "JOIN PLANES_DETALLE T2 ON T1.USERNAME = T2.IDCORREDOR " +
+                "JOIN ACTIVIDADES T3 ON T2.IDPLAN = T3.IDPLAN " +
+                "WHERE T1.USERNAME = ? AND T2.IDPLAN = 1 AND T3.COMPLETADA = 0 " +
                 "ORDER BY DIA DESC LIMIT 7",new String[]{corr});
 
         Integer cantidad = cursor.getCount();

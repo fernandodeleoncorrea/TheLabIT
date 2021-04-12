@@ -1,8 +1,10 @@
-package com.example.thelabit;
+package com.example.thelabit.vista;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.thelabit.R;
 
 public class ViewDetalleActividad extends AppCompatActivity {
 

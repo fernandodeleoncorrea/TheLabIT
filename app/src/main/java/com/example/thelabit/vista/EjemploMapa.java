@@ -49,7 +49,7 @@ public class EjemploMapa extends FragmentActivity implements OnMapReadyCallback 
     // below are the latitude and longitude of 4 different locations.
     //LatLng TamWorth = new LatLng(-34.8994235634112, -56.146923351021535);
     //LatLng NewCastle = new LatLng(-34.90087381940635, -56.152679284578724);
-    LatLng Brisbane = new LatLng(-34.9003114782847, -56.159716319335146);
+    //LatLng Brisbane = new LatLng(-34.9003114782847, -56.159716319335146);
     LatLng Inicio;
     LineChart lineChartEle, lineChartHr;
     LineData lineDataEle, lineDataHr;

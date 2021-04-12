@@ -16,7 +16,7 @@
         android:theme="@style/Theme.TheLabIT">
         <activity android:name=".EjemploLocation"></activity>
         <activity android:name=".EjemploChart" />
-        <activity android:name=".ViewDetalleActividad" />
+        <activity android:name=".vista.ViewDetalleActividad" />
         <activity android:name=".vista.ViewCorredorEntrenador" />
         <activity android:name=".vista.ViewNuevoPlan" />
         <activity android:name=".vista.ViewPlanesDetalle" />

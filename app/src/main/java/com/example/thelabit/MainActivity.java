@@ -65,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
                     sesion.setusername(login.getUsername());
 
                     Intent intent = new Intent(getApplicationContext(), HomeCorredor.class);
+                    Bundle b = new Bundle();
+                    b.putString("logueado", logueado);
+                    intent.putExtras(b);
                     startActivity(intent);
                 }else if (tipo == "entrenador"){
                     sesion = new Sesion(MainActivity.this); //in oncreate
