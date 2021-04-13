@@ -15,13 +15,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.thelabit.R;
+import com.example.thelabit.ViewDetalleActividadPend;
 import com.example.thelabit.modelo.DBTheLabIT;
 
 import java.util.ArrayList;
 
 public class HomeCorredor extends AppCompatActivity {
     
-    
+    TextView tituloCorredor;
     Button btnDetallePlan, btnEditarCorredor;
     ArrayList<String> listitem = new ArrayList<String>();
     ArrayAdapter adapter;
@@ -40,11 +41,14 @@ public class HomeCorredor extends AppCompatActivity {
         btnDetallePlan   = (Button) findViewById(R.id.btnDetallePlan);
         listaActividades = findViewById(R.id.listaActividades);
         actividades = findViewById(R.id.listaActividades);
+        tituloCorredor = (TextView)findViewById(R.id.tituloCorredor);
 
         Bundle b = getIntent().getExtras();
         String logueado = b.getString("logueado");
+        String Titulo = "Home Corredor : " + logueado;
         TextView textView = new TextView(this);
-        textView.setText("Lista Actividades");
+        textView.setText("Lista Actividades Pendientes");
+        tituloCorredor.setText(Titulo.toString());
         listaActividades.addHeaderView(textView);
 
         //String logueado = sharedpreferences.getString(USERNAME_KEY, null);
@@ -67,17 +71,16 @@ public class HomeCorredor extends AppCompatActivity {
         listaActividades.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView <? > arg0, View view, int position, long id) {
 
-                /*
                 String nombreCorredor =(String)arg0.getItemAtPosition(position);
 
-                Intent intent = new Intent(HomeCorredor.this, ViewCorredorEntrenador.class);
+                Intent intent = new Intent(HomeCorredor.this, ViewDetalleActividadPend.class);
                 Bundle b = new Bundle();
                 b.putString("nombreCorredor", nombreCorredor); //Your id
                 b.putString("logueado", logueado);
                 intent.putExtras(b);
                 startActivity(intent);
 
-                */
+
                 Toast.makeText(HomeCorredor.this, "click", Toast.LENGTH_SHORT).show();
             }
         });
