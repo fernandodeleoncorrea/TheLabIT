@@ -12,7 +12,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.thelabit.R;
-import com.example.thelabit.ViewDetalleActividad;
 import com.example.thelabit.modelo.DBTheLabIT;
 
 import java.util.ArrayList;

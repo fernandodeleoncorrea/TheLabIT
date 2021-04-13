@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.thelabit">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,14 +14,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheLabIT">
-        <activity android:name=".EjemploChart"></activity>
-        <activity android:name=".ViewDetalleActividad" />
+        <activity android:name=".ViewDetalleActividadPend"></activity>
+        <activity android:name=".EjemploLocation" />
+        <activity android:name=".EjemploChart" />
+        <activity android:name=".vista.ViewDetalleActividad" />
         <activity android:name=".vista.ViewCorredorEntrenador" />
         <activity android:name=".vista.ViewNuevoPlan" />
         <activity android:name=".vista.ViewPlanesDetalle" />
         <activity android:name=".vista.ViewPlanes" />
         <activity android:name=".vista.HomePlanes" />
-        <activity android:name=".vista.EjemploMapa2" />
         <activity android:name=".vista.EjemploMapa" />
 
         <meta-data
