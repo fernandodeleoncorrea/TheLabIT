@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     b.putString("logueado", logueado);
                     intent.putExtras(b);
                     startActivity(intent);
+
                 }else if (tipo == "entrenador"){
                     sesion = new Sesion(MainActivity.this); //in oncreate
                     sesion.setusername(login.getUsername());

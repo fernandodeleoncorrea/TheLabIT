@@ -33,6 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="10dp"
+                android:enabled="false"
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/altaActividad"
                 android:hint="@string/semana" />
@@ -40,6 +41,7 @@
                 android:id="@+id/dia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:enabled="false"
                 android:layout_marginTop="10dp"
                 android:textSize="10dp"
                 android:layout_below="@+id/semana"
@@ -48,6 +50,7 @@
                 android:id="@+id/turno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:enabled="false"
                 android:layout_marginTop="10dp"
                 android:textSize="10dp"
                 android:hint="@string/turno" />
@@ -55,6 +58,7 @@
                 android:id="@+id/descripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:enabled="false"
                 android:layout_marginTop="10dp"
                 android:textSize="15dp"
                 android:layout_below="@+id/turno"

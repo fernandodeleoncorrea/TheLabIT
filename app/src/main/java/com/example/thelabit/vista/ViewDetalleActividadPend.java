@@ -1,8 +1,7 @@
-package com.example.thelabit;
+package com.example.thelabit.vista;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -10,14 +9,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.thelabit.vista.HomeCorredor;
-import com.example.thelabit.vista.HomePlanes;
+import com.example.thelabit.R;
+import com.example.thelabit.modelo.Actividad;
+import com.example.thelabit.modelo.DBTheLabIT;
 
 public class ViewDetalleActividadPend extends AppCompatActivity {
 
     Button btnFeedBack;
+    DBTheLabIT DB;
+    TextView semana, dia, turno, descripcion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +28,26 @@ public class ViewDetalleActividadPend extends AppCompatActivity {
         setContentView(R.layout.activity_view_detalle_actividad_pend);
 
         btnFeedBack   = (Button) findViewById(R.id.btnFeedback);
+        semana = (TextView)findViewById(R.id.semana);
+        dia = (TextView)findViewById(R.id.dia);
+        turno = (TextView)findViewById(R.id.turno);
+        descripcion = (TextView)findViewById(R.id.descripcion);
+
+        Bundle b = getIntent().getExtras();
+        String idActividad = b.getString("idActividad");
+
+        DB = new DBTheLabIT(this);
+        Actividad actividad = new Actividad();
+        actividad = DB.obtenerActividad(Integer.parseInt(idActividad));
+
+        semana.setText("Semana : " + actividad.getSemana());
+        dia.setText("Dia : " + actividad.getDia());
+        turno.setText("Turno : " + actividad.getTurno());
+        descripcion.setText("Detalle : " + actividad.getDescripcion());
 
         Toast.makeText(ViewDetalleActividadPend.this, "llegue", Toast.LENGTH_SHORT).show();
+
+
 
 
 

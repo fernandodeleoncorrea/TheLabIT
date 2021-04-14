@@ -15,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.thelabit.R;
-import com.example.thelabit.ViewDetalleActividadPend;
 import com.example.thelabit.modelo.DBTheLabIT;
 
 import java.util.ArrayList;
@@ -25,10 +24,9 @@ public class HomeCorredor extends AppCompatActivity {
     TextView tituloCorredor;
     Button btnDetallePlan, btnEditarCorredor;
     ArrayList<String> listitem = new ArrayList<String>();
-    ArrayAdapter adapter;
-    Button btnPlanes;
-    ListView actividades;
-    ListView listaActividades;
+    ArrayList<String> listitemID = new ArrayList<String>();
+    ArrayAdapter adapter, adapterID;
+    ListView actividades, actividadesID;
     DBTheLabIT DB;
     
     @Override
@@ -39,7 +37,6 @@ public class HomeCorredor extends AppCompatActivity {
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         
         btnDetallePlan   = (Button) findViewById(R.id.btnDetallePlan);
-        listaActividades = findViewById(R.id.listaActividades);
         actividades = findViewById(R.id.listaActividades);
         tituloCorredor = (TextView)findViewById(R.id.tituloCorredor);
 
@@ -48,8 +45,10 @@ public class HomeCorredor extends AppCompatActivity {
         String Titulo = "Home Corredor : " + logueado;
         TextView textView = new TextView(this);
         textView.setText("Lista Actividades Pendientes");
+        textView.setTextSize(20);
         tituloCorredor.setText(Titulo.toString());
-        listaActividades.addHeaderView(textView);
+        tituloCorredor.setTextSize(20);
+        actividades.addHeaderView(textView);
 
         //String logueado = sharedpreferences.getString(USERNAME_KEY, null);
         Toast.makeText(HomeCorredor.this, logueado, Toast.LENGTH_SHORT).show();
@@ -60,7 +59,7 @@ public class HomeCorredor extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(HomeCorredor.this, HomePlanes.class);
+                Intent intent = new Intent(HomeCorredor.this, CorredorPlanTotal.class);
                 Bundle b = new Bundle();
                 b.putString("logueado", logueado);
                 intent.putExtras(b);
@@ -68,14 +67,14 @@ public class HomeCorredor extends AppCompatActivity {
             }
         });
 
-        listaActividades.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        actividades.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView <? > arg0, View view, int position, long id) {
 
-                String nombreCorredor =(String)arg0.getItemAtPosition(position);
+                String idActividad = listitemID.get(position-1);
 
-                Intent intent = new Intent(HomeCorredor.this, ViewDetalleActividadPend.class);
+                Intent intent  = new Intent(HomeCorredor.this, ViewDetalleActividadPend.class);
                 Bundle b = new Bundle();
-                b.putString("nombreCorredor", nombreCorredor); //Your id
+                b.putString("idActividad", idActividad);
                 b.putString("logueado", logueado);
                 intent.putExtras(b);
                 startActivity(intent);
@@ -93,16 +92,16 @@ public class HomeCorredor extends AppCompatActivity {
         Cursor c = DB.obtenerActividadesPendientes(logueado);
 
         while (c.moveToNext()) {
+            Integer pid = c.getInt(c.getColumnIndex("ID"));
             String psemana = c.getString(c.getColumnIndex("SEMANA"));
             String pdia = c.getString(c.getColumnIndex("DIA"));
             String pturno = c.getString(c.getColumnIndex("TURNO"));
             String pdescripcion = c.getString(c.getColumnIndex("DESCRIPCION"));
-            listitem.add(psemana+pdia+pturno+pdescripcion);
+            listitem.add(pid+pdescripcion);
+            listitemID.add(String.valueOf(pid));
         }
 
-
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listitem);
-        //adapter = new ArrayAdapter<>(this, android.R.layout.activity_list_item, listitem);
         actividades.setAdapter(adapter);
 
     }
