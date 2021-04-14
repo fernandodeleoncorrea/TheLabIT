@@ -2,6 +2,7 @@ package com.example.thelabit.vista;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -12,13 +13,15 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.thelabit.MainActivity;
 import com.example.thelabit.R;
+import com.example.thelabit.ViewIniciarActividad;
 import com.example.thelabit.modelo.Actividad;
 import com.example.thelabit.modelo.DBTheLabIT;
 
 public class ViewDetalleActividadPend extends AppCompatActivity {
 
-    Button btnFeedBack;
+    Button btnFeedBack, btnIniciar;
     DBTheLabIT DB;
     TextView semana, dia, turno, descripcion;
 
@@ -28,6 +31,7 @@ public class ViewDetalleActividadPend extends AppCompatActivity {
         setContentView(R.layout.activity_view_detalle_actividad_pend);
 
         btnFeedBack   = (Button) findViewById(R.id.btnFeedback);
+        btnIniciar   = (Button) findViewById(R.id.btnIniciar);
         semana = (TextView)findViewById(R.id.semana);
         dia = (TextView)findViewById(R.id.dia);
         turno = (TextView)findViewById(R.id.turno);
@@ -48,9 +52,15 @@ public class ViewDetalleActividadPend extends AppCompatActivity {
         Toast.makeText(ViewDetalleActividadPend.this, "llegue", Toast.LENGTH_SHORT).show();
 
 
-
-
-
+        btnIniciar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ViewDetalleActividadPend.this, ViewIniciarActividad.class);
+                //Bundle b = new Bundle();
+                //b.putString("logueado", logueado);
+                //intent.putExtras(b);
+                startActivity(intent);
+            }});
 
         btnFeedBack.setOnClickListener(new View.OnClickListener() {
             @Override
