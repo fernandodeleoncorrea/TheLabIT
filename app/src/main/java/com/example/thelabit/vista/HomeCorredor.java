@@ -76,6 +76,7 @@ public class HomeCorredor extends AppCompatActivity {
                 Bundle b = new Bundle();
                 b.putString("idActividad", idActividad);
                 b.putString("logueado", logueado);
+                b.putBoolean("completada", true);
                 intent.putExtras(b);
                 startActivity(intent);
 

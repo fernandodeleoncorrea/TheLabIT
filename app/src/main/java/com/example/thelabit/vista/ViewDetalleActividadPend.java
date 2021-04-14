@@ -1,4 +1,4 @@
-package com.example.thelabit.vista;
+ package com.example.thelabit.vista;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,10 +21,10 @@ import com.example.thelabit.modelo.DBTheLabIT;
 
 public class ViewDetalleActividadPend extends AppCompatActivity {
 
-    Button btnFeedBack, btnIniciar;
+    Button btnFeedBack, btnIniciar, btnCargarArchivo;
     DBTheLabIT DB;
     TextView semana, dia, turno, descripcion;
-
+    Boolean completada = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +32,7 @@ public class ViewDetalleActividadPend extends AppCompatActivity {
 
         btnFeedBack   = (Button) findViewById(R.id.btnFeedback);
         btnIniciar   = (Button) findViewById(R.id.btnIniciar);
+        btnCargarArchivo   = (Button) findViewById(R.id.btnCargarArchivo);
         semana = (TextView)findViewById(R.id.semana);
         dia = (TextView)findViewById(R.id.dia);
         turno = (TextView)findViewById(R.id.turno);
@@ -39,6 +40,11 @@ public class ViewDetalleActividadPend extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         String idActividad = b.getString("idActividad");
+        String logueado = b.getString("logueado");
+        completada = b.getBoolean("completada");
+
+        btnIniciar.setEnabled(completada);
+        btnCargarArchivo.setEnabled(completada);
 
         DB = new DBTheLabIT(this);
         Actividad actividad = new Actividad();
@@ -56,9 +62,11 @@ public class ViewDetalleActividadPend extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ViewDetalleActividadPend.this, ViewIniciarActividad.class);
-                //Bundle b = new Bundle();
-                //b.putString("logueado", logueado);
-                //intent.putExtras(b);
+                Bundle b = new Bundle();
+                b.putString("logueado", logueado);
+                b.putString("idActividad", idActividad);
+                b.putBoolean("completada", true);
+                intent.putExtras(b);
                 startActivity(intent);
             }});
 

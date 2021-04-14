@@ -268,7 +268,7 @@ public class DBTheLabIT extends SQLiteOpenHelper {
 
     public Actividad obtenerActividad(Integer idActividad){
         SQLiteDatabase db =  this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT T1.ID, T1.SEMANA, T1.DIA, T1.TURNO, T1.DESCRIPCION, T1.COMPLETADA, T1.IDPLAN " +
+       Cursor cursor = db.rawQuery("SELECT T1.ID, T1.SEMANA, T1.DIA, T1.TURNO, T1.DESCRIPCION, T1.COMPLETADA, T1.IDPLAN " +
                 "FROM ACTIVIDADES T1 " +
                 "WHERE T1.ID = ? ",new String[]{String.valueOf(idActividad)});
 
@@ -381,7 +381,7 @@ public class DBTheLabIT extends SQLiteOpenHelper {
                 "JOIN PLANES_DETALLE T2 ON T1.USERNAME = T2.IDCORREDOR " +
                 "JOIN ACTIVIDADES T3 ON T2.IDPLAN = T3.IDPLAN " +
                 "WHERE T1.USERNAME = ? AND T2.IDPLAN = 1 AND T3.COMPLETADA = 0 " +
-                "ORDER BY DIA DESC LIMIT 7",new String[]{corr});
+                "ORDER BY DIA ASC LIMIT 7",new String[]{corr});
 
         Integer cantidad = cursor.getCount();
         return cursor;
@@ -398,6 +398,19 @@ public class DBTheLabIT extends SQLiteOpenHelper {
 
         Integer cantidad = cursor.getCount();
         return cursor;
+    }
+
+    public Boolean marcarActividadBD(String idActividad){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Boolean modificoOK = false;
+
+
+        ContentValues contenedor = new ContentValues();
+        contenedor.put(ConstantesDB.TABLA_ACTIVIDADES_COMPLETADA, 1);
+
+
+        modificoOK = db.update("ACTIVIDADES", contenedor, "ID = ?", new String[]{idActividad}) > 0;
+        return modificoOK;
     }
 
 }
