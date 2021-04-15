@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.thelabit.R;
 import com.example.thelabit.modelo.Actividad;
 import com.example.thelabit.modelo.DBTheLabIT;
+import com.google.android.material.snackbar.Snackbar;
 
 public class ViewPlanesDetalle extends AppCompatActivity {
 
@@ -76,7 +77,8 @@ public class ViewPlanesDetalle extends AppCompatActivity {
                 Boolean resultado = DB.insertDetallePlan(logueado, null, idPlan);
 
                 if (resultado){
-                    Toast.makeText(ViewPlanesDetalle.this, "plan dado de alta", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(ViewPlanesDetalle.this, "plan dado de alta", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(v, getResources().getString(R.string.alta_plan), Snackbar.LENGTH_LONG).show();
 
                 }
 

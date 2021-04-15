@@ -1,5 +1,7 @@
 package com.example.thelabit.modelo;
 
+
+
 public class Corredor extends Usuario{
 
     private String Genero;
