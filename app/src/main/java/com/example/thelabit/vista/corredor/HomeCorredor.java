@@ -15,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.thelabit.R;
-import com.example.thelabit.ViewEditarPerfilCorredor;
 import com.example.thelabit.modelo.DBTheLabIT;
 
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ import java.util.ArrayList;
 public class HomeCorredor extends AppCompatActivity {
     
     TextView tituloCorredor;
-    Button btnDetallePlan, btnEditarCorredor;
+    Button btnDetallePlan, btnEditarCorredor, btnBuscarEntrenador;
     ArrayList<String> listitem = new ArrayList<String>();
     ArrayList<String> listitemID = new ArrayList<String>();
     ArrayAdapter adapter, adapterID;
@@ -38,6 +37,7 @@ public class HomeCorredor extends AppCompatActivity {
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         
         btnDetallePlan   = (Button) findViewById(R.id.btnDetallePlan);
+        btnBuscarEntrenador   = (Button) findViewById(R.id.btnBuscarEntrenador);
         btnEditarCorredor   = (Button) findViewById(R.id.btnEditarCorredor);
         actividades = findViewById(R.id.listaActividades);
         tituloCorredor = (TextView)findViewById(R.id.tituloCorredor);
@@ -65,6 +65,20 @@ public class HomeCorredor extends AppCompatActivity {
                 Intent intent = new Intent(HomeCorredor.this, CorredorPlanTotal.class);
                 Bundle b = new Bundle();
                 b.putString("logueado", logueado);
+                b.putString("nombreUsuario", nombreUsuario);
+                intent.putExtras(b);
+                startActivity(intent);
+            }
+        });
+
+        btnBuscarEntrenador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(HomeCorredor.this, ViewListarEntrenadores.class);
+                Bundle b = new Bundle();
+                b.putString("logueado", logueado);
+                b.putString("nombreUsuario", nombreUsuario);
                 intent.putExtras(b);
                 startActivity(intent);
             }
@@ -77,6 +91,7 @@ public class HomeCorredor extends AppCompatActivity {
                 Intent intent = new Intent(HomeCorredor.this, ViewEditarPerfilCorredor.class);
                 Bundle b = new Bundle();
                 b.putString("logueado", logueado);
+                b.putString("nombreUsuario", nombreUsuario);
                 intent.putExtras(b);
                 startActivity(intent);
             }
@@ -92,6 +107,7 @@ public class HomeCorredor extends AppCompatActivity {
                 b.putString("idActividad", idActividad);
                 b.putString("logueado", logueado);
                 b.putBoolean("completada", true);
+                b.putString("nombreUsuario", nombreUsuario);
                 intent.putExtras(b);
                 startActivity(intent);
 

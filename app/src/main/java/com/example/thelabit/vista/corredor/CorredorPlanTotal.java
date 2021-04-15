@@ -64,10 +64,6 @@ public class CorredorPlanTotal extends AppCompatActivity {
                 }
 
 
-
-
-
-
                 Toast.makeText(CorredorPlanTotal.this, idActividad, Toast.LENGTH_SHORT).show();
             }
         });

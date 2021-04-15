@@ -467,4 +467,29 @@ public class DBTheLabIT extends SQLiteOpenHelper {
             return false;
         }
     }
+
+    public Cursor obtenerDatosBusquedaEnt(String user){
+        SQLiteDatabase db =  this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT T2.NOMBRE, T2.CIUDAD, T2.PAIS, T2.COMENTARIO, T1.FORMACION, T3.CANTIDAD " +
+                "FROM ENTRENADORES T1 " +
+                "JOIN USUARIOS T2 ON T1.USERNAME = T2.USERNAME " +
+                "JOIN (SELECT IDENTRENADOR, COUNT(*) AS CANTIDAD  FROM ENTRENADORES_CORREDORES  GROUP BY IDENTRENADOR) T3 " +
+                "ON T1.USERNAME = T3.IDENTRENADOR " +
+                "WHERE T1.USERNAME = ?",new String[]{user});
+
+        Integer largo = cursor.getCount();
+        return cursor;
+    }
+
+    public Cursor obtenerListaEntrenadores(){
+        SQLiteDatabase db =  this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT T1.USERNAME, T2.NOMBRE " +
+                "FROM ENTRENADORES T1 " +
+                "JOIN USUARIOS T2 ON T1.USERNAME = T2.USERNAME ",new String[]{});
+
+        Integer largo = cursor.getCount();
+        return cursor;
+    }
 }

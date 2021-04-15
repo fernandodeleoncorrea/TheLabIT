@@ -3,81 +3,92 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="200dp"
-    android:background="#D4DCE3">
+    android:id="@+id/PopupFeedback"
+    android:background="#f2f2f2">
 
-    <EditText
-        android:id="@+id/etInicio"
+    <TextView
+        android:id="@+id/txtFreshness"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Inicio" />
-
+        android:text="Freshness:" />
     <SeekBar
-        android:id="@+id/seekBar1"
+        android:id="@+id/seekBarFreshness"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etInicio"
+        android:layout_below="@+id/txtFreshness"
          />
 
-    <EditText
-        android:id="@+id/etDurante"
+    <TextView
+        android:id="@+id/txtDureza"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_marginTop="30dp"
-        android:inputType="textPersonName"
-        android:layout_below="@+id/seekBar1"
-        android:text="Durante" />
+        android:layout_below="@+id/seekBarFreshness"
+        android:layout_marginTop="20dp"
+        android:text="Dureza:" />
     <SeekBar
-        android:id="@+id/seekBar2"
+        android:id="@+id/seekBarDureza"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etDurante"
+        android:layout_below="@+id/txtDureza"
      />
 
-    <EditText
-        android:id="@+id/etFinal"
+    <TextView
+        android:id="@+id/txtRecuperacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_marginTop="30dp"
-        android:inputType="textPersonName"
-        android:layout_below="@+id/seekBar2"
-        android:text="Final" />
+        android:layout_below="@+id/seekBarDureza"
+        android:layout_marginTop="20dp"
+        android:text="Recuperacion:" />
     <SeekBar
-        android:id="@+id/seekBar3"
+        android:id="@+id/seekBarRecuperacion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etFinal"
-        android:layout_marginTop="30dp" />
+        android:layout_below="@+id/txtRecuperacion" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/txtComentario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seekBarRecuperacion"
+        android:layout_marginTop="30dp"
+        android:text="Comentario:" />
+
+    <EditText
+        android:id="@+id/descripcion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/seekBar3"
-        android:layout_marginTop="50dp"
-        android:orientation="horizontal">
+        android:enabled="false"
+        android:layout_marginTop="10dp"
+        android:textSize="15dp"
+        android:layout_below="@+id/txtComentario"
+        android:hint="Comentarios" />
 
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:text="CheckBox" />
+    <Button
+        android:id="@+id/btnEnviarFeedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/descripcion"
+        android:text="Enviar Feedack"
+        />
+    <TextView
+        android:id="@+id/txtResultadoFreshness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="" />
 
-        <CheckBox
-            android:id="@+id/checkBox2"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:text="CheckBox" />
+    <TextView
+        android:id="@+id/txtResultadoDureza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="" />
 
-        <CheckBox
-            android:id="@+id/checkBox3"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:text="CheckBox" />
-    </LinearLayout>
-
-
-
+    <TextView
+        android:id="@+id/txtResultadoRecupero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="" />
 </RelativeLayout>

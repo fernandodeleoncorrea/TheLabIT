@@ -1,4 +1,4 @@
-package com.example.thelabit;
+package com.example.thelabit.vista.corredor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,8 +9,8 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.Toast;
 
+import com.example.thelabit.R;
 import com.example.thelabit.modelo.DBTheLabIT;
-import com.example.thelabit.vista.corredor.ViewDetalleActividadPend;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -67,6 +67,7 @@ public class ViewIniciarActividad extends AppCompatActivity implements OnMapRead
                    b.putBoolean("completada", false);
                    intent.putExtras(b);
                    startActivity(intent);
+                   finish();
 
                }
             }

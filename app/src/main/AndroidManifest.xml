@@ -14,8 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheLabIT">
-        <activity android:name=".ViewEditarPerfilCorredor"></activity>
-        <activity android:name=".ViewIniciarActividad" />
+        <activity android:name=".vista.corredor.ViewListarEntrenadores"></activity>
+        <activity android:name=".vista.corredor.ViewContactarEntrenador" />
+        <activity android:name=".vista.corredor.ViewEditarPerfilCorredor" />
+        <activity android:name=".vista.corredor.ViewIniciarActividad" />
         <activity android:name=".vista.corredor.CorredorPlanTotal" />
         <activity android:name=".vista.corredor.ViewDetalleActividadPend" />
         <activity android:name=".EjemploLocation" />

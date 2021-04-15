@@ -1,4 +1,4 @@
-package com.example.thelabit;
+package com.example.thelabit.vista.corredor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,12 +9,10 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
+import com.example.thelabit.R;
 import com.example.thelabit.modelo.Corredor;
 import com.example.thelabit.modelo.DBTheLabIT;
-import com.example.thelabit.modelo.Usuario;
-import com.example.thelabit.vista.corredor.HomeCorredor;
 
 public class ViewEditarPerfilCorredor extends AppCompatActivity {
 
@@ -45,6 +43,7 @@ public class ViewEditarPerfilCorredor extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         String logueado = b.getString("logueado");
+        String nombreUsuario = b.getString("nombreUsuario");
         DB = new DBTheLabIT(this);
         Cursor c = DB.obtenerDatosCorredor(logueado);
 
@@ -90,6 +89,7 @@ public class ViewEditarPerfilCorredor extends AppCompatActivity {
                     Intent intent = new Intent(ViewEditarPerfilCorredor.this, HomeCorredor.class);
                     Bundle b = new Bundle();
                     b.putString("logueado", logueado);
+                    b.putString("nombreUsuario", nombreUsuario);
                     intent.putExtras(b);
                     startActivity(intent);
                     finish();
