@@ -14,16 +14,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheLabIT">
-        <activity android:name=".ViewDetalleActividadPend"></activity>
+        <activity android:name=".vista.corredor.ViewListarEntrenadores"></activity>
+        <activity android:name=".vista.corredor.ViewContactarEntrenador" />
+        <activity android:name=".vista.corredor.ViewEditarPerfilCorredor" />
+        <activity android:name=".vista.corredor.ViewIniciarActividad" />
+        <activity android:name=".vista.corredor.CorredorPlanTotal" />
+        <activity android:name=".vista.corredor.ViewDetalleActividadPend" />
         <activity android:name=".EjemploLocation" />
         <activity android:name=".EjemploChart" />
-        <activity android:name=".vista.ViewDetalleActividad" />
+        <activity android:name=".vista.ViewDetalleActividad2" />
         <activity android:name=".vista.ViewCorredorEntrenador" />
         <activity android:name=".vista.ViewNuevoPlan" />
         <activity android:name=".vista.ViewPlanesDetalle" />
         <activity android:name=".vista.ViewPlanes" />
         <activity android:name=".vista.HomePlanes" />
-        <activity android:name=".vista.EjemploMapa" />
+        <activity android:name=".vista.ViewDetalleActividad" />
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -35,7 +40,7 @@
         <activity android:name=".vista.RegistrarUsuario" />
         <activity android:name=".vista.FormSignUp" />
         <activity android:name=".vista.HomeEntrenador" />
-        <activity android:name=".vista.HomeCorredor" />
+        <activity android:name=".vista.corredor.HomeCorredor" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

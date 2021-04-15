@@ -12,8 +12,8 @@ import android.widget.EditText;
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.modelo.Login;
 import com.example.thelabit.modelo.Sesion;
-import com.example.thelabit.vista.EjemploMapa;
-import com.example.thelabit.vista.HomeCorredor;
+import com.example.thelabit.vista.ViewDetalleActividad;
+import com.example.thelabit.vista.corredor.HomeCorredor;
 import com.example.thelabit.vista.HomeEntrenador;
 import com.example.thelabit.vista.RegistrarUsuario;
 import com.google.android.material.snackbar.Snackbar;
@@ -61,23 +61,24 @@ public class MainActivity extends AppCompatActivity {
 
                 //chequeo de los datos ingresados
                 if (tipo == "corredor"){
-                    sesion = new Sesion(MainActivity.this); //in oncreate
-                    sesion.setusername(login.getUsername());
 
+                    String nombreUsuario = DB.obtenerNombre(user);
                     Intent intent = new Intent(getApplicationContext(), HomeCorredor.class);
                     Bundle b = new Bundle();
                     b.putString("logueado", logueado);
+                    b.putString("nombreUsuario", nombreUsuario);
                     intent.putExtras(b);
                     startActivity(intent);
+                    finish();
+
                 }else if (tipo == "entrenador"){
-                    sesion = new Sesion(MainActivity.this); //in oncreate
-                    sesion.setusername(login.getUsername());
 
                     Intent intent = new Intent(MainActivity.this, HomeEntrenador.class);
                     Bundle b = new Bundle();
                     b.putString("logueado", logueado);
                     intent.putExtras(b);
                     startActivity(intent);
+                    finish();
 
                 }else {
                     //Toast.makeText(MainActivity.this, "nooo", Toast.LENGTH_SHORT).show();
@@ -100,8 +101,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(MainActivity.this, "error", Toast.LENGTH_SHORT).show();
-                //Intent intent = new Intent(getApplicationContext(), EjemploMapa.class);
-                Intent intent = new Intent(getApplicationContext(), EjemploLocation.class);
+                Intent intent = new Intent(getApplicationContext(), ViewDetalleActividad.class);
+                //Intent intent = new Intent(getApplicationContext(), EjemploLocation.class);
                 startActivity(intent);
             }
         });

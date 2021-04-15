@@ -39,4 +39,11 @@ public final class ConstantesDB {
     public static final String TABLA_PLANESDETALLE_IDENT = "IDENTRENADOR";
     public static final String TABLA_PLANESDETALLE_IDCORR = "IDCORREDOR";
     public static final String TABLA_PLANESDETALLE_IDPLAN = "IDPLAN";
+
+    //TABLA FEEDBACK
+    public static final String TABLA_FEEDBACK_IDACTIVIDAD = "IDACTIVIDAD";
+    public static final String TABLA_FEEDBACK_FRESHNESS = "FRESHNESS";
+    public static final String TABLA_FEEDBACK_DUREZA = "DUREZA";
+    public static final String TABLA_FEEDBACK_RECUPERACION = "RECUPERACION";
+    public static final String TABLA_FEEDBACK_COMENTARIO = "COMENTARIO";
 }

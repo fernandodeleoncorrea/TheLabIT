@@ -48,6 +48,9 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         queryCrearTabla = "CREATE TABLE ENTRENADORES_CORREDORES(IDENTRENADOR STRING, IDCORREDOR STRING)";
         db.execSQL(queryCrearTabla);
 
+        queryCrearTabla = "CREATE TABLE FEEDBACK(IDACTIVIDAD INTEGER, FRESHNESS INTEGER, DUREZA INTEGER, RECUPERACION INTEGER, COMENTARIO STRING)";
+        db.execSQL(queryCrearTabla);
+
         //INSERTO UNOS DATOS DE PRUEBA
         //INSERT DE USUARIOS Y PASSWORD
         queryInsert = "INSERT INTO LOGIN(USERNAME, PASSWORD) VALUES ('1', 'pwfernando')";
@@ -98,26 +101,26 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         db.execSQL(queryInsert);
 
 
-        queryInsert = "INSERT INTO ACTIVIDADES(ID, SEMANA, DIA, TURNO , DESCRIPCION, COMPLETADA, IDPLAN) VALUES (1, '1', '1', 'MATUTINO', '30 MIN TROTE SUAVE', 0, 1)";
+        queryInsert = "INSERT INTO ACTIVIDADES(ID, SEMANA, DIA, TURNO , DESCRIPCION, COMPLETADA, IDPLAN) VALUES (1, '1', '1', 'MATUTINO', '30M TROTE SUAVE', 1, 1)";
         db.execSQL(queryInsert);
 
-        queryInsert = "INSERT INTO ACTIVIDADES(ID, SEMANA, DIA, TURNO , DESCRIPCION, COMPLETADA, IDPLAN) VALUES (2, '1', '2', 'VESPERTINO', '20 MIN TROTE + 10 CUESTAS', 0, 1)";
+        queryInsert = "INSERT INTO ACTIVIDADES(ID, SEMANA, DIA, TURNO , DESCRIPCION, COMPLETADA, IDPLAN) VALUES (2, '1', '2', 'VESPERTINO', '20M TROTE + 10 CUESTAS', 1, 1)";
         db.execSQL(queryInsert);
 
-        queryInsert = "INSERT INTO ACTIVIDADES(ID, SEMANA, DIA, TURNO , DESCRIPCION, COMPLETADA, IDPLAN) VALUES (3, '1', '1', 'MATUTINO', '30 MIN TROTE SUAVE', 0, 2)";
+        queryInsert = "INSERT INTO ACTIVIDADES(ID, SEMANA, DIA, TURNO , DESCRIPCION, COMPLETADA, IDPLAN) VALUES (3, '1', '3', 'MATUTINO', '30M TROTE SUAVE', 0, 1)";
         db.execSQL(queryInsert);
 
-        queryInsert = "INSERT INTO ACTIVIDADES(ID, SEMANA, DIA, TURNO , DESCRIPCION, COMPLETADA, IDPLAN) VALUES (4, '1', '2', 'VESPERTINO', '20 MIN TROTE + 10 CUESTAS', 0, 2)";
+        queryInsert = "INSERT INTO ACTIVIDADES(ID, SEMANA, DIA, TURNO , DESCRIPCION, COMPLETADA, IDPLAN) VALUES (4, '1', '4', 'VESPERTINO', '20M TROTE + 20CUESTAS', 0, 1)";
         db.execSQL(queryInsert);
 
 
         queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('4', '2', 1)";
         db.execSQL(queryInsert);
 
-        queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('1', '2', 3)";
+        queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('1', '8', 3)";
         db.execSQL(queryInsert);
 
-        queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('4', '3', 2)";
+        queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('4', '9', 2)";
         db.execSQL(queryInsert);
 
         queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('1', '3', 4)";
@@ -128,6 +131,9 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         db.execSQL(queryInsert);
 
         queryInsert = "INSERT INTO ENTRENADORES_CORREDORES(IDENTRENADOR, IDCORREDOR) VALUES ('1', '3')";
+        db.execSQL(queryInsert);
+
+        queryInsert = "INSERT INTO FEEDBACK(IDACTIVIDAD, FRESHNESS, DUREZA, RECUPERACION, COMENTARIO) VALUES (1, 80, 55, 21, 'Inicié con algo de cansancio pero no fue una sesion muy dura')";
         db.execSQL(queryInsert);
     }
 
@@ -266,6 +272,26 @@ public class DBTheLabIT extends SQLiteOpenHelper {
 
     }
 
+    public Actividad obtenerActividad(Integer idActividad){
+        SQLiteDatabase db =  this.getWritableDatabase();
+       Cursor cursor = db.rawQuery("SELECT T1.ID, T1.SEMANA, T1.DIA, T1.TURNO, T1.DESCRIPCION, T1.COMPLETADA, T1.IDPLAN " +
+                "FROM ACTIVIDADES T1 " +
+                "WHERE T1.ID = ? ",new String[]{String.valueOf(idActividad)});
+
+
+        cursor.moveToNext();
+        Integer id = cursor.getInt(cursor.getColumnIndex("ID"));
+        String semana = cursor.getString(cursor.getColumnIndex("SEMANA"));
+        String dia = cursor.getString(cursor.getColumnIndex("DIA"));
+        String turno = cursor.getString(cursor.getColumnIndex("TURNO"));
+        String descripcion = cursor.getString(cursor.getColumnIndex("DESCRIPCION"));
+        Integer completada = cursor.getInt(cursor.getColumnIndex("COMPLETADA"));
+        Integer idPlan = cursor.getInt(cursor.getColumnIndex("IDPLAN"));
+        Actividad actividad = new Actividad(id,semana,dia,turno,descripcion,completada,idPlan);
+        return actividad;
+
+    }
+
     public Boolean insertNuevoPlan (PlanEntrenamiento P, String ent){
         SQLiteDatabase db = this.getWritableDatabase();
         Boolean plan = false;
@@ -356,15 +382,142 @@ public class DBTheLabIT extends SQLiteOpenHelper {
 
     public Cursor obtenerActividadesPendientes(String corr){
         SQLiteDatabase db =  this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT T3.SEMANA, T3.DIA, T3.TURNO, T3.DESCRIPCION " +
+        Cursor cursor = db.rawQuery("SELECT T3.ID, T3.SEMANA, T3.DIA, T3.TURNO, T3.DESCRIPCION " +
                 "FROM USUARIOS T1 " +
                 "JOIN PLANES_DETALLE T2 ON T1.USERNAME = T2.IDCORREDOR " +
                 "JOIN ACTIVIDADES T3 ON T2.IDPLAN = T3.IDPLAN " +
                 "WHERE T1.USERNAME = ? AND T2.IDPLAN = 1 AND T3.COMPLETADA = 0 " +
-                "ORDER BY DIA DESC LIMIT 7",new String[]{corr});
+                "ORDER BY DIA ASC LIMIT 7",new String[]{corr});
 
         Integer cantidad = cursor.getCount();
         return cursor;
     }
 
+    public Cursor obtenerPlanTotal(String corr){
+        SQLiteDatabase db =  this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT T3.ID, T3.SEMANA, T3.DIA, T3.TURNO, T3.DESCRIPCION, T3.COMPLETADA " +
+                "FROM USUARIOS T1 " +
+                "JOIN PLANES_DETALLE T2 ON T1.USERNAME = T2.IDCORREDOR " +
+                "JOIN ACTIVIDADES T3 ON T2.IDPLAN = T3.IDPLAN " +
+                "WHERE T1.USERNAME = ? " +
+                "ORDER BY CAST(DIA AS INT) ASC ",new String[]{corr});
+
+        Integer cantidad = cursor.getCount();
+        return cursor;
+    }
+
+    public Boolean marcarActividadBD(String idActividad){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Boolean modificoOK = false;
+
+
+        ContentValues contenedor = new ContentValues();
+        contenedor.put(ConstantesDB.TABLA_ACTIVIDADES_COMPLETADA, 1);
+
+        modificoOK = db.update("ACTIVIDADES", contenedor, "ID = ?", new String[]{idActividad}) > 0;
+        return modificoOK;
+    }
+
+
+    public String obtenerNombre(String user){
+        SQLiteDatabase db =  this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT T1.NOMBRE " +
+                "FROM USUARIOS T1 " +
+                "WHERE T1.USERNAME = ? ",new String[]{String.valueOf(user)});
+
+        cursor.moveToNext();
+        String nombre = cursor.getString(cursor.getColumnIndex("NOMBRE"));
+        return nombre;
+    }
+
+    public Cursor obtenerDatosCorredor(String user){
+        SQLiteDatabase db =  this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT T1.USERNAME, T1.NOMBRE, T1.FECHANACIMIENTO, T1.CIUDAD, T1.PAIS, T1.EMAIL, T1.COMENTARIO " +
+                ",T2.PESO, T2.GENERO, T2.ALTURA, T2.FCREPOSO, T2.FCMAXIMA, T2.OBJETIVO, T2.TIEMPOESTIMADO " +
+                "FROM USUARIOS T1 JOIN CORREDORES T2 ON T1.USERNAME = T2.USERNAME " +
+                "WHERE T1.USERNAME = ? ",new String[]{user});
+
+        Integer largo = cursor.getCount();
+        return cursor;
+    }
+
+    public Boolean guardarDatosCorredor(Corredor C){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contenedor = new ContentValues();
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_USERNAME,C.getIdUsuario());
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_NOMBRE, C.getNombre());
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_FECHANACIMIENTO, C.getFechaNacimiento());
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_CIUDAD, C.getCiudad());
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_PAIS, C.getPais());
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_EMAIL, C.getEmail());
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_COMENTARIO, C.getComentario());
+
+        ContentValues contenedor2 = new ContentValues();
+        contenedor2.put(ConstantesDB.TABLA_USUARIOS_USERNAME, C.getIdUsuario());
+        contenedor2.put(ConstantesDB.TABLA_CORREDORES_PESO,C.getPeso());
+        contenedor2.put(ConstantesDB.TABLA_CORREDORES_GENERO,C.getGenero());
+        contenedor2.put(ConstantesDB.TABLA_CORREDORES_ALTURA,C.getAltura());
+        contenedor2.put(ConstantesDB.TABLA_CORREDORES_FCREPOSO,C.getFCReposo());
+        contenedor2.put(ConstantesDB.TABLA_CORREDORES_FCMAXIMA,C.getFCMaxima());
+        contenedor2.put(ConstantesDB.TABLA_CORREDORES_OBJETIVO,C.getDistanciaObjetivo());
+        contenedor2.put(ConstantesDB.TABLA_CORREDORES_TIEMPOESTIMADO,C.getTiempoEstimado());
+
+        Boolean tbusuarios = db.update("USUARIOS", contenedor, "USERNAME = ?", new String[]{C.getIdUsuario()}) > 0;
+        Boolean tbcorredores = db.update("CORREDORES", contenedor2, "USERNAME = ?", new String[]{C.getIdUsuario()}) > 0;
+
+        if(tbusuarios == true & tbcorredores == true){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Cursor obtenerDatosBusquedaEnt(String user){
+        SQLiteDatabase db =  this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT T2.NOMBRE, T2.CIUDAD, T2.PAIS, T2.COMENTARIO, T1.FORMACION, T3.CANTIDAD " +
+                "FROM ENTRENADORES T1 " +
+                "JOIN USUARIOS T2 ON T1.USERNAME = T2.USERNAME " +
+                "JOIN (SELECT IDENTRENADOR, COUNT(*) AS CANTIDAD  FROM ENTRENADORES_CORREDORES  GROUP BY IDENTRENADOR) T3 " +
+                "ON T1.USERNAME = T3.IDENTRENADOR " +
+                "WHERE T1.USERNAME = ?",new String[]{user});
+
+        Integer largo = cursor.getCount();
+        return cursor;
+    }
+
+    public Cursor obtenerListaEntrenadores(){
+        SQLiteDatabase db =  this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT T1.USERNAME, T2.NOMBRE " +
+                "FROM ENTRENADORES T1 " +
+                "JOIN USUARIOS T2 ON T1.USERNAME = T2.USERNAME ",new String[]{});
+
+        Integer largo = cursor.getCount();
+        return cursor;
+    }
+
+    public Boolean insertarFeedback(Integer idActividad, FeedBack F){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contenedor = new ContentValues();
+        contenedor.put(ConstantesDB.TABLA_FEEDBACK_IDACTIVIDAD, idActividad);
+        contenedor.put(ConstantesDB.TABLA_FEEDBACK_FRESHNESS, F.getFreshness());
+        contenedor.put(ConstantesDB.TABLA_FEEDBACK_DUREZA, F.getDureza());
+        contenedor.put(ConstantesDB.TABLA_FEEDBACK_RECUPERACION, F.getRecuperacion());
+        contenedor.put(ConstantesDB.TABLA_FEEDBACK_COMENTARIO, F.getComentario());
+
+        Boolean inserto = db.insert("FEEDBACK", null, contenedor) > 0;
+
+        if (inserto){
+            return true;
+        }else
+        {
+            return false;
+        }
+
+
+    }
 }

@@ -69,11 +69,22 @@ public class Corredor extends Usuario{
         Peso = peso;
     }
 
-    public Corredor() {
-        super();
+    public Corredor(){
+
     }
 
     public Corredor(String genero, String altura, String FCReposo, String FCMaxima, String distanciaObjetivo, String tiempoEstimado, String peso) {
+        Genero = genero;
+        Altura = altura;
+        this.FCReposo = FCReposo;
+        this.FCMaxima = FCMaxima;
+        DistanciaObjetivo = distanciaObjetivo;
+        TiempoEstimado = tiempoEstimado;
+        Peso = peso;
+    }
+
+    public Corredor(String idUsuario, String nombre, String fechaNacimiento, String ciudad, String pais, String email, String comentario, String genero, String altura, String FCReposo, String FCMaxima, String distanciaObjetivo, String tiempoEstimado, String peso) {
+        super(idUsuario, nombre, fechaNacimiento, ciudad, pais, email, comentario);
         Genero = genero;
         Altura = altura;
         this.FCReposo = FCReposo;
