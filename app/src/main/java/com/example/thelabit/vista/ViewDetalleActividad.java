@@ -138,16 +138,15 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
         aranaDataSet.setColors(128);
         aranaDataSet.setValueTextColor(Color.BLACK);
         aranaDataSet.setValueTextSize(18f);
+        aranaDataSet.setFillColor(Color.rgb(77, 0, 77));
     }
 
     private void getEntries() {
         radarEntries = new ArrayList<>();
-        radarEntries.add(new RadarEntry(0, 0.21f));
-        radarEntries.add(new RadarEntry(1, 0.12f));
-        radarEntries.add(new RadarEntry(2, 0.20f));
-        radarEntries.add(new RadarEntry(2, 0.52f));
-        radarEntries.add(new RadarEntry(3, 0.29f));
-        radarEntries.add(new RadarEntry(4, 0.62f));
+        radarEntries.add(new RadarEntry(78, "Freshness"));
+        radarEntries.add(new RadarEntry(22, "Dureza"));
+        radarEntries.add(new RadarEntry(55, "Recuperacion"));
+
     }
 
     private List<LatLng> decodeGPX(File file){
