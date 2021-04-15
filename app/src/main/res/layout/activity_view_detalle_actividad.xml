@@ -5,36 +5,74 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".vista.ViewDetalleActividad">
-
-    <fragment
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        tools:context="com.example.thelabit.vista" />
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:orientation="vertical"
-        android:layout_below="@+id/map"
-        android:padding="10dp"
-        android:id="@+id/LLelevacionChart">
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/elevacionChart"
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="none"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="130dp" />
-    </LinearLayout>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:orientation="vertical"
-        android:layout_below="@+id/LLelevacionChart"
-        android:padding="10dp">
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/pulsacionesChart"
+            android:layout_height="250dp"
+            tools:context="com.example.thelabit.vista" />
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="130dp" />
+            android:layout_height="150dp"
+            android:orientation="vertical"
+            android:layout_below="@+id/map"
+            android:padding="10dp"
+            android:id="@+id/LLelevacionChart">
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/elevacionChart"
+                android:layout_width="match_parent"
+                android:layout_height="130dp" />
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="vertical"
+            android:layout_below="@+id/LLelevacionChart"
+            android:padding="10dp"
+            android:id="@+id/LLpulsacionesChart">
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/pulsacionesChart"
+                android:layout_width="match_parent"
+                android:layout_height="130dp" />
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="vertical"
+            android:layout_below="@+id/LLpulsacionesChart"
+            android:padding="10dp"
+            android:id="@+id/LLcadenciaChart">
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/cadenciaChart"
+                android:layout_width="match_parent"
+                android:layout_height="130dp" />
+        </LinearLayout>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@+id/LLcadenciaChart"
+            android:padding="10dp"
+            android:id="@+id/LLradarChart">
+            <com.github.mikephil.charting.charts.RadarChart
+                android:id="@+id/feedbackChart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp" />
+        </LinearLayout>
     </LinearLayout>
+    </ScrollView>
     <!-- this is a comment -->
 </RelativeLayout>
