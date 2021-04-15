@@ -20,8 +20,9 @@ import android.widget.Toast;
 import com.example.thelabit.R;
 import com.example.thelabit.modelo.Actividad;
 import com.example.thelabit.modelo.DBTheLabIT;
+import com.example.thelabit.modelo.FeedBack;
 
-public class ViewDetalleActividadPend extends AppCompatActivity {
+ public class ViewDetalleActividadPend extends AppCompatActivity {
 
     Button btnFeedBack, btnIniciar, btnCargarArchivo, btnFinalizar;
     DBTheLabIT DB;
@@ -93,9 +94,7 @@ public class ViewDetalleActividadPend extends AppCompatActivity {
                 int height = LinearLayout.LayoutParams.WRAP_CONTENT;
                 boolean focusable = true; // lets taps outside the popup also dismiss it
                 final PopupWindow pw = new PopupWindow(layout, width, height, focusable);
-                //final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
-                //popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
                 pw.showAtLocation(v, Gravity.CENTER, 0, 0);
 
                 Button btnEnviarFeedback = (Button) layout.findViewById(R.id.btnEnviarFeedback);
@@ -109,17 +108,35 @@ public class ViewDetalleActividadPend extends AppCompatActivity {
                         TextView txtResultadoFreshness = (TextView) layout.findViewById(R.id.txtResultadoFreshness);
                         TextView txtResultadoDureza = (TextView) layout.findViewById(R.id.txtResultadoDureza);
                         TextView txtResultadoRecupero = (TextView) layout.findViewById(R.id.txtResultadoRecupero);
+                        TextView txtResultadoComenatario = (TextView) layout.findViewById(R.id.txtResultadoComentario);
 
                         txtResultadoFreshness.setText(String.valueOf(seekBarFreshness.getProgress()));
                         txtResultadoDureza.setText(String.valueOf(seekBarDureza.getProgress()));
                         txtResultadoRecupero.setText(String.valueOf(seekBarRecuperacion.getProgress()));
+                        txtResultadoComenatario.setText(String.valueOf(txtResultadoComenatario.getText()));
 
                         String freshness = txtResultadoFreshness.getText().toString();
                         String dureza = txtResultadoDureza.getText().toString();
                         String recupero = txtResultadoRecupero.getText().toString();
+                        String comentario = txtResultadoComenatario.getText().toString();
+
                         Toast.makeText(ViewDetalleActividadPend.this, freshness+dureza+recupero, Toast.LENGTH_SHORT).show();
 
+                        FeedBack feed = new FeedBack();
+                        feed.setFreshness(Integer.parseInt(freshness));
+                        feed.setDureza(Integer.parseInt(dureza));
+                        feed.setRecuperacion(Integer.parseInt(recupero));
+                        feed.setComentario(comentario);
+
+                        Boolean resultado = DB.insertarFeedback(Integer.parseInt(idActividad), feed);
+                        if (resultado)
+                        {
+                            btnFeedBack.setEnabled(false);
+                        }
+
                         pw.dismiss();
+
+                        Toast.makeText(ViewDetalleActividadPend.this, "Gracias por el aporte! Esto ayudará mucho a tu entrenador!", Toast.LENGTH_SHORT).show();
                     }
                 });
 /*

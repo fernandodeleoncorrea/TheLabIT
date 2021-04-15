@@ -48,6 +48,9 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         queryCrearTabla = "CREATE TABLE ENTRENADORES_CORREDORES(IDENTRENADOR STRING, IDCORREDOR STRING)";
         db.execSQL(queryCrearTabla);
 
+        queryCrearTabla = "CREATE TABLE FEEDBACK(IDACTIVIDAD INTEGER, FRESHNESS INTEGER, DUREZA INTEGER, RECUPERACION INTEGER, COMENTARIO STRING)";
+        db.execSQL(queryCrearTabla);
+
         //INSERTO UNOS DATOS DE PRUEBA
         //INSERT DE USUARIOS Y PASSWORD
         queryInsert = "INSERT INTO LOGIN(USERNAME, PASSWORD) VALUES ('1', 'pwfernando')";
@@ -128,6 +131,9 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         db.execSQL(queryInsert);
 
         queryInsert = "INSERT INTO ENTRENADORES_CORREDORES(IDENTRENADOR, IDCORREDOR) VALUES ('1', '3')";
+        db.execSQL(queryInsert);
+
+        queryInsert = "INSERT INTO FEEDBACK(IDACTIVIDAD, FRESHNESS, DUREZA, RECUPERACION, COMENTARIO) VALUES (1, 80, 55, 21, 'Inicié con algo de cansancio pero no fue una sesion muy dura')";
         db.execSQL(queryInsert);
     }
 
@@ -491,5 +497,27 @@ public class DBTheLabIT extends SQLiteOpenHelper {
 
         Integer largo = cursor.getCount();
         return cursor;
+    }
+
+    public Boolean insertarFeedback(Integer idActividad, FeedBack F){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contenedor = new ContentValues();
+        contenedor.put(ConstantesDB.TABLA_FEEDBACK_IDACTIVIDAD, idActividad);
+        contenedor.put(ConstantesDB.TABLA_FEEDBACK_FRESHNESS, F.getFreshness());
+        contenedor.put(ConstantesDB.TABLA_FEEDBACK_DUREZA, F.getDureza());
+        contenedor.put(ConstantesDB.TABLA_FEEDBACK_RECUPERACION, F.getRecuperacion());
+        contenedor.put(ConstantesDB.TABLA_FEEDBACK_COMENTARIO, F.getComentario());
+
+        Boolean inserto = db.insert("FEEDBACK", null, contenedor) > 0;
+
+        if (inserto){
+            return true;
+        }else
+        {
+            return false;
+        }
+
+
     }
 }

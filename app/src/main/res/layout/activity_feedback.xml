@@ -3,6 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="200dp"
+    android:padding="20dp"
     android:id="@+id/PopupFeedback"
     android:background="#f2f2f2">
 
@@ -54,23 +55,25 @@
         android:text="Comentario:" />
 
     <EditText
-        android:id="@+id/descripcion"
+        android:id="@+id/comentarioFeed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:enabled="false"
         android:layout_marginTop="10dp"
         android:textSize="15dp"
         android:layout_below="@+id/txtComentario"
-        android:hint="Comentarios" />
+        android:hint="Comenta sensaciones en general" />
 
     <Button
         android:id="@+id/btnEnviarFeedback"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_below="@+id/descripcion"
+        android:background="@color/teal_700"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/comentarioFeed"
         android:text="Enviar Feedack"
         />
+
+
     <TextView
         android:id="@+id/txtResultadoFreshness"
         android:layout_width="wrap_content"
@@ -91,4 +94,11 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:text="" />
+    <TextView
+        android:id="@+id/txtResultadoComentario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="" />
+
 </RelativeLayout>
