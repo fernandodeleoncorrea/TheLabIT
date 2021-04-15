@@ -14,9 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheLabIT">
-        <activity android:name=".ViewIniciarActividad"></activity>
-        <activity android:name=".vista.CorredorPlanTotal" />
-        <activity android:name=".vista.ViewDetalleActividadPend" />
+        <activity android:name=".ViewEditarPerfilCorredor"></activity>
+        <activity android:name=".ViewIniciarActividad" />
+        <activity android:name=".vista.corredor.CorredorPlanTotal" />
+        <activity android:name=".vista.corredor.ViewDetalleActividadPend" />
         <activity android:name=".EjemploLocation" />
         <activity android:name=".EjemploChart" />
         <activity android:name=".vista.ViewDetalleActividad2" />
@@ -37,7 +38,7 @@
         <activity android:name=".vista.RegistrarUsuario" />
         <activity android:name=".vista.FormSignUp" />
         <activity android:name=".vista.HomeEntrenador" />
-        <activity android:name=".vista.HomeCorredor" />
+        <activity android:name=".vista.corredor.HomeCorredor" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

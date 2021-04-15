@@ -20,9 +20,6 @@
         android:layout_below="@+id/tituloCorredor"
         android:padding="5dp">
         <TableRow>
-
-        </TableRow>
-        <TableRow>
             <Button
                 android:id="@+id/btnDetallePlan"
                 android:layout_width="200dp"

@@ -1,4 +1,4 @@
- package com.example.thelabit.vista;
+ package com.example.thelabit.vista.corredor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +13,6 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.thelabit.MainActivity;
 import com.example.thelabit.R;
 import com.example.thelabit.ViewIniciarActividad;
 import com.example.thelabit.modelo.Actividad;

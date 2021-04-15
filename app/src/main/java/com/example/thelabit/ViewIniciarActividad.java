@@ -1,35 +1,21 @@
 package com.example.thelabit;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.thelabit.modelo.DBTheLabIT;
-import com.example.thelabit.vista.HomeCorredor;
-import com.example.thelabit.vista.RegistrarUsuario;
-import com.example.thelabit.vista.ViewDetalleActividadPend;
+import com.example.thelabit.vista.corredor.ViewDetalleActividadPend;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PolylineOptions;
-
-import java.io.File;
-import java.util.List;
 
 public class ViewIniciarActividad extends AppCompatActivity implements OnMapReadyCallback {
 

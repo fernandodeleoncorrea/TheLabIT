@@ -1,4 +1,4 @@
-package com.example.thelabit.vista;
+package com.example.thelabit.vista.corredor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.thelabit.R;
+import com.example.thelabit.ViewEditarPerfilCorredor;
 import com.example.thelabit.modelo.DBTheLabIT;
 
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public class HomeCorredor extends AppCompatActivity {
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         
         btnDetallePlan   = (Button) findViewById(R.id.btnDetallePlan);
+        btnEditarCorredor   = (Button) findViewById(R.id.btnEditarCorredor);
         actividades = findViewById(R.id.listaActividades);
         tituloCorredor = (TextView)findViewById(R.id.tituloCorredor);
 
@@ -61,6 +63,18 @@ public class HomeCorredor extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(HomeCorredor.this, CorredorPlanTotal.class);
+                Bundle b = new Bundle();
+                b.putString("logueado", logueado);
+                intent.putExtras(b);
+                startActivity(intent);
+            }
+        });
+
+        btnEditarCorredor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(HomeCorredor.this, ViewEditarPerfilCorredor.class);
                 Bundle b = new Bundle();
                 b.putString("logueado", logueado);
                 intent.putExtras(b);

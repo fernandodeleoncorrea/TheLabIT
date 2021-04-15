@@ -422,6 +422,49 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         cursor.moveToNext();
         String nombre = cursor.getString(cursor.getColumnIndex("NOMBRE"));
         return nombre;
+    }
 
+    public Cursor obtenerDatosCorredor(String user){
+        SQLiteDatabase db =  this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT T1.USERNAME, T1.NOMBRE, T1.FECHANACIMIENTO, T1.CIUDAD, T1.PAIS, T1.EMAIL, T1.COMENTARIO " +
+                ",T2.PESO, T2.GENERO, T2.ALTURA, T2.FCREPOSO, T2.FCMAXIMA, T2.OBJETIVO, T2.TIEMPOESTIMADO " +
+                "FROM USUARIOS T1 JOIN CORREDORES T2 ON T1.USERNAME = T2.USERNAME " +
+                "WHERE T1.USERNAME = ? ",new String[]{user});
+
+        Integer largo = cursor.getCount();
+        return cursor;
+    }
+
+    public Boolean guardarDatosCorredor(Corredor C){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contenedor = new ContentValues();
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_USERNAME,C.getIdUsuario());
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_NOMBRE, C.getNombre());
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_FECHANACIMIENTO, C.getFechaNacimiento());
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_CIUDAD, C.getCiudad());
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_PAIS, C.getPais());
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_EMAIL, C.getEmail());
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_COMENTARIO, C.getComentario());
+
+        ContentValues contenedor2 = new ContentValues();
+        contenedor2.put(ConstantesDB.TABLA_USUARIOS_USERNAME, C.getIdUsuario());
+        contenedor2.put(ConstantesDB.TABLA_CORREDORES_PESO,C.getPeso());
+        contenedor2.put(ConstantesDB.TABLA_CORREDORES_GENERO,C.getGenero());
+        contenedor2.put(ConstantesDB.TABLA_CORREDORES_ALTURA,C.getAltura());
+        contenedor2.put(ConstantesDB.TABLA_CORREDORES_FCREPOSO,C.getFCReposo());
+        contenedor2.put(ConstantesDB.TABLA_CORREDORES_FCMAXIMA,C.getFCMaxima());
+        contenedor2.put(ConstantesDB.TABLA_CORREDORES_OBJETIVO,C.getDistanciaObjetivo());
+        contenedor2.put(ConstantesDB.TABLA_CORREDORES_TIEMPOESTIMADO,C.getTiempoEstimado());
+
+        Boolean tbusuarios = db.update("USUARIOS", contenedor, "USERNAME = ?", new String[]{C.getIdUsuario()}) > 0;
+        Boolean tbcorredores = db.update("CORREDORES", contenedor2, "USERNAME = ?", new String[]{C.getIdUsuario()}) > 0;
+
+        if(tbusuarios == true & tbcorredores == true){
+            return true;
+        } else {
+            return false;
+        }
     }
 }

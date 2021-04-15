@@ -1,4 +1,4 @@
-package com.example.thelabit.vista;
+package com.example.thelabit.vista.corredor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.thelabit.R;
 import com.example.thelabit.modelo.DBTheLabIT;
+import com.example.thelabit.vista.ViewDetalleActividad;
 
 import java.util.ArrayList;
 

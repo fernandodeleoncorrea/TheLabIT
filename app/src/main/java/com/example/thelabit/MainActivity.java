@@ -13,7 +13,7 @@ import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.modelo.Login;
 import com.example.thelabit.modelo.Sesion;
 import com.example.thelabit.vista.ViewDetalleActividad;
-import com.example.thelabit.vista.HomeCorredor;
+import com.example.thelabit.vista.corredor.HomeCorredor;
 import com.example.thelabit.vista.HomeEntrenador;
 import com.example.thelabit.vista.RegistrarUsuario;
 import com.google.android.material.snackbar.Snackbar;
