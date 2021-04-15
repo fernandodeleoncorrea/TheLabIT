@@ -42,7 +42,7 @@ public class ViewCorredorEntrenador extends AppCompatActivity {
 
                 String nombreActividad =(String)arg0.getItemAtPosition(position);
 
-                Intent intent = new Intent(ViewCorredorEntrenador.this, EjemploMapa.class);
+                Intent intent = new Intent(ViewCorredorEntrenador.this, ViewDetalleActividad.class);
                 Bundle b = new Bundle();
                 b.putString("NombreActividad", nombreActividad);
                 b.putString("logueado", logueado);

@@ -42,7 +42,8 @@ public class HomeCorredor extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         String logueado = b.getString("logueado");
-        String Titulo = "Home Corredor : " + logueado;
+        String nombreUsuario = b.getString("nombreUsuario");
+        String Titulo = "Home Corredor : " + nombreUsuario;
         TextView textView = new TextView(this);
         textView.setText("Lista Actividades Pendientes");
         textView.setTextSize(20);

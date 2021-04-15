@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,6 +24,8 @@ public class CorredorPlanTotal extends AppCompatActivity {
 
     TextView tituloPlanTotal;
     ArrayList<String> listitem = new ArrayList<String>();
+    ArrayList<String> listitemID = new ArrayList<String>();
+    ArrayList<String> listitemComp = new ArrayList<String>();
     ArrayAdapter adapter;
     ListView actividades;
     DBTheLabIT DB;
@@ -41,17 +45,29 @@ public class CorredorPlanTotal extends AppCompatActivity {
         actividades.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView <? > arg0, View view, int position, long id) {
 
-                String nombreCorredor =(String)arg0.getItemAtPosition(position);
+                String idActividad = listitemID.get(position);
 
-                Intent intent = new Intent(CorredorPlanTotal.this, ViewDetalleActividadPend.class);
-                /*Bundle b = new Bundle();
-                b.putString("nombreCorredor", nombreCorredor); //Your id
-                b.putString("logueado", logueado);
-                intent.putExtras(b);*/
-                startActivity(intent);
+                if(listitemComp.get(position).equals("SI")){
+                    Intent intent = new Intent(CorredorPlanTotal.this, ViewDetalleActividad.class);
+                    Bundle b = new Bundle();
+                    b.putString("idActividad", idActividad); //Your id
+                    intent.putExtras(b);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(CorredorPlanTotal.this, ViewDetalleActividadPend.class);
+                    Bundle b = new Bundle();
+                    b.putString("idActividad", idActividad); //Your id
+                    b.putBoolean("completada", true);
+                    intent.putExtras(b);
+                    startActivity(intent);
+                }
 
 
-                Toast.makeText(CorredorPlanTotal.this, "click", Toast.LENGTH_SHORT).show();
+
+
+
+
+                Toast.makeText(CorredorPlanTotal.this, idActividad, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -75,10 +91,31 @@ public class CorredorPlanTotal extends AppCompatActivity {
             }else{
                 pcompletadaStr = "SI";
             }
-            listitem.add("DIA:"+ pdia +" "+ pdescripcion +" COMP:" +pcompletadaStr);
+            listitem.add("DIA:"+ pid +" "+ pdescripcion);
+            listitemID.add(String.valueOf(pid));
+            listitemComp.add(pcompletadaStr);
         }
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listitem);
-        actividades.setAdapter(adapter);
+        //adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listitem);
+        //actividades.setAdapter(adapter);
+        actividades.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listitem) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View row = super.getView(position, convertView, parent);
+
+                if(listitemComp.get(position).equals("SI"))
+                {
+                    row.setBackgroundColor (Color.rgb(102, 204, 102));
+                }
+                else
+                {
+                    row.setBackgroundColor (Color.WHITE); // default coloe
+                }
+                return row;
+            }
+        });
+
     }
+
+
 }

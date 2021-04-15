@@ -19,13 +19,13 @@
         <activity android:name=".vista.ViewDetalleActividadPend" />
         <activity android:name=".EjemploLocation" />
         <activity android:name=".EjemploChart" />
-        <activity android:name=".vista.ViewDetalleActividad" />
+        <activity android:name=".vista.ViewDetalleActividad2" />
         <activity android:name=".vista.ViewCorredorEntrenador" />
         <activity android:name=".vista.ViewNuevoPlan" />
         <activity android:name=".vista.ViewPlanesDetalle" />
         <activity android:name=".vista.ViewPlanes" />
         <activity android:name=".vista.HomePlanes" />
-        <activity android:name=".vista.EjemploMapa" />
+        <activity android:name=".vista.ViewDetalleActividad" />
 
         <meta-data
             android:name="com.google.android.gms.version"

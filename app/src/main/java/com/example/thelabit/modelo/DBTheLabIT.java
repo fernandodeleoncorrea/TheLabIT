@@ -408,9 +408,20 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         ContentValues contenedor = new ContentValues();
         contenedor.put(ConstantesDB.TABLA_ACTIVIDADES_COMPLETADA, 1);
 
-
         modificoOK = db.update("ACTIVIDADES", contenedor, "ID = ?", new String[]{idActividad}) > 0;
         return modificoOK;
     }
 
+
+    public String obtenerNombre(String user){
+        SQLiteDatabase db =  this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT T1.NOMBRE " +
+                "FROM USUARIOS T1 " +
+                "WHERE T1.USERNAME = ? ",new String[]{String.valueOf(user)});
+
+        cursor.moveToNext();
+        String nombre = cursor.getString(cursor.getColumnIndex("NOMBRE"));
+        return nombre;
+
+    }
 }
