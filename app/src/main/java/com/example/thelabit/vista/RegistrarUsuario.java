@@ -18,6 +18,7 @@ import com.example.thelabit.modelo.Corredor;
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.modelo.Entrenador;
 import com.example.thelabit.modelo.Login;
+import com.example.thelabit.vista.entrenador.HomeEntrenador;
 
 public class RegistrarUsuario extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 

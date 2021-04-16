@@ -1,10 +1,8 @@
-package com.example.thelabit.vista;
+package com.example.thelabit.vista.entrenador;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -18,8 +16,7 @@ import android.widget.Toast;
 import com.example.thelabit.R;
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.modelo.Sesion;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.thelabit.vista.ViewPlanes;
 
 import java.util.ArrayList;
 
@@ -47,7 +44,7 @@ public class HomePlanes extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         String logueado = b.getString("logueado");
-        //String logueado = sharedpreferences.getString(USERNAME_KEY, null);
+        String nombreUsuario = b.getString("nombreUsuario");
         Toast.makeText(HomePlanes.this, logueado, Toast.LENGTH_SHORT).show();
         viewPlanes();
 
@@ -75,8 +72,10 @@ public class HomePlanes extends AppCompatActivity {
                 Intent intent = new Intent(HomePlanes.this, ViewNuevoPlan.class);
                 Bundle b = new Bundle();
                 b.putString("logueado", logueado);
+                b.putString("nombreUsuario", nombreUsuario);
                 intent.putExtras(b);
                 startActivity(intent);
+                finish();
             }
         });
     }

@@ -14,7 +14,7 @@ import com.example.thelabit.modelo.Login;
 import com.example.thelabit.modelo.Sesion;
 import com.example.thelabit.vista.ViewDetalleActividad;
 import com.example.thelabit.vista.corredor.HomeCorredor;
-import com.example.thelabit.vista.HomeEntrenador;
+import com.example.thelabit.vista.entrenador.HomeEntrenador;
 import com.example.thelabit.vista.RegistrarUsuario;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -72,10 +72,11 @@ public class MainActivity extends AppCompatActivity {
                     finish();
 
                 }else if (tipo == "entrenador"){
-
+                    String nombreUsuario = DB.obtenerNombre(user);
                     Intent intent = new Intent(MainActivity.this, HomeEntrenador.class);
                     Bundle b = new Bundle();
                     b.putString("logueado", logueado);
+                    b.putString("nombreUsuario", nombreUsuario);
                     intent.putExtras(b);
                     startActivity(intent);
                     finish();

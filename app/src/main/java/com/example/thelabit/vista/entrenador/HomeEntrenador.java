@@ -1,10 +1,8 @@
-package com.example.thelabit.vista;
+package com.example.thelabit.vista.entrenador;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -12,13 +10,14 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.thelabit.MainActivity;
 import com.example.thelabit.R;
 import com.example.thelabit.modelo.DBTheLabIT;
+import com.example.thelabit.vista.ViewCorredorEntrenador;
 
 import java.util.ArrayList;
 
@@ -30,6 +29,7 @@ public class HomeEntrenador extends AppCompatActivity {
     ListView corredores;
     Button btnPlanes;
     ListView listacorredores;
+    EditText txtTitulo;
 
 
 
@@ -42,11 +42,14 @@ public class HomeEntrenador extends AppCompatActivity {
         corredores = findViewById(R.id.listacorredores);
         btnPlanes   = (Button) findViewById(R.id.btnPlanes);
         listacorredores = findViewById(R.id.listacorredores);
+        txtTitulo = (EditText) findViewById(R.id.tituloEntrenador);
 
         Bundle b = getIntent().getExtras();
         String logueado = b.getString("logueado");
+        String nombreUsuario = b.getString("nombreUsuario");
         TextView textView = new TextView(this);
         textView.setText("Lista Corredores");
+        txtTitulo.setText("Home Entrenador: " + nombreUsuario);
         listacorredores.addHeaderView(textView);
 
         //String logueado = sharedpreferences.getString(USERNAME_KEY, null);
@@ -60,6 +63,7 @@ public class HomeEntrenador extends AppCompatActivity {
                 Intent intent = new Intent(HomeEntrenador.this, HomePlanes.class);
                 Bundle b = new Bundle();
                 b.putString("logueado", logueado);
+                b.putString("nombreUsuario", nombreUsuario);
                 intent.putExtras(b);
                 startActivity(intent);
             }

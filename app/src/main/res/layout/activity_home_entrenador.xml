@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".vista.HomeEntrenador">
+    tools:context=".vista.entrenador.HomeEntrenador">
 
 
     <TableLayout
@@ -15,10 +15,11 @@
 
     <TableRow>
         <EditText
-            android:id="@+id/tituloentrenador"
+            android:id="@+id/tituloEntrenador"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/entrenador"
+            android:enabled="false"
             />
     </TableRow>
     <TableRow>

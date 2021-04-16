@@ -1,7 +1,8 @@
-package com.example.thelabit.vista;
+package com.example.thelabit.vista.entrenador;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,8 +37,9 @@ public class ViewPlanesDetalle extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         Integer idPlan = Integer.parseInt(b.getString("idPlan"));
         String logueado = b.getString("logueado");
+        String nombreUsuario = b.getString("nombreUsuario");
 
-        Toast.makeText(ViewPlanesDetalle.this, logueado, Toast.LENGTH_SHORT).show();
+
         btnAceptarDia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +81,13 @@ public class ViewPlanesDetalle extends AppCompatActivity {
                 if (resultado){
                     //Toast.makeText(ViewPlanesDetalle.this, "plan dado de alta", Toast.LENGTH_SHORT).show();
                     Snackbar.make(v, getResources().getString(R.string.alta_plan), Snackbar.LENGTH_LONG).show();
+                    Intent intent = new Intent(ViewPlanesDetalle.this, HomeEntrenador.class);
+                    Bundle b = new Bundle();
+                    b.putString("logueado", logueado);
+                    b.putString("nombreUsuario", nombreUsuario);
+                    intent.putExtras(b);
+                    startActivity(intent);
+                    finish();
 
                 }
 

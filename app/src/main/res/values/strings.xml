@@ -25,8 +25,8 @@
     <string name="boton_editar_perfil">Editar Perfil</string>
 
     /home_planes
-    <string name="planes">planes</string>
-    <string name="boton_alta_planes">Nuevo</string>
+    <string name="planes">Home Planes de Entrenamiento</string>
+    <string name="boton_alta_planes">Nuevo Plan</string>
 
     /registrar_usuario
     <string name="username">usuario</string>

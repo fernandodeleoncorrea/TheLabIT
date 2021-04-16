@@ -8,11 +8,11 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.thelabit.R;
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.modelo.PlanEntrenamiento;
+import com.example.thelabit.vista.entrenador.ViewPlanesDetalle;
 import com.google.android.material.snackbar.Snackbar;
 
 public class ViewPlanes extends AppCompatActivity {

@@ -24,10 +24,10 @@
         <activity android:name=".EjemploChart" />
         <activity android:name=".vista.ViewDetalleActividad2" />
         <activity android:name=".vista.ViewCorredorEntrenador" />
-        <activity android:name=".vista.ViewNuevoPlan" />
-        <activity android:name=".vista.ViewPlanesDetalle" />
+        <activity android:name=".vista.entrenador.ViewNuevoPlan" />
+        <activity android:name=".vista.entrenador.ViewPlanesDetalle" />
         <activity android:name=".vista.ViewPlanes" />
-        <activity android:name=".vista.HomePlanes" />
+        <activity android:name=".vista.entrenador.HomePlanes" />
         <activity android:name=".vista.ViewDetalleActividad" />
 
         <meta-data
@@ -39,7 +39,7 @@
 
         <activity android:name=".vista.RegistrarUsuario" />
         <activity android:name=".vista.FormSignUp" />
-        <activity android:name=".vista.HomeEntrenador" />
+        <activity android:name=".vista.entrenador.HomeEntrenador" />
         <activity android:name=".vista.corredor.HomeCorredor" />
         <activity android:name=".MainActivity">
             <intent-filter>
