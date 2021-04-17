@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.example.thelabit.R;
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.modelo.Sesion;
-import com.example.thelabit.vista.ViewPlanes;
 
 import java.util.ArrayList;
 
@@ -59,6 +58,7 @@ public class HomePlanes extends AppCompatActivity {
                 b.putString("logueado", logueado);
                 intent.putExtras(b);
                 startActivity(intent);
+                finish();
 
 
                 Toast.makeText(HomePlanes.this, nombrePlan, Toast.LENGTH_SHORT).show();

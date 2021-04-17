@@ -114,10 +114,10 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         db.execSQL(queryInsert);
 
 
-        queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('4', '2', 1)";
+        queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('4', '2', 3)";
         db.execSQL(queryInsert);
 
-        queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('1', '8', 3)";
+        queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('1', '8', 1)";
         db.execSQL(queryInsert);
 
         queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('4', '9', 2)";
@@ -517,7 +517,29 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         {
             return false;
         }
+    }
 
+    public Cursor obtenerListadoActividades(Integer idPlan){
+        SQLiteDatabase db =  this.getWritableDatabase();
 
+        Cursor cursor = db.rawQuery("SELECT T1.ID, T1.SEMANA, T1.DIA, T1.TURNO, T1.DESCRIPCION, T1.COMPLETADA " +
+                "FROM ACTIVIDADES T1 " +
+                "WHERE T1.IDPLAN = ? ",new String[]{String.valueOf(idPlan)});
+        Integer largo = cursor.getCount();
+        return cursor;
+    }
+
+    public Boolean updateActividad(Actividad A){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Boolean modificoOK = false;
+
+        ContentValues contenedor = new ContentValues();
+        contenedor.put(ConstantesDB.TABLA_ACTIVIDADES_SEMANA, A.getSemana().toString());
+        contenedor.put(ConstantesDB.TABLA_ACTIVIDADES_DIA, A.getDia().toString());
+        contenedor.put(ConstantesDB.TABLA_ACTIVIDADES_TURNO, A.getTurno().toString());
+        contenedor.put(ConstantesDB.TABLA_ACTIVIDADES_DESCRIPCION, A.getDescripcion().toString());
+
+        modificoOK = db.update("ACTIVIDADES", contenedor, "ID = ?", new String[]{String.valueOf(A.getId())}) > 0;
+        return modificoOK;
     }
 }
