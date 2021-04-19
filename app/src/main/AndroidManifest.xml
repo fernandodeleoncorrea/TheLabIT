@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheLabIT">
-        <activity android:name=".ViewPlanesDetalleUpdate"></activity>
+        <activity android:name=".ViewEditarPerfilEntrenador"></activity>
+        <activity android:name=".ViewPlanesDetalleUpdate" />
         <activity android:name=".ViewListadoActividades" />
         <activity android:name=".vista.corredor.ViewListarEntrenadores" />
         <activity android:name=".vista.corredor.ViewContactarEntrenador" />

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.thelabit.R;
+import com.example.thelabit.ViewEditarPerfilEntrenador;
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.vista.ViewCorredorEntrenador;
 
@@ -27,7 +28,7 @@ public class HomeEntrenador extends AppCompatActivity {
     ArrayList<String> listitem = new ArrayList<String>();
     ArrayAdapter adapter;
     ListView corredores;
-    Button btnPlanes;
+    Button btnPlanes, btnEditarEntrenador;
     ListView listacorredores;
     EditText txtTitulo;
 
@@ -41,6 +42,7 @@ public class HomeEntrenador extends AppCompatActivity {
 
         corredores = findViewById(R.id.listacorredores);
         btnPlanes   = (Button) findViewById(R.id.btnPlanes);
+        btnEditarEntrenador = (Button) findViewById(R.id.btnEditarEntrenador);
         listacorredores = findViewById(R.id.listacorredores);
         txtTitulo = (EditText) findViewById(R.id.tituloEntrenador);
 
@@ -49,6 +51,7 @@ public class HomeEntrenador extends AppCompatActivity {
         String nombreUsuario = b.getString("nombreUsuario");
         TextView textView = new TextView(this);
         textView.setText("Lista Corredores");
+        textView.setTextSize(20);
         txtTitulo.setText("Home Entrenador: " + nombreUsuario);
         listacorredores.addHeaderView(textView);
 
@@ -66,6 +69,20 @@ public class HomeEntrenador extends AppCompatActivity {
                 b.putString("nombreUsuario", nombreUsuario);
                 intent.putExtras(b);
                 startActivity(intent);
+            }
+        });
+
+        btnEditarEntrenador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(HomeEntrenador.this, ViewEditarPerfilEntrenador.class);
+                Bundle b = new Bundle();
+                b.putString("logueado", logueado);
+                b.putString("nombreUsuario", nombreUsuario);
+                intent.putExtras(b);
+                startActivity(intent);
+                finish();
             }
         });
 

@@ -63,7 +63,6 @@ public class ViewPlanesDetalle extends AppCompatActivity {
         btnAceptarDia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ViewPlanesDetalle.this, "aca", Toast.LENGTH_SHORT).show();
                 Actividad actividad = new Actividad(
                         1
                         , spinnerSemana.getSelectedItem().toString()

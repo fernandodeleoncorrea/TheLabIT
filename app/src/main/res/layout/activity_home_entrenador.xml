@@ -6,17 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".vista.entrenador.HomeEntrenador">
 
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <TableLayout
         android:id="@+id/tabla"
         android:layout_width="match_parent"
-        android:layout_height="300dp">
-
+        android:layout_height="wrap_content">
 
     <TableRow>
         <EditText
             android:id="@+id/tituloEntrenador"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/entrenador"
             android:enabled="false"
@@ -25,42 +27,29 @@
     <TableRow>
         <Button
             android:id="@+id/btnPlanes"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginTop="20dp"
             android:text="@string/planes_entrenador"
             />
     </TableRow>
     <TableRow>
         <Button
-            android:id="@+id/btnCorredores"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/corredores"
-            />
-    </TableRow>
-    <TableRow>
-        <Button
             android:id="@+id/btnEditarEntrenador"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginTop="20dp"
             android:text="@string/boton_editar_perfil"
             />
     </TableRow>
     </TableLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@+id/tabla">
-    <ListView
-        android:id="@+id/listacorredores"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/tituloentrenador"/>
+        <ListView
+            android:id="@+id/listacorredores"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/tituloentrenador"/>
     </LinearLayout>
+
+
 </RelativeLayout>
