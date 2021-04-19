@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.thelabit.R;
@@ -16,23 +19,40 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class ViewPlanesDetalle extends AppCompatActivity {
 
-   // String[] Semanas = { "1", "2", "3", "4", "5", "6", "7", "8"};
-    EditText semana, dia, turno, descripcion;
+
+    EditText descripcion;
     Button btnAceptarDia, btnFinalizar;
     DBTheLabIT DB;
+    Spinner spinnerSemana, spinnerDia, spinnerTurno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_planes_detalle);
 
-        semana       = (EditText) findViewById(R.id.semana);
-        dia       = (EditText) findViewById(R.id.dia);
-        turno       = (EditText) findViewById(R.id.turno);
+
+        spinnerSemana = findViewById(R.id.spinnerSemana);
+        spinnerDia= findViewById(R.id.spinnerDia);
+        spinnerTurno = findViewById(R.id.spinnerTurno);
         descripcion       = (EditText) findViewById(R.id.descripcion);
         btnAceptarDia   = (Button) findViewById(R.id.btnAceptarDia);
         btnFinalizar   = (Button) findViewById(R.id.btnFinalizar);
         DB = new DBTheLabIT(this);
+
+        //cargo el spinner de semana
+        String[] stringSemanas = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, stringSemanas);
+        spinnerSemana.setAdapter(adapter);
+
+        //cargo el combo de turno
+        String[] stringDias = new String[]{"1", "2", "3", "4", "5", "6", "7"};
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, stringDias);
+        spinnerDia.setAdapter(adapter1);
+
+        //cargo el combo de turno
+        String[] stringTurnos = new String[]{"Mañana", "Tarde", "Noche"};
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, stringTurnos);
+        spinnerTurno.setAdapter(adapter2);
 
         Bundle b = getIntent().getExtras();
         Integer idPlan = Integer.parseInt(b.getString("idPlan"));
@@ -46,31 +66,27 @@ public class ViewPlanesDetalle extends AppCompatActivity {
                 Toast.makeText(ViewPlanesDetalle.this, "aca", Toast.LENGTH_SHORT).show();
                 Actividad actividad = new Actividad(
                         1
-                        , semana.getText().toString()
-                        , dia.getText().toString()
-                        , turno.getText().toString()
+                        , spinnerSemana.getSelectedItem().toString()
+                        , spinnerDia.getSelectedItem().toString()
+                        , spinnerTurno.getSelectedItem().toString()
                         , descripcion.getText().toString()
                         , 0
                         , idPlan
-
                 );
+
 
                 Boolean resultado = DB.insertActividad(actividad);
 
                 if (resultado){
-                    String mensaje = "Actividad de la semana " + semana.getText().toString() + ", dia "
-                            + dia.getText().toString() + "cargada OK";
-                    Toast.makeText(ViewPlanesDetalle.this, mensaje, Toast.LENGTH_SHORT).show();
-
-                    semana.getText().clear();
-                    dia.getText().clear();
-                    turno.getText().clear();
+                    String mensaje = "Actividad de la semana " + spinnerSemana.getSelectedItem().toString() + ", dia "
+                            + spinnerDia.getSelectedItem().toString() + "cargada OK";
+                    Toast.makeText(ViewPlanesDetalle.this, mensaje, Toast.LENGTH_LONG).show();
                     descripcion.getText().clear();
                 }
-
-
             }
         });
+
+
 
         btnFinalizar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,9 +106,8 @@ public class ViewPlanesDetalle extends AppCompatActivity {
                     finish();
 
                 }
-
-
             }
         });
     }
+
 }
