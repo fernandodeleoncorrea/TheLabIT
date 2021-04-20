@@ -488,11 +488,37 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor obtenerDatosBusquedaCorr(String user){
+        SQLiteDatabase db =  this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT T1.USERNAME, T1.NOMBRE, T1.FECHANACIMIENTO, T1.CIUDAD, T1.PAIS, T1.COMENTARIO " +
+                ", T2.PESO, T2.GENERO, T2.ALTURA, T2.FCREPOSO, T2.FCMAXIMA, T2.OBJETIVO, T2.TIEMPOESTIMADO " +
+                ", T4.NOMBRE AS ENTRENADOR_ACTUAL " +
+                "FROM USUARIOS T1 JOIN CORREDORES T2 ON T1.USERNAME = T2.USERNAME " +
+                "JOIN ENTRENADORES_CORREDORES T3 ON T1.USERNAME = T3.IDCORREDOR " +
+                "JOIN USUARIOS T4 ON T3.IDENTRENADOR = T4.USERNAME " +
+                "WHERE T1.USERNAME = ?",new String[]{user});
+
+        Integer largo = cursor.getCount();
+        return cursor;
+    }
+
     public Cursor obtenerListaEntrenadores(){
         SQLiteDatabase db =  this.getWritableDatabase();
 
         Cursor cursor = db.rawQuery("SELECT T1.USERNAME, T2.NOMBRE " +
                 "FROM ENTRENADORES T1 " +
+                "JOIN USUARIOS T2 ON T1.USERNAME = T2.USERNAME ",new String[]{});
+
+        Integer largo = cursor.getCount();
+        return cursor;
+    }
+
+    public Cursor obtenerListaCorredores(){
+        SQLiteDatabase db =  this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT T1.USERNAME, T2.NOMBRE " +
+                "FROM CORREDORES T1 " +
                 "JOIN USUARIOS T2 ON T1.USERNAME = T2.USERNAME ",new String[]{});
 
         Integer largo = cursor.getCount();

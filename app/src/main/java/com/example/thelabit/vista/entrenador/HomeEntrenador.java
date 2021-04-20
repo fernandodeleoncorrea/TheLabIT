@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.thelabit.R;
 import com.example.thelabit.ViewEditarPerfilEntrenador;
+import com.example.thelabit.ViewListarCorredores;
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.vista.ViewCorredorEntrenador;
 
@@ -28,7 +29,7 @@ public class HomeEntrenador extends AppCompatActivity {
     ArrayList<String> listitem = new ArrayList<String>();
     ArrayAdapter adapter;
     ListView corredores;
-    Button btnPlanes, btnEditarEntrenador;
+    Button btnPlanes, btnEditarEntrenador, btnBuscarCorredor;
     ListView listacorredores;
     EditText txtTitulo;
 
@@ -43,6 +44,7 @@ public class HomeEntrenador extends AppCompatActivity {
         corredores = findViewById(R.id.listacorredores);
         btnPlanes   = (Button) findViewById(R.id.btnPlanes);
         btnEditarEntrenador = (Button) findViewById(R.id.btnEditarEntrenador);
+        btnBuscarCorredor = (Button) findViewById(R.id.btnBuscarCorredor);
         listacorredores = findViewById(R.id.listacorredores);
         txtTitulo = (EditText) findViewById(R.id.tituloEntrenador);
 
@@ -63,6 +65,19 @@ public class HomeEntrenador extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(HomeEntrenador.this, HomePlanes.class);
+                Bundle b = new Bundle();
+                b.putString("logueado", logueado);
+                b.putString("nombreUsuario", nombreUsuario);
+                intent.putExtras(b);
+                startActivity(intent);
+            }
+        });
+
+        btnBuscarCorredor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(HomeEntrenador.this, ViewListarCorredores.class);
                 Bundle b = new Bundle();
                 b.putString("logueado", logueado);
                 b.putString("nombreUsuario", nombreUsuario);

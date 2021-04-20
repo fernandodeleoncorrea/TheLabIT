@@ -24,15 +24,16 @@
             android:enabled="false"
             />
     </TableRow>
-    <TableRow>
-        <Button
-            android:id="@+id/btnPlanes"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:text="@string/planes_entrenador"
-            />
-    </TableRow>
+        <TableRow>
+            <Button
+                android:id="@+id/btnPlanes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:text="@string/planes_entrenador"
+                />
+        </TableRow>
+
     <TableRow>
         <Button
             android:id="@+id/btnEditarEntrenador"
@@ -42,6 +43,15 @@
             android:text="@string/boton_editar_perfil"
             />
     </TableRow>
+        <TableRow>
+            <Button
+                android:id="@+id/btnBuscarCorredor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:text="Corredores"
+                />
+        </TableRow>
     </TableLayout>
         <ListView
             android:id="@+id/listacorredores"
