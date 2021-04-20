@@ -45,10 +45,6 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
 
     private GoogleMap mMap;
 
-    // below are the latitude and longitude of 4 different locations.
-    //LatLng TamWorth = new LatLng(-34.8994235634112, -56.146923351021535);
-    //LatLng NewCastle = new LatLng(-34.90087381940635, -56.152679284578724);
-    //LatLng Brisbane = new LatLng(-34.9003114782847, -56.159716319335146);
     LatLng Inicio;
     LineChart lineChartEle, lineChartHr, lineChartCAD;
     LineData lineDataEle, lineDataHr,  lineDataCAD;
@@ -57,8 +53,6 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
     RadarDataSet aranaDataSet;
     ArrayList<RadarEntry> radarEntries = new ArrayList<RadarEntry>();
 
-    //File gpxFile = new File(Environment.getDataDirectory().toString() + "/data/com.example.thelabit/prueba.gpx");
-    //List<Location> gpxList = decodeGPX(gpxFile);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,6 +139,8 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
         radarEntries = new ArrayList<>();
         radarEntries.add(new RadarEntry(78, "Freshness"));
         radarEntries.add(new RadarEntry(22, "Dureza"));
+        radarEntries.add(new RadarEntry(88, "Clima"));
+        radarEntries.add(new RadarEntry(15, "Intensidad"));
         radarEntries.add(new RadarEntry(55, "Recuperacion"));
 
     }

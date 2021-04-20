@@ -55,7 +55,6 @@ public class HomeEntrenador extends AppCompatActivity {
         txtTitulo.setText("Home Entrenador: " + nombreUsuario);
         listacorredores.addHeaderView(textView);
 
-        //String logueado = sharedpreferences.getString(USERNAME_KEY, null);
         Toast.makeText(HomeEntrenador.this, logueado, Toast.LENGTH_SHORT).show();
         viewCorredores();
 
@@ -98,7 +97,6 @@ public class HomeEntrenador extends AppCompatActivity {
                 intent.putExtras(b);
                 startActivity(intent);
 
-
                 Toast.makeText(HomeEntrenador.this, nombreCorredor, Toast.LENGTH_SHORT).show();
             }
         });
@@ -114,7 +112,6 @@ public class HomeEntrenador extends AppCompatActivity {
             String nombreCorredor = c.getString(c.getColumnIndex("NOMBRE"));
             listitem.add(nombreCorredor);
         }
-
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listitem);
         corredores.setAdapter(adapter);

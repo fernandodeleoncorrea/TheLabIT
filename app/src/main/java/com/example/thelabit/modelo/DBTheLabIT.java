@@ -114,7 +114,7 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         db.execSQL(queryInsert);
 
 
-        queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('4', '2', 3)";
+        queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('1', '2', 1)";
         db.execSQL(queryInsert);
 
         queryInsert = "INSERT INTO PLANES_DETALLE(IDENTRENADOR, IDCORREDOR, IDPLAN) VALUES ('1', '8', 1)";
