@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -101,11 +102,32 @@ public class MainActivity extends AppCompatActivity {
         btnMapa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                Uri uri = Uri.parse(""); // a directory
+                intent.setDataAndType(uri, "*/*");
+                startActivity(Intent.createChooser(intent, "Open folder"));
+
                 //Toast.makeText(MainActivity.this, "error", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), ViewDetalleActividad.class);
+                //Intent intent = new Intent(getApplicationContext(), ViewDetalleActividad.class);
                 //Intent intent = new Intent(getApplicationContext(), EjemploLocation.class);
-                startActivity(intent);
+                //startActivity(intent);
             }
         });
     }
 }
+
+/*
+Entrenador:
+Editar perfil -- cargar datos
+Corredores -- inhabilitar boton es alumno actual y toast de contato en breve
+lista corredores
+titulo alumno fulano de tal
+no contactar alunmno que ya entrena
+
+
+Corredor:
+agregar 2 dimensiones al feedback
+cambiar color feedback
+entrenadores mostrar textview
+no contactar su propio entrenador
+ */

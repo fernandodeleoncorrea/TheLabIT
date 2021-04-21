@@ -3,6 +3,7 @@ package com.example.thelabit.vista.entrenador;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -21,7 +22,7 @@ public class ViewPlanesDetalle extends AppCompatActivity {
 
 
     EditText descripcion;
-    Button btnAceptarDia, btnFinalizar;
+    Button btnAceptarDia, btnFinalizar, btnImportarPlan;
     DBTheLabIT DB;
     Spinner spinnerSemana, spinnerDia, spinnerTurno;
 
@@ -37,6 +38,7 @@ public class ViewPlanesDetalle extends AppCompatActivity {
         descripcion       = (EditText) findViewById(R.id.descripcion);
         btnAceptarDia   = (Button) findViewById(R.id.btnAceptarDia);
         btnFinalizar   = (Button) findViewById(R.id.btnFinalizar);
+        btnImportarPlan   = (Button) findViewById(R.id.btnImportarPlan);
         DB = new DBTheLabIT(this);
 
         //cargo el spinner de semana
@@ -105,6 +107,19 @@ public class ViewPlanesDetalle extends AppCompatActivity {
                     finish();
 
                 }
+            }
+        });
+
+        btnImportarPlan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ViewPlanesDetalle.this, "Archivo CSV delimitado por coma", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                Uri uri = Uri.parse(""); // a directory
+                intent.setDataAndType(uri, "*/*");
+                startActivity(Intent.createChooser(intent, "Open folder"));
+
             }
         });
     }
