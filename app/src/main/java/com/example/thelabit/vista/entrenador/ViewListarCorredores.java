@@ -1,4 +1,4 @@
-package com.example.thelabit;
+package com.example.thelabit.vista.entrenador;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,9 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.thelabit.R;
 import com.example.thelabit.modelo.DBTheLabIT;
-import com.example.thelabit.vista.corredor.ViewContactarEntrenador;
-import com.example.thelabit.vista.corredor.ViewListarEntrenadores;
 
 import java.util.ArrayList;
 

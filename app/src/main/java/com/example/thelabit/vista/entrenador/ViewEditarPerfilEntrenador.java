@@ -1,8 +1,10 @@
-package com.example.thelabit;
+package com.example.thelabit.vista.entrenador;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.thelabit.R;
 
 public class ViewEditarPerfilEntrenador extends AppCompatActivity {
 

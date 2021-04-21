@@ -1,4 +1,4 @@
-package com.example.thelabit;
+package com.example.thelabit.vista.entrenador;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.thelabit.R;
 import com.example.thelabit.modelo.DBTheLabIT;
 
 public class ViewContactarCorredor extends AppCompatActivity {

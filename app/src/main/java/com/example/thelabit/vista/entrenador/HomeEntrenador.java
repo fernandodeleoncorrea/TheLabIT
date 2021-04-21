@@ -16,8 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.thelabit.R;
-import com.example.thelabit.ViewEditarPerfilEntrenador;
-import com.example.thelabit.ViewListarCorredores;
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.vista.ViewCorredorEntrenador;
 

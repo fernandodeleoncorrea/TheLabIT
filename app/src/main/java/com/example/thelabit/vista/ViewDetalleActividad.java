@@ -10,12 +10,14 @@ import com.example.thelabit.R;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.RadarChart;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.RadarData;
 import com.github.mikephil.charting.data.RadarDataSet;
 import com.github.mikephil.charting.data.RadarEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -52,6 +54,7 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
     RadarData aranaData;
     RadarDataSet aranaDataSet;
     ArrayList<RadarEntry> radarEntries = new ArrayList<RadarEntry>();
+    String[] labels = {"Freshness", "Dureza", "Clima", "Intensidad", "Recuperacion"};
 
 
     @Override
@@ -126,14 +129,23 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
         //GRAFICO FEEDBACK
         //------------------------------------------------------------------------------------------
         getEntries();
-        aranaDataSet = new RadarDataSet(radarEntries, "");
+        aranaDataSet = new RadarDataSet(radarEntries, "Estado General");
+
+        aranaDataSet.setColor(Color.RED);
+
         aranaData = new RadarData(aranaDataSet);
         aranaChart.setData(aranaData);
-        aranaDataSet.setColors(128);
-        aranaDataSet.setValueTextColor(Color.BLACK);
-        aranaDataSet.setValueTextSize(18f);
+        aranaDataSet.setColor(Color.GREEN);
+        aranaDataSet.setDrawFilled(true);
         aranaDataSet.setFillColor(Color.rgb(77, 0, 77));
+
+        XAxis xaxis = aranaChart.getXAxis();
+        xaxis.setValueFormatter(new IndexAxisValueFormatter(labels));
+        aranaChart.invalidate();
+
+
     }
+
 
     private void getEntries() {
         radarEntries = new ArrayList<>();

@@ -1,20 +1,16 @@
-package com.example.thelabit;
+package com.example.thelabit.vista.entrenador;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
+import com.example.thelabit.R;
 import com.example.thelabit.modelo.Actividad;
 import com.example.thelabit.modelo.DBTheLabIT;
-import com.example.thelabit.modelo.PlanEntrenamiento;
-import com.example.thelabit.vista.entrenador.HomePlanes;
-import com.example.thelabit.vista.entrenador.ViewPlanes;
 
 public class ViewPlanesDetalleUpdate extends AppCompatActivity {
     Button btnModificarActividad;
