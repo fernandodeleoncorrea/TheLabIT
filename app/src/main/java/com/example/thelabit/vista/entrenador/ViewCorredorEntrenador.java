@@ -18,6 +18,7 @@ import com.example.thelabit.R;
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.vista.ViewDetalleActividad;
 import com.example.thelabit.vista.corredor.CorredorPlanTotal;
+import com.example.thelabit.vista.corredor.ViewEditarPerfilCorredor;
 
 import java.util.ArrayList;
 
@@ -28,7 +29,7 @@ public class ViewCorredorEntrenador extends AppCompatActivity {
     ArrayList<String> listitem = new ArrayList<String>();
     ArrayList<String> listitemID = new ArrayList<String>();
     ArrayAdapter adapter;
-    Button btnHistorico;
+    Button btnHistorico, btnPerfil;
 
 
     @Override
@@ -38,6 +39,7 @@ public class ViewCorredorEntrenador extends AppCompatActivity {
 
         actividadesrecientes = findViewById(R.id.actividadesrecientes);
         btnHistorico = findViewById(R.id.btnHistorico);
+        btnPerfil = findViewById(R.id.btnPerfil);
         TextView titulocorredor_entrenador = (TextView) findViewById(R.id.titulocorredor_entrenador);
         TextView tituloLista = (TextView) findViewById(R.id.tituloLista);
 
@@ -79,6 +81,19 @@ public class ViewCorredorEntrenador extends AppCompatActivity {
                 Intent intent = new Intent(ViewCorredorEntrenador.this, CorredorPlanTotal.class);
                 Bundle b = new Bundle();
                 //b.putString("logueado", logueado);
+                b.putString("logueado", idCorredor);
+                intent.putExtras(b);
+                startActivity(intent);
+            }
+        });
+
+        btnPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(ViewCorredorEntrenador.this, ViewEditarPerfilCorredor.class);
+                Bundle b = new Bundle();
+                b.putString("tipo", "E");
                 b.putString("logueado", idCorredor);
                 intent.putExtras(b);
                 startActivity(intent);

@@ -44,6 +44,7 @@ public class ViewListarCorredores extends AppCompatActivity {
 
                 Intent intent  = new Intent(ViewListarCorredores.this, ViewContactarCorredor.class);
                 Bundle b = new Bundle();
+                b.putString("logueado", logueado);
                 b.putString("idCorredor", idCorredor);
                 b.putString("nombreUsuario", nombreUsuario);
                 intent.putExtras(b);

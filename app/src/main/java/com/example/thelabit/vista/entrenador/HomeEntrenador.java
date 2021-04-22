@@ -55,7 +55,7 @@ public class HomeEntrenador extends AppCompatActivity {
         txtTitulo.setText("Home Entrenador: " + nombreUsuario);
         listacorredores.addHeaderView(textView);
 
-        Toast.makeText(HomeEntrenador.this, logueado, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(HomeEntrenador.this, logueado, Toast.LENGTH_SHORT).show();
         viewCorredores();
 
         btnPlanes.setOnClickListener(new View.OnClickListener() {

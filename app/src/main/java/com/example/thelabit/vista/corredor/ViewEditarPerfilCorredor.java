@@ -44,7 +44,26 @@ public class ViewEditarPerfilCorredor extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         String logueado = b.getString("logueado");
         String nombreUsuario = b.getString("nombreUsuario");
+        String tipoUsuario = b.getString("tipo");
         DB = new DBTheLabIT(this);
+
+        if(tipoUsuario.equals("E")){
+            nombre.setEnabled(false);
+            fechaNacimiento.setEnabled(false);
+            ciudad.setEnabled(false);
+            pais.setEnabled(false);
+            email.setEnabled(false);
+            comentario.setEnabled(false);
+            peso.setEnabled(false);
+            genero.setEnabled(false);
+            altura.setEnabled(false);
+            FCreposo.setEnabled(false);
+            FCmaxima.setEnabled(false);
+            objetivo.setEnabled(false);
+            tiempoEstimado.setEnabled(false);
+            btnFinalizar.setEnabled(false);
+        }
+
         Cursor c = DB.obtenerDatosCorredor(logueado);
 
         while (c.moveToNext()) {
@@ -96,6 +115,7 @@ public class ViewEditarPerfilCorredor extends AppCompatActivity {
                 }
             }
         });
+
 
     }
 }

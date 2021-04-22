@@ -44,6 +44,7 @@ public class ViewListarEntrenadores extends AppCompatActivity {
 
                 Intent intent  = new Intent(ViewListarEntrenadores.this, ViewContactarEntrenador.class);
                 Bundle b = new Bundle();
+                b.putString("logueado", logueado);
                 b.putString("idEntrenador", idEntrenador);
                 b.putString("nombreUsuario", nombreUsuario);
                 intent.putExtras(b);

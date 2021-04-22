@@ -125,15 +125,5 @@ public class MainActivity extends AppCompatActivity {
 }
 
 /*
-Entrenador:
-Corredores -- inhabilitar boton es alumno actual y toast de contato en breve
-no contactar alunmno que ya entrena
 
-
-Corredor:
-agregar 2 dimensiones al feedback
-cambiar color feedback
-entrenadores mostrar textview
-no contactar su propio entrenador
-indicar id de actividad
  */

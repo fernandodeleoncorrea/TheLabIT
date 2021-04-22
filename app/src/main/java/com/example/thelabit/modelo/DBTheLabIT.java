@@ -130,7 +130,7 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         queryInsert = "INSERT INTO ENTRENADORES_CORREDORES(IDENTRENADOR, IDCORREDOR) VALUES ('1', '2')";
         db.execSQL(queryInsert);
 
-        queryInsert = "INSERT INTO ENTRENADORES_CORREDORES(IDENTRENADOR, IDCORREDOR) VALUES ('1', '3')";
+        queryInsert = "INSERT INTO ENTRENADORES_CORREDORES(IDENTRENADOR, IDCORREDOR) VALUES ('4', '3')";
         db.execSQL(queryInsert);
 
         queryInsert = "INSERT INTO FEEDBACK(IDACTIVIDAD, FRESHNESS, DUREZA, RECUPERACION, COMENTARIO) VALUES (1, 80, 55, 21, 'Inicié con algo de cansancio pero no fue una sesion muy dura')";
@@ -606,5 +606,33 @@ public class DBTheLabIT extends SQLiteOpenHelper {
 
         modificoOK = db.update("ACTIVIDADES", contenedor, "ID = ?", new String[]{String.valueOf(A.getId())}) > 0;
         return modificoOK;
+    }
+
+    public String obtenerEntrenadorActual(String user){
+        SQLiteDatabase db =  this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT T2.USERNAME " +
+                "FROM ENTRENADORES_CORREDORES T1 " +
+                "JOIN USUARIOS T2 ON T1.IDENTRENADOR = T2.USERNAME " +
+                "WHERE T1.IDCORREDOR = ?",new String[]{user});
+
+        cursor.moveToNext();
+        String username = cursor.getString(cursor.getColumnIndex("USERNAME"));
+        return username;
+    }
+
+    public String obtenerNombrePlan(String user){
+        SQLiteDatabase db =  this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT DISTINCT T4.NOMBRE " +
+                "FROM USUARIOS T1 " +
+                "JOIN PLANES_DETALLE T2 ON T1.USERNAME = T2.IDCORREDOR " +
+                "JOIN ACTIVIDADES T3 ON T2.IDPLAN = T3.IDPLAN " +
+                "JOIN PLANES_ENTRENAMIENTOS T4 ON T3.IDPLAN = T4.ID " +
+                "WHERE T1.USERNAME = ?",new String[]{user});
+
+        cursor.moveToNext();
+        String username = cursor.getString(cursor.getColumnIndex("NOMBRE"));
+        return username;
     }
 }

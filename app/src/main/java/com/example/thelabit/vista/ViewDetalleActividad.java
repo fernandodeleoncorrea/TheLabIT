@@ -160,10 +160,10 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
 
         switch(idActividad) {
             case "1":
-                freshness = 88;
+                freshness = 99;
                 dureza = 65;
                 clima = 34;
-                intensidad = 22;
+                intensidad = 50;
                 recuperacion = 54;
                 break;
 
@@ -197,8 +197,6 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
         radarEntries.add(new RadarEntry(clima, "Clima"));
         radarEntries.add(new RadarEntry(intensidad, "Intensidad"));
         radarEntries.add(new RadarEntry(recuperacion, "Recuperacion"));
-
-
 
     }
 
