@@ -4,101 +4,139 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".vista.ViewPlanes">
+    tools:context=".vista.entrenador.ViewPlanes">
 
 
     <ScrollView
         android:id="@+id/scrollView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="-1dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginBottom="1dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        android:orientation="vertical">
+        <TableLayout
+            android:id="@+id/tabla"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/txtVistaPlanes"
+            android:layout_below="@+id/tituloCorredor"
+            android:padding="5dp">
+        <TableRow>
+            <TextView
+                android:id="@+id/txtTitulo"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/vista_planes" />
-
+                android:layout_height="wrap_content"
+                android:text="Vista de Plan: " />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/txtIdPlan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Id Plan: " />
             <EditText
                 android:id="@+id/idPlan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtVistaPlanes"
-                android:layout_alingParentLeft="true"
-                android:layout_alingParentTop="true"
-                android:layout_marginTop="20dp"
                 android:hint="@string/id" />
+        </TableRow>
 
+        <TableRow>
+            <TextView
+                android:id="@+id/txtNombrePlan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre: " />
             <EditText
                 android:id="@+id/nombrePlan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/idPlan"
-                android:layout_alingParentLeft="true"
-                android:layout_marginTop="20dp"
                 android:hint="@string/nombre_plan" />
+        </TableRow>
 
+        <TableRow>
+            <TextView
+                android:id="@+id/txtDistanciaPlan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Distancia: " />
             <EditText
                 android:id="@+id/distanciaPlan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/nombrePlan"
-                android:layout_alingParentLeft="true"
-                android:layout_marginTop="20dp"
                 android:hint="@string/distancia" />
+        </TableRow>
 
+        <TableRow>
+            <TextView
+                android:id="@+id/txtObjetivoPlan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Objetivo: " />
             <EditText
                 android:id="@+id/objetivoPlan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/distanciaPlan"
-                android:layout_alingParentLeft="true"
-                android:layout_marginTop="20dp"
                 android:hint="@string/objetivo" />
+        </TableRow>
 
+        <TableRow>
+            <TextView
+                android:id="@+id/txtComentarioPlan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comentario: " />
             <EditText
                 android:id="@+id/comentarioPlan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/objetivoPlan"
-                android:layout_alingParentLeft="true"
                 android:layout_marginTop="20dp"
                 android:hint="@string/comentario" />
+        </TableRow>
 
+        <TableRow
+            android:padding="10dp"
+            android:gravity="center_horizontal">
             <Button
                 android:id="@+id/btnModificar"
-                android:layout_width="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/comentarioPlan"
-                android:layout_alingParentLeft="true"
-                android:layout_marginTop="40dp"
-                android:backgroundTint="@color/purple_700"
                 android:text="@string/boton_modificar" />
 
             <Button
                 android:id="@+id/btnEliminar"
+                android:layout_margin="10dp"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/btnModificar"
+                android:text="@string/boton_eliminar" />
+        </TableRow>
+
+        <TableRow
+            android:gravity="center_horizontal"
+            android:padding="10dp">
+
+            <Button
+                android:id="@+id/btnListarActividades"
+                android:layout_span="2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/btnModificar"
-                android:layout_alingParentLeft="true"
-                android:layout_marginTop="40dp"
-                android:backgroundTint="@android:color/red"
-                android:rotation="0"
-                android:rotationX="0"
-                android:text="@string/boton_eliminar" />
+                android:text="Listar Actividades" />
+        </TableRow>
 
-        </LinearLayout>
-    </ScrollView>
+        </TableLayout>
+
+
+
+    </LinearLayout>
+</ScrollView>
 </RelativeLayout>

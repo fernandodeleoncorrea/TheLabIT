@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +15,7 @@ import com.example.thelabit.modelo.Login;
 import com.example.thelabit.modelo.Sesion;
 import com.example.thelabit.vista.ViewDetalleActividad;
 import com.example.thelabit.vista.corredor.HomeCorredor;
-import com.example.thelabit.vista.HomeEntrenador;
+import com.example.thelabit.vista.entrenador.HomeEntrenador;
 import com.example.thelabit.vista.RegistrarUsuario;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -72,10 +73,11 @@ public class MainActivity extends AppCompatActivity {
                     finish();
 
                 }else if (tipo == "entrenador"){
-
+                    String nombreUsuario = DB.obtenerNombre(user);
                     Intent intent = new Intent(MainActivity.this, HomeEntrenador.class);
                     Bundle b = new Bundle();
                     b.putString("logueado", logueado);
+                    b.putString("nombreUsuario", nombreUsuario);
                     intent.putExtras(b);
                     startActivity(intent);
                     finish();
@@ -100,11 +102,38 @@ public class MainActivity extends AppCompatActivity {
         btnMapa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                Uri uri = Uri.parse(""); // a directory
+                intent.setDataAndType(uri, "");
+                startActivity(Intent.createChooser(intent, "Open folder"));
+    */
                 //Toast.makeText(MainActivity.this, "error", Toast.LENGTH_SHORT).show();
+
+
+
                 Intent intent = new Intent(getApplicationContext(), ViewDetalleActividad.class);
+                Bundle b = new Bundle();
+                b.putString("idActividad", "3");
+                intent.putExtras(b);
+                startActivity(intent);
                 //Intent intent = new Intent(getApplicationContext(), EjemploLocation.class);
                 startActivity(intent);
             }
         });
     }
 }
+
+/*
+Entrenador:
+Corredores -- inhabilitar boton es alumno actual y toast de contato en breve
+no contactar alunmno que ya entrena
+
+
+Corredor:
+agregar 2 dimensiones al feedback
+cambiar color feedback
+entrenadores mostrar textview
+no contactar su propio entrenador
+indicar id de actividad
+ */

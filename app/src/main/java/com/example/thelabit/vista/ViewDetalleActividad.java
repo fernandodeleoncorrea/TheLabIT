@@ -10,12 +10,14 @@ import com.example.thelabit.R;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.RadarChart;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.RadarData;
 import com.github.mikephil.charting.data.RadarDataSet;
 import com.github.mikephil.charting.data.RadarEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -45,10 +47,6 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
 
     private GoogleMap mMap;
 
-    // below are the latitude and longitude of 4 different locations.
-    //LatLng TamWorth = new LatLng(-34.8994235634112, -56.146923351021535);
-    //LatLng NewCastle = new LatLng(-34.90087381940635, -56.152679284578724);
-    //LatLng Brisbane = new LatLng(-34.9003114782847, -56.159716319335146);
     LatLng Inicio;
     LineChart lineChartEle, lineChartHr, lineChartCAD;
     LineData lineDataEle, lineDataHr,  lineDataCAD;
@@ -56,9 +54,8 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
     RadarData aranaData;
     RadarDataSet aranaDataSet;
     ArrayList<RadarEntry> radarEntries = new ArrayList<RadarEntry>();
+    String[] labels = {"Freshness", "Dureza", "Clima", "Intensidad", "Recuperacion"};
 
-    //File gpxFile = new File(Environment.getDataDirectory().toString() + "/data/com.example.thelabit/prueba.gpx");
-    //List<Location> gpxList = decodeGPX(gpxFile);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +69,10 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
         lineChartCAD = findViewById(R.id.cadenciaChart);
         aranaChart = findViewById(R.id.feedbackChart);
 
-        File gpxFile = new File(Environment.getDataDirectory().toString() + "/data/com.example.thelabit/prueba.gpx");
+        Bundle b = getIntent().getExtras();
+        String idActividad = b.getString("idActividad");
+
+        File gpxFile = new File(Environment.getDataDirectory().toString() + "/data/com.example.thelabit/"+idActividad+".gpx");
 
 
         //GRAFICO DESNIVEL
@@ -131,21 +131,74 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
 
         //GRAFICO FEEDBACK
         //------------------------------------------------------------------------------------------
-        getEntries();
-        aranaDataSet = new RadarDataSet(radarEntries, "");
+        getEntries(idActividad);
+        aranaDataSet = new RadarDataSet(radarEntries, "Estado General");
+
         aranaData = new RadarData(aranaDataSet);
         aranaChart.setData(aranaData);
-        aranaDataSet.setColors(128);
-        aranaDataSet.setValueTextColor(Color.BLACK);
-        aranaDataSet.setValueTextSize(18f);
-        aranaDataSet.setFillColor(Color.rgb(77, 0, 77));
+        aranaChart.getDescription().setEnabled(false);
+        aranaDataSet.setColor(Color.rgb(179, 89, 0));
+        aranaDataSet.setDrawFilled(true);
+        aranaDataSet.setDrawValues(false);
+        aranaDataSet.setFillColor(Color.rgb(230, 115, 0));
+
+        XAxis xaxis = aranaChart.getXAxis();
+        xaxis.setValueFormatter(new IndexAxisValueFormatter(labels));
+        aranaChart.invalidate();
+
+
     }
 
-    private void getEntries() {
+
+    private void getEntries(String idActividad) {
+
+        Integer freshness = 0;
+        Integer dureza = 0;
+        Integer clima = 0;
+        Integer intensidad = 0;
+        Integer recuperacion = 0;
+
+        switch(idActividad) {
+            case "1":
+                freshness = 88;
+                dureza = 65;
+                clima = 34;
+                intensidad = 22;
+                recuperacion = 54;
+                break;
+
+            case "2":
+                freshness = 48;
+                dureza = 55;
+                clima = 38;
+                intensidad = 20;
+                recuperacion = 51;
+                break;
+            case "3":
+                freshness = 13;
+                dureza = 77;
+                clima = 44;
+                intensidad = 38;
+                recuperacion = 22;
+                break;
+            case "4":
+                freshness = 90;
+                dureza = 98;
+                clima = 25;
+                intensidad = 89;
+                recuperacion = 12;
+                break;
+            default:
+        }
+
         radarEntries = new ArrayList<>();
-        radarEntries.add(new RadarEntry(78, "Freshness"));
-        radarEntries.add(new RadarEntry(22, "Dureza"));
-        radarEntries.add(new RadarEntry(55, "Recuperacion"));
+        radarEntries.add(new RadarEntry(freshness, "Freshness"));
+        radarEntries.add(new RadarEntry(dureza, "Dureza"));
+        radarEntries.add(new RadarEntry(clima, "Clima"));
+        radarEntries.add(new RadarEntry(intensidad, "Intensidad"));
+        radarEntries.add(new RadarEntry(recuperacion, "Recuperacion"));
+
+
 
     }
 
@@ -325,7 +378,10 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-        File gpxFile = new File(Environment.getDataDirectory().toString() + "/data/com.example.thelabit/prueba.gpx");
+        Bundle b = getIntent().getExtras();
+        String idActividad = b.getString("idActividad");
+
+        File gpxFile = new File(Environment.getDataDirectory().toString() + "/data/com.example.thelabit/" + idActividad + ".gpx");
 
         List<LatLng> gpxList = decodeGPX(gpxFile);
 

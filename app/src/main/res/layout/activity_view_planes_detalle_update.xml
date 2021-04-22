@@ -20,85 +20,48 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <EditText
-                android:id="@+id/altaActividad"
+            <TextView
+                android:id="@+id/modificarActividad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:enabled="false"
-                android:hint="Actividad Pendiente"
+                android:hint="Modificar Actividad"
                 />
             <EditText
                 android:id="@+id/semana"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="10dp"
-                android:enabled="false"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_below="@+id/altaActividad"
                 android:hint="@string/semana" />
             <EditText
                 android:id="@+id/dia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
-                android:layout_marginTop="10dp"
-                android:textSize="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_below="@+id/semana"
                 android:hint="@string/dia"/>
             <EditText
                 android:id="@+id/turno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
-                android:layout_marginTop="10dp"
-                android:textSize="10dp"
+                android:layout_marginTop="20dp"
                 android:hint="@string/turno" />
             <EditText
                 android:id="@+id/descripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
-                android:layout_marginTop="10dp"
-                android:textSize="15dp"
+                android:layout_marginTop="20dp"
                 android:layout_below="@+id/turno"
                 android:hint="@string/descripcion" />
             <Button
-                android:id="@+id/btnIniciar"
+                android:id="@+id/btnModificarActividad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:layout_below="@+id/descripcion"
-                android:text="Registrar"
+                android:text="Modificar"
                 />
-
-            <Button
-                android:id="@+id/btnCargarArchivo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_below="@+id/btnIniciar"
-                android:text="Cargar Archivo"
-                />
-
-            <Button
-                android:id="@+id/btnFeedback"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_below="@+id/btnIniciar"
-                android:text="FeedBack"
-                />
-            <Button
-                android:id="@+id/btnFinalizar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_below="@+id/btnAceptarDia"
-                android:text="Finalizar"
-                />
-
-
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

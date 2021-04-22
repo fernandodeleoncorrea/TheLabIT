@@ -1,4 +1,4 @@
-package com.example.thelabit.vista;
+package com.example.thelabit.vista.entrenador;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,16 +8,16 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.thelabit.R;
+import com.example.thelabit.ViewListadoActividades;
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.modelo.PlanEntrenamiento;
 import com.google.android.material.snackbar.Snackbar;
 
 public class ViewPlanes extends AppCompatActivity {
 
-    Button btnModificar, btnEliminar;
+    Button btnModificar, btnEliminar, btnListarActividades;
     DBTheLabIT DB;
     EditText idPlan, nombrePlan, distanciaPlan, objetivoPlan, comentarioPlan;
 
@@ -34,6 +34,7 @@ public class ViewPlanes extends AppCompatActivity {
         comentarioPlan    = (EditText) findViewById(R.id.comentarioPlan);
         btnModificar    = (Button) findViewById(R.id.btnModificar);
         btnEliminar    = (Button) findViewById(R.id.btnEliminar);
+        btnListarActividades = (Button) findViewById(R.id.btnListarActividades);
         DB = new DBTheLabIT(this);
 
         Bundle b = getIntent().getExtras();
@@ -66,12 +67,13 @@ public class ViewPlanes extends AppCompatActivity {
 
                 Boolean modificoOK = DB.modificarPlanCabezal(plan2);
 
-                Intent intent = new Intent(ViewPlanes.this, ViewPlanesDetalle.class);
+                Intent intent = new Intent(ViewPlanes.this, HomePlanes.class);
                 Bundle b = new Bundle();
                 b.putString("idPlan", idPlan.getText().toString());
                 b.putString("logueado", logueado);
                 intent.putExtras(b);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -80,11 +82,32 @@ public class ViewPlanes extends AppCompatActivity {
             public void onClick(View v) {
 
                 Integer idPlanEliminar = Integer.parseInt(idPlan.getText().toString());
-
                 Boolean modificoOK = DB.eliminarPlan(idPlanEliminar);
-
-                //Toast.makeText(ViewPlanes.this, "plan eliminado con exito", Toast.LENGTH_SHORT).show();
                 Snackbar.make(v, getResources().getString(R.string.btn_eliminar), Snackbar.LENGTH_LONG).show();
+
+                Intent intent = new Intent(ViewPlanes.this, HomePlanes.class);
+                Bundle b = new Bundle();
+                b.putString("idPlan", idPlan.getText().toString());
+                b.putString("logueado", logueado);
+                intent.putExtras(b);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        btnListarActividades.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(ViewPlanes.this, ViewListadoActividades.class);
+                Bundle b = new Bundle();
+                b.putString("idPlan", idPlan.getText().toString());
+                b.putString("nombrePlan", pnombrePlan);
+                b.putString("logueado", logueado);
+                intent.putExtras(b);
+                startActivity(intent);
+                finish();
+
             }
         });
     }

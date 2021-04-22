@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".vista.entrenador.ViewContactarCorredor">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="none"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+            <TableLayout
+                android:id="@+id/tabla"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tituloCorredor"
+                android:padding="5dp">
+                <TableRow>
+                    <TextView
+                        android:id="@+id/txtTitulo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Datos Corredor: " />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/txtNombre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre: " />
+                    <EditText
+                        android:id="@+id/nombre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:textSize="15dp"
+                        android:layout_below="@+id/username"
+                        android:hint="@string/nombre"
+                        />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/txtFechaNacimiento"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fecha Nac.: " />
+                    <EditText
+                        android:id="@+id/fechaNacimiento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:textSize="15dp"
+                        android:hint="Fecha Nacimiento"
+                        />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/txtCiudad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ciudad: " />
+                    <EditText
+                        android:id="@+id/ciudad"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:textSize="15dp"
+                        android:layout_below="@+id/fechaNacimiento"
+                        android:hint="ciudad"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/txtPais"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pais: " />
+                    <EditText
+                        android:id="@+id/pais"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:textSize="15dp"
+                        android:layout_below="@+id/ciudad"
+                        android:hint="pais"
+                        />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/txtComentario"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Comentario: " />
+                    <EditText
+                        android:id="@+id/comentario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:textSize="15dp"
+                        android:layout_below="@+id/email"
+                        android:hint="@string/comentario"
+                        />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/txtPeso"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Peso (kgs): " />
+                    <EditText
+                        android:id="@+id/peso"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:textSize="15dp"
+                        android:hint="Peso"
+                        />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/txtGenero"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Genero: " />
+                    <EditText
+                        android:id="@+id/genero"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:textSize="15dp"
+                        android:hint="Genero"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/txtAltura"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Altura (cm): " />
+                    <EditText
+                        android:id="@+id/altura"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:textSize="15dp"
+                        android:hint="Altura"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/txtFCReposo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="FC Reposo: " />
+                    <EditText
+                        android:id="@+id/fcreposo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:textSize="15dp"
+                        android:hint="FC Reposo"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/txtFCMaxima"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="FC Max: " />
+                    <EditText
+                        android:id="@+id/fcmaxima"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:textSize="15dp"
+                        android:hint="FC Maxima"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/txtObjetivo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Objetivo (km): " />
+                    <EditText
+                        android:id="@+id/objetivo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:textSize="15dp"
+                        android:hint="Objetivo"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/txtTiempo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tiempo Estimado (min): " />
+                    <EditText
+                        android:id="@+id/tiempo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:textSize="15dp"
+                        android:hint="Tiempo Estimado"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/txtEntrenador"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Entrenador Actual: " />
+                    <EditText
+                        android:id="@+id/entrenador"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:textSize="15dp"
+                        android:hint="Entrenador Actual"
+                        />
+                </TableRow>
+
+            </TableLayout>
+            <Button
+                android:id="@+id/btnContactar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/tabla"
+                android:text="Contactar"
+                />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

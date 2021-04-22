@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".vista.ViewCorredorEntrenador">
+    tools:context=".vista.entrenador.ViewCorredorEntrenador">
 
 
     <TableLayout
@@ -14,11 +14,13 @@
 
 
         <TableRow>
-            <EditText
+            <TextView
                 android:id="@+id/titulocorredor_entrenador"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/nombre_alumno"
+                android:textSize="20dp"
+                android:text="Alumno: "
+
                 />
         </TableRow>
         <TableRow>
@@ -48,6 +50,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_below="@+id/tabla">
+        <TextView
+            android:id="@+id/tituloLista"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="20dp"
+            android:text="Lista actividades recientes: "
+            />
         <ListView
             android:id="@+id/actividadesrecientes"
             android:layout_width="wrap_content"

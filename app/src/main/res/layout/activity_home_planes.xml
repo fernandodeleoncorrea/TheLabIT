@@ -4,17 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".vista.HomePlanes">
+    tools:context=".vista.entrenador.HomePlanes">
 
     <TableLayout
         android:id="@+id/tabla"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="150dp">
         <TableRow>
             <EditText
                 android:id="@+id/tituloPlanes"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:enabled="false"
                 android:text="@string/planes"
                 />
         </TableRow>
@@ -34,7 +35,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_below="@+id/tabla">
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Listado de Planes">
+        </TextView>
         <ListView
             android:id="@+id/listaPlanes"
             android:clickable="true"
