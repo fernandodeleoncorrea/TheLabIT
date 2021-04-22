@@ -235,7 +235,7 @@ public class DBTheLabIT extends SQLiteOpenHelper {
 
     public Cursor obtenerCorredores(String ent){
         SQLiteDatabase db =  this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT T2.NOMBRE " +
+        Cursor cursor = db.rawQuery("SELECT T2.USERNAME, T2.NOMBRE " +
                 "FROM ENTRENADORES_CORREDORES T1 " +
                 "JOIN USUARIOS T2 ON T1.IDCORREDOR = T2.USERNAME " +
                 "WHERE T1.IDENTRENADOR = ?",new String[]{ent});
@@ -369,11 +369,11 @@ public class DBTheLabIT extends SQLiteOpenHelper {
 
     public Cursor obtenerActividadesRecientes(String corr){
         SQLiteDatabase db =  this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT T3.SEMANA, T3.DIA, T3.TURNO, T3.DESCRIPCION " +
+        Cursor cursor = db.rawQuery("SELECT T3.ID, T3.SEMANA, T3.DIA, T3.TURNO, T3.DESCRIPCION " +
                 "FROM USUARIOS T1 " +
                 "JOIN PLANES_DETALLE T2 ON T1.USERNAME = T2.IDCORREDOR " +
                 "JOIN ACTIVIDADES T3 ON T2.IDPLAN = T3.IDPLAN " +
-                "WHERE T1.NOMBRE = ? AND T2.IDPLAN = 1 AND T3.COMPLETADA = 0 " +
+                "WHERE T1.USERNAME = ? AND T2.IDPLAN = 1 AND T3.COMPLETADA = 1 " +
                 "ORDER BY DIA DESC LIMIT 7",new String[]{corr});
 
         Integer cantidad = cursor.getCount();
@@ -442,6 +442,18 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor obtenerDatosEntrenador(String user){
+        SQLiteDatabase db =  this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT T1.USERNAME, T1.NOMBRE, T1.FECHANACIMIENTO, T1.CIUDAD, T1.PAIS, T1.EMAIL, T1.COMENTARIO " +
+                ",T2.FORMACION " +
+                "FROM USUARIOS T1 JOIN ENTRENADORES T2 ON T1.USERNAME = T2.USERNAME " +
+                "WHERE T1.USERNAME = ? ",new String[]{user});
+
+        Integer largo = cursor.getCount();
+        return cursor;
+    }
+
     public Boolean guardarDatosCorredor(Corredor C){
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -466,6 +478,33 @@ public class DBTheLabIT extends SQLiteOpenHelper {
 
         Boolean tbusuarios = db.update("USUARIOS", contenedor, "USERNAME = ?", new String[]{C.getIdUsuario()}) > 0;
         Boolean tbcorredores = db.update("CORREDORES", contenedor2, "USERNAME = ?", new String[]{C.getIdUsuario()}) > 0;
+
+        if(tbusuarios == true & tbcorredores == true){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Boolean guardarDatosEntrenador(Entrenador E){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contenedor = new ContentValues();
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_USERNAME,E.getIdUsuario());
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_NOMBRE, E.getNombre());
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_FECHANACIMIENTO, E.getFechaNacimiento());
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_CIUDAD, E.getCiudad());
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_PAIS, E.getPais());
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_EMAIL, E.getEmail());
+        contenedor.put(ConstantesDB.TABLA_USUARIOS_COMENTARIO, E.getComentario());
+
+        ContentValues contenedor2 = new ContentValues();
+        contenedor2.put(ConstantesDB.TABLA_USUARIOS_USERNAME, E.getIdUsuario());
+        contenedor2.put(ConstantesDB.TABLA_ENTRENADORES_FORMACION,E.getFormacion());
+
+
+        Boolean tbusuarios = db.update("USUARIOS", contenedor, "USERNAME = ?", new String[]{E.getIdUsuario()}) > 0;
+        Boolean tbcorredores = db.update("ENTRENADORES", contenedor2, "USERNAME = ?", new String[]{E.getIdUsuario()}) > 0;
 
         if(tbusuarios == true & tbcorredores == true){
             return true;

@@ -1,4 +1,4 @@
-package com.example.thelabit.vista;
+package com.example.thelabit.vista.entrenador;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,11 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.thelabit.R;
 import com.example.thelabit.modelo.DBTheLabIT;
+import com.example.thelabit.vista.ViewDetalleActividad;
 
 import java.util.ArrayList;
 
@@ -21,6 +24,7 @@ public class ViewCorredorEntrenador extends AppCompatActivity {
     DBTheLabIT DB;
     ListView actividadesrecientes;
     ArrayList<String> listitem = new ArrayList<String>();
+    ArrayList<String> listitemID = new ArrayList<String>();
     ArrayAdapter adapter;
 
 
@@ -30,9 +34,20 @@ public class ViewCorredorEntrenador extends AppCompatActivity {
         setContentView(R.layout.activity_view_corredor_entrenador);
 
         actividadesrecientes = findViewById(R.id.actividadesrecientes);
+        TextView titulocorredor_entrenador = (TextView) findViewById(R.id.titulocorredor_entrenador);
+        TextView tituloLista = (TextView) findViewById(R.id.tituloLista);
+
+
         Bundle b = getIntent().getExtras();
+        String idCorredor = b.getString("idCorredor");
         String nombreCorredor = b.getString("nombreCorredor");
         String logueado = b.getString("logueado");
+
+        titulocorredor_entrenador.setText("Alumno : " + nombreCorredor);
+
+        //tituloLista.setText("Lista de Actividades Pendientes");
+        //tituloLista.setTextSize(20);
+        //actividadesrecientes.addHeaderView(tituloLista);
 
         viewActividadesRecientes();
         Toast.makeText(ViewCorredorEntrenador.this, nombreCorredor, Toast.LENGTH_SHORT).show();
@@ -40,11 +55,11 @@ public class ViewCorredorEntrenador extends AppCompatActivity {
         actividadesrecientes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView <? > arg0, View view, int position, long id) {
 
-                String nombreActividad =(String)arg0.getItemAtPosition(position);
+                String idActividad = listitemID.get(position);
 
                 Intent intent = new Intent(ViewCorredorEntrenador.this, ViewDetalleActividad.class);
                 Bundle b = new Bundle();
-                b.putString("NombreActividad", nombreActividad);
+                b.putString("idActividad", idActividad);
                 b.putString("logueado", logueado);
                 intent.putExtras(b);
                 startActivity(intent);
@@ -57,19 +72,22 @@ public class ViewCorredorEntrenador extends AppCompatActivity {
 
     private void viewActividadesRecientes(){
         Bundle b = getIntent().getExtras();
+        String idCorredor = b.getString("idCorredor");
+        String nombreCorredor = b.getString("nombreCorredor");
         String logueado = b.getString("logueado");
-        String nombreCorredor = b.getString("nombreCorredor"); //Your id
 
         DB = new DBTheLabIT(this);
-        Cursor c = DB.obtenerActividadesRecientes(nombreCorredor);
+        Cursor c = DB.obtenerActividadesRecientes(idCorredor);
 
         while (c.moveToNext()) {
+            String pIdActividad = c.getString(c.getColumnIndex("ID"));
             String psemana = c.getString(c.getColumnIndex("SEMANA"));
             String pdia = c.getString(c.getColumnIndex("DIA"));
             String pturno = c.getString(c.getColumnIndex("TURNO"));
             String pdescripcion = c.getString(c.getColumnIndex("DESCRIPCION"));
 
-            listitem.add(psemana+pdia+pturno+pdescripcion);
+            listitem.add(pdescripcion);
+            listitemID.add(pIdActividad);
         }
 
 

@@ -28,7 +28,7 @@
         <activity android:name=".EjemploLocation" />
         <activity android:name=".EjemploChart" />
         <activity android:name=".vista.ViewDetalleActividad2" />
-        <activity android:name=".vista.ViewCorredorEntrenador" />
+        <activity android:name=".vista.entrenador.ViewCorredorEntrenador" />
         <activity android:name=".vista.entrenador.ViewNuevoPlan" />
         <activity android:name=".vista.entrenador.ViewPlanesDetalle" />
         <activity android:name=".vista.entrenador.ViewPlanes" />

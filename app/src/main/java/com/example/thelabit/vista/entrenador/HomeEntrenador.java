@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import com.example.thelabit.R;
 import com.example.thelabit.modelo.DBTheLabIT;
-import com.example.thelabit.vista.ViewCorredorEntrenador;
 
 import java.util.ArrayList;
 
@@ -25,6 +24,7 @@ public class HomeEntrenador extends AppCompatActivity {
 
     DBTheLabIT DB;
     ArrayList<String> listitem = new ArrayList<String>();
+    ArrayList<String> listitemID = new ArrayList<String>();
     ArrayAdapter adapter;
     ListView corredores;
     Button btnPlanes, btnEditarEntrenador, btnBuscarCorredor;
@@ -101,16 +101,18 @@ public class HomeEntrenador extends AppCompatActivity {
         listacorredores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView <? > arg0, View view, int position, long id) {
 
-                String nombreCorredor =(String)arg0.getItemAtPosition(position);
+                String idCorredor = listitemID.get(position-1);
+                String nombreCorredor = listitem.get(position-1);
 
                 Intent intent = new Intent(HomeEntrenador.this, ViewCorredorEntrenador.class);
                 Bundle b = new Bundle();
-                b.putString("nombreCorredor", nombreCorredor); //Your id
+                b.putString("nombreCorredor", nombreCorredor);
+                b.putString("idCorredor", idCorredor); //Your id
                 b.putString("logueado", logueado);
                 intent.putExtras(b);
                 startActivity(intent);
 
-                Toast.makeText(HomeEntrenador.this, nombreCorredor, Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomeEntrenador.this, idCorredor, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -123,7 +125,9 @@ public class HomeEntrenador extends AppCompatActivity {
 
         while (c.moveToNext()) {
             String nombreCorredor = c.getString(c.getColumnIndex("NOMBRE"));
+            String corredorID = c.getString(c.getColumnIndex("USERNAME"));
             listitem.add(nombreCorredor);
+            listitemID.add(corredorID);
         }
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listitem);

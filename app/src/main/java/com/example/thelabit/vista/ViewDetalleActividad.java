@@ -69,7 +69,10 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
         lineChartCAD = findViewById(R.id.cadenciaChart);
         aranaChart = findViewById(R.id.feedbackChart);
 
-        File gpxFile = new File(Environment.getDataDirectory().toString() + "/data/com.example.thelabit/prueba.gpx");
+        Bundle b = getIntent().getExtras();
+        String idActividad = b.getString("idActividad");
+
+        File gpxFile = new File(Environment.getDataDirectory().toString() + "/data/com.example.thelabit/"+idActividad+".gpx");
 
 
         //GRAFICO DESNIVEL
@@ -333,7 +336,10 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-        File gpxFile = new File(Environment.getDataDirectory().toString() + "/data/com.example.thelabit/prueba.gpx");
+        Bundle b = getIntent().getExtras();
+        String idActividad = b.getString("idActividad");
+
+        File gpxFile = new File(Environment.getDataDirectory().toString() + "/data/com.example.thelabit/" + idActividad + ".gpx");
 
         List<LatLng> gpxList = decodeGPX(gpxFile);
 
