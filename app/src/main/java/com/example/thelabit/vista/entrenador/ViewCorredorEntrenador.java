@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.example.thelabit.R;
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.vista.ViewDetalleActividad;
+import com.example.thelabit.vista.corredor.CorredorPlanTotal;
 
 import java.util.ArrayList;
 
@@ -26,6 +28,7 @@ public class ViewCorredorEntrenador extends AppCompatActivity {
     ArrayList<String> listitem = new ArrayList<String>();
     ArrayList<String> listitemID = new ArrayList<String>();
     ArrayAdapter adapter;
+    Button btnHistorico;
 
 
     @Override
@@ -34,6 +37,7 @@ public class ViewCorredorEntrenador extends AppCompatActivity {
         setContentView(R.layout.activity_view_corredor_entrenador);
 
         actividadesrecientes = findViewById(R.id.actividadesrecientes);
+        btnHistorico = findViewById(R.id.btnHistorico);
         TextView titulocorredor_entrenador = (TextView) findViewById(R.id.titulocorredor_entrenador);
         TextView tituloLista = (TextView) findViewById(R.id.tituloLista);
 
@@ -65,6 +69,19 @@ public class ViewCorredorEntrenador extends AppCompatActivity {
                 startActivity(intent);
 
                 Toast.makeText(ViewCorredorEntrenador.this, nombreCorredor, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnHistorico.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(ViewCorredorEntrenador.this, CorredorPlanTotal.class);
+                Bundle b = new Bundle();
+                //b.putString("logueado", logueado);
+                b.putString("logueado", idCorredor);
+                intent.putExtras(b);
+                startActivity(intent);
             }
         });
 

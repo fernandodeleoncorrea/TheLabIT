@@ -65,12 +65,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_below="@+id/LLcadenciaChart"
-            android:padding="10dp"
             android:id="@+id/LLradarChart">
             <com.github.mikephil.charting.charts.RadarChart
                 android:id="@+id/feedbackChart"
                 android:layout_width="match_parent"
-                android:layout_height="300dp" />
+                android:layout_height="450dp" />
         </LinearLayout>
     </LinearLayout>
     </ScrollView>

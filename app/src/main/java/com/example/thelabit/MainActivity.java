@@ -135,5 +135,5 @@ agregar 2 dimensiones al feedback
 cambiar color feedback
 entrenadores mostrar textview
 no contactar su propio entrenador
-cargar archivo gpx
+indicar id de actividad
  */

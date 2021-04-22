@@ -131,16 +131,16 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
 
         //GRAFICO FEEDBACK
         //------------------------------------------------------------------------------------------
-        getEntries();
+        getEntries(idActividad);
         aranaDataSet = new RadarDataSet(radarEntries, "Estado General");
-
-        aranaDataSet.setColor(Color.RED);
 
         aranaData = new RadarData(aranaDataSet);
         aranaChart.setData(aranaData);
-        aranaDataSet.setColor(Color.GREEN);
+        aranaChart.getDescription().setEnabled(false);
+        aranaDataSet.setColor(Color.rgb(179, 89, 0));
         aranaDataSet.setDrawFilled(true);
-        aranaDataSet.setFillColor(Color.rgb(77, 0, 77));
+        aranaDataSet.setDrawValues(false);
+        aranaDataSet.setFillColor(Color.rgb(230, 115, 0));
 
         XAxis xaxis = aranaChart.getXAxis();
         xaxis.setValueFormatter(new IndexAxisValueFormatter(labels));
@@ -150,13 +150,55 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
     }
 
 
-    private void getEntries() {
+    private void getEntries(String idActividad) {
+
+        Integer freshness = 0;
+        Integer dureza = 0;
+        Integer clima = 0;
+        Integer intensidad = 0;
+        Integer recuperacion = 0;
+
+        switch(idActividad) {
+            case "1":
+                freshness = 88;
+                dureza = 65;
+                clima = 34;
+                intensidad = 22;
+                recuperacion = 54;
+                break;
+
+            case "2":
+                freshness = 48;
+                dureza = 55;
+                clima = 38;
+                intensidad = 20;
+                recuperacion = 51;
+                break;
+            case "3":
+                freshness = 13;
+                dureza = 77;
+                clima = 44;
+                intensidad = 38;
+                recuperacion = 22;
+                break;
+            case "4":
+                freshness = 90;
+                dureza = 98;
+                clima = 25;
+                intensidad = 89;
+                recuperacion = 12;
+                break;
+            default:
+        }
+
         radarEntries = new ArrayList<>();
-        radarEntries.add(new RadarEntry(78, "Freshness"));
-        radarEntries.add(new RadarEntry(22, "Dureza"));
-        radarEntries.add(new RadarEntry(88, "Clima"));
-        radarEntries.add(new RadarEntry(15, "Intensidad"));
-        radarEntries.add(new RadarEntry(55, "Recuperacion"));
+        radarEntries.add(new RadarEntry(freshness, "Freshness"));
+        radarEntries.add(new RadarEntry(dureza, "Dureza"));
+        radarEntries.add(new RadarEntry(clima, "Clima"));
+        radarEntries.add(new RadarEntry(intensidad, "Intensidad"));
+        radarEntries.add(new RadarEntry(recuperacion, "Recuperacion"));
+
+
 
     }
 
