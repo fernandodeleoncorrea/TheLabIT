@@ -47,10 +47,36 @@
         android:layout_below="@+id/txtRecuperacion" />
 
     <TextView
-        android:id="@+id/txtComentario"
+        android:id="@+id/txtClima"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/seekBarRecuperacion"
+        android:layout_marginTop="20dp"
+        android:text="Clima:" />
+    <SeekBar
+        android:id="@+id/seekBarClima"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtClima" />
+
+    <TextView
+        android:id="@+id/txtIntensidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seekBarClima"
+        android:layout_marginTop="20dp"
+        android:text="Intensidad:" />
+    <SeekBar
+        android:id="@+id/seekBarIntensidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtIntensidad" />
+
+    <TextView
+        android:id="@+id/txtComentario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seekBarIntensidad"
         android:layout_marginTop="30dp"
         android:text="Comentario:" />
 
