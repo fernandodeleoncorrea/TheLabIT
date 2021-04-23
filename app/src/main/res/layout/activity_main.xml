@@ -12,7 +12,7 @@
     android:id="@+id/username"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="20dp"
+    android:layout_marginTop="150dp"
     android:hint="@string/usuario"/>
 
     <EditText
@@ -44,20 +44,20 @@
         />
 
     <Button
-        android:id="@+id/btnRecuperar"
+        android:id="@+id/btnPremium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnSignUp"
         android:layout_marginTop="20dp"
-        android:text="@string/recupero_password"
+        android:text="Premium"
         />
 
     <Button
         android:id="@+id/btnMapa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnRecuperar"
-        android:layout_marginTop="100dp"
+        android:layout_below="@+id/btnPremium"
+        android:layout_marginTop="10dp"
         android:text="BTN mapa"
         />
 </RelativeLayout>
