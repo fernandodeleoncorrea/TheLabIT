@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import com.example.thelabit.R;
 import com.example.thelabit.modelo.Actividad;
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.modelo.FeedBack;
+import com.example.thelabit.vista.entrenador.ViewPlanesDetalle;
 
  public class ViewDetalleActividadPend extends AppCompatActivity {
 
@@ -120,7 +122,7 @@ import com.example.thelabit.modelo.FeedBack;
                         String recupero = txtResultadoRecupero.getText().toString();
                         String comentario = txtResultadoComenatario.getText().toString();
 
-                        Toast.makeText(ViewDetalleActividadPend.this, freshness+dureza+recupero, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(ViewDetalleActividadPend.this, freshness+dureza+recupero, Toast.LENGTH_SHORT).show();
 
                         FeedBack feed = new FeedBack();
                         feed.setFreshness(Integer.parseInt(freshness));
@@ -136,7 +138,7 @@ import com.example.thelabit.modelo.FeedBack;
 
                         pw.dismiss();
 
-                        Toast.makeText(ViewDetalleActividadPend.this, "Gracias por el aporte! Esto ayudará mucho a tu entrenador!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ViewDetalleActividadPend.this, "Gracias por el aporte! Esto ayudará mucho a tu entrenador!", Toast.LENGTH_LONG).show();
                     }
                 });
 /*
@@ -158,6 +160,7 @@ import com.example.thelabit.modelo.FeedBack;
         btnFinalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Boolean resultado = marcarActividad(idActividad);
 
                 Intent intent = new Intent(ViewDetalleActividadPend.this, HomeCorredor.class);
                 Bundle b = new Bundle();
@@ -170,7 +173,24 @@ import com.example.thelabit.modelo.FeedBack;
                 finish();
             }
         });
+
+        btnCargarArchivo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(ViewDetalleActividadPend .this, "Cargar archivo de actividad", Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                Uri uri = Uri.parse(""); // a directory
+                intent.setDataAndType(uri, "*/*");
+                startActivity(Intent.createChooser(intent, "Open folder"));
+                btnCargarArchivo.setEnabled(false);
+                btnIniciar.setEnabled(false);
+            }
+        });
     }
+
+
 
     public Boolean marcarActividad(String idActividad){
         DB = new DBTheLabIT(this);

@@ -2,11 +2,14 @@ package com.example.thelabit.vista.entrenador;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.thelabit.R;
 import com.example.thelabit.modelo.DBTheLabIT;
@@ -60,5 +63,24 @@ public class ViewContactarCorredor extends AppCompatActivity {
             tiempo.setText(c.getString(c.getColumnIndex("TIEMPOESTIMADO")));
             entrenador.setText(c.getString(c.getColumnIndex("ENTRENADOR_ACTUAL")));
         }
+
+        if(nombreUsuario.equals(entrenador.getText().toString())){
+            btnContactar.setEnabled(false);
+        }
+
+        btnContactar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String mensaje = "El corredor recibirá una notificación";
+                Toast.makeText(ViewContactarCorredor.this, mensaje, Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(ViewContactarCorredor.this, HomeEntrenador.class);
+                Bundle b = new Bundle();
+                b.putString("logueado", logueado);
+                b.putString("nombreUsuario", nombreUsuario);
+                intent.putExtras(b);
+                startActivity(intent);
+            }
+        });
     }
 }

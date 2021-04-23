@@ -91,6 +91,7 @@ public class HomeCorredor extends AppCompatActivity {
                 Intent intent = new Intent(HomeCorredor.this, ViewEditarPerfilCorredor.class);
                 Bundle b = new Bundle();
                 b.putString("logueado", logueado);
+                b.putString("tipo", "C");
                 b.putString("nombreUsuario", nombreUsuario);
                 intent.putExtras(b);
                 startActivity(intent);

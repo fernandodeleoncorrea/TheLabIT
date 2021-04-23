@@ -74,6 +74,8 @@ public class CorredorPlanTotal extends AppCompatActivity {
         String logueado = b.getString("logueado");
         DB = new DBTheLabIT(this);
         Cursor c = DB.obtenerPlanTotal(logueado);
+        String nombrePlan = DB.obtenerNombrePlan(logueado);
+        tituloPlanTotal.setText(nombrePlan);
 
         while (c.moveToNext()) {
             Integer pid = c.getInt(c.getColumnIndex("ID"));
