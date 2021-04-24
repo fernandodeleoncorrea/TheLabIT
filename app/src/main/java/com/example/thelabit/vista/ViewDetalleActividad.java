@@ -3,6 +3,8 @@ package com.example.thelabit.vista;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -54,7 +56,12 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
     RadarData aranaData;
     RadarDataSet aranaDataSet;
     ArrayList<RadarEntry> radarEntries = new ArrayList<RadarEntry>();
+    ArrayList<Double> distancias = new ArrayList<Double>();
     String[] labels = {"Freshness", "Dureza", "Clima", "Intensidad", "Recuperacion"};
+    Double sumaDistance = 0.0;
+    Double lat1, lat2, lon1,lon2, el1, el2;
+    TextView valuePulso, valueRitmo, valueTiempo, valueDistancia;
+    String Distancia, Tiempo, Ritmo, Pulso;
 
 
     @Override
@@ -68,6 +75,19 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
         lineChartHr = findViewById(R.id.pulsacionesChart);
         lineChartCAD = findViewById(R.id.cadenciaChart);
         aranaChart = findViewById(R.id.feedbackChart);
+
+        valuePulso = findViewById(R.id.valuePulso);
+        valueRitmo = findViewById(R.id.valueRitmo);
+        valueTiempo = findViewById(R.id.valueTiempo);
+        valueDistancia = findViewById(R.id.valueDistancia);
+
+        //textDistancia = findViewById(R.id.textDistancia);
+        lat1 = 0.0;
+        lat2= 0.0;
+        lon1= 0.0;
+        lon2= 0.0;
+        el1= 0.0;
+        el2= 0.0;
 
         Bundle b = getIntent().getExtras();
         String idActividad = b.getString("idActividad");
@@ -146,6 +166,24 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
         xaxis.setValueFormatter(new IndexAxisValueFormatter(labels));
         aranaChart.invalidate();
 
+        List<Double> decodeDistance = decodeDistance(gpxFile);
+
+
+
+        valuePulso.setText(Pulso.toString());
+        valueRitmo.setText(Ritmo.toString());
+        valueTiempo.setText(Tiempo.toString());
+        valueDistancia.setText(Distancia.toString());
+        /*
+        Double sum = 0.0;
+        for (int i = 0; i < decodeDistance.size(); i++) {
+                sum = sum + decodeDistance.get(i);
+            }
+
+        Double suma = sum;
+        textDistancia.setText(String.valueOf(suma));
+        */
+
 
     }
 
@@ -165,6 +203,10 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
                 clima = 34;
                 intensidad = 50;
                 recuperacion = 54;
+                Distancia = "11.5 km";
+                Tiempo = "49m:25s";
+                Ritmo = "4:30m/km";
+                Pulso = "155ppm";
                 break;
 
             case "2":
@@ -173,6 +215,10 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
                 clima = 38;
                 intensidad = 20;
                 recuperacion = 51;
+                Distancia = "9.3 km";
+                Tiempo = "41m:45s";
+                Ritmo = "4:46m/km";
+                Pulso = "149ppm";
                 break;
             case "3":
                 freshness = 13;
@@ -180,6 +226,10 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
                 clima = 44;
                 intensidad = 38;
                 recuperacion = 22;
+                Distancia = "10.5 km";
+                Tiempo = "53m:25s";
+                Ritmo = "4:21m/km";
+                Pulso = "167ppm";
                 break;
             case "4":
                 freshness = 90;
@@ -187,6 +237,10 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
                 clima = 25;
                 intensidad = 89;
                 recuperacion = 12;
+                Distancia = "15.5 km";
+                Tiempo = "1h:12m:02s";
+                Ritmo = "4:53m/km";
+                Pulso = "147ppm";
                 break;
             default:
         }
@@ -202,7 +256,7 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
 
     private List<LatLng> decodeGPX(File file){
         List<LatLng> list = new ArrayList<LatLng>();
-
+        distancias = new ArrayList<>();
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -212,6 +266,10 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
 
             NodeList nodelist_trkpt = elementRoot.getElementsByTagName("trkpt");
 
+
+            //esto
+            NodeList nodelist_ele = elementRoot.getElementsByTagName("ele");
+
             for(int i = 0; i < nodelist_trkpt.getLength(); i++){
 
                 Node node = nodelist_trkpt.item(i);
@@ -220,20 +278,35 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
                 String newLatitude = attributes.getNamedItem("lat").getTextContent();
                 Double newLatitude_double = Double.parseDouble(newLatitude);
 
-                //Toast.makeText(EjemploMapa.this, newLatitude, Toast.LENGTH_SHORT).show();
 
                 String newLongitude = attributes.getNamedItem("lon").getTextContent();
                 Double newLongitude_double = Double.parseDouble(newLongitude);
 
                 String newLocationName = newLatitude + ":" + newLongitude;
                 LatLng punto = new LatLng(newLatitude_double, newLongitude_double);
-                //Location newLocation = new Location(newLocationName);
-                //newLocation.setLatitude(newLatitude_double);
-                //newLocation.setLongitude(newLongitude_double);
+
+                //esto
+                String valor = nodelist_ele.item(i).getChildNodes().item(0).getNodeValue();
+                Double ele = Double.parseDouble(valor);
+
+                if(i==0){
+                    lat1 = newLatitude_double;
+                    lon1 = newLongitude_double;
+                    el1 = ele;
+                }else{
+                    lat2 = newLatitude_double;
+                    lon2 = newLongitude_double;
+                    el2 = ele;
+                    distancias.add(distance(lat1, lat2, lon1,lon2, el1, el2));;
+                    lat1 = newLatitude_double;
+                    lon1 = newLongitude_double;
+                    el1 = ele;
+                }
 
                 if(i==0){
                     Inicio = punto;
                 }
+
                 list.add(punto);
 
             }
@@ -390,6 +463,98 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
     }
 
 
+    private List<Double> decodeDistance(File file){
+        List<Double> distancia = new ArrayList<Double>();
+
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        try {
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            FileInputStream fileInputStream = new FileInputStream(file);
+            Document document = documentBuilder.parse(fileInputStream);
+            Element elementRoot = document.getDocumentElement();
+
+            NodeList nodelist_trkpt = elementRoot.getElementsByTagName("trkpt");
+
+
+            //esto
+            NodeList nodelist_ele = elementRoot.getElementsByTagName("ele");
+
+            for(int i = 0; i < nodelist_trkpt.getLength(); i++){
+
+                Node node = nodelist_trkpt.item(i);
+                NamedNodeMap attributes = node.getAttributes();
+
+                String newLatitude = attributes.getNamedItem("lat").getTextContent();
+                Double newLatitude_double = Double.parseDouble(newLatitude);
+
+
+                String newLongitude = attributes.getNamedItem("lon").getTextContent();
+                Double newLongitude_double = Double.parseDouble(newLongitude);
+
+                String newLocationName = newLatitude + ":" + newLongitude;
+                LatLng punto = new LatLng(newLatitude_double, newLongitude_double);
+
+                //esto
+                String valor = nodelist_ele.item(i).getChildNodes().item(0).getNodeValue();
+                Double ele = Double.parseDouble(valor);
+
+                if(i==0){
+                    lat1 = newLatitude_double;
+                    lon1 = newLongitude_double;
+                    el1 = ele;
+                }else{
+                    lat2 = newLatitude_double;
+                    lon2 = newLongitude_double;
+                    el2 = ele;
+                    distancia.add(distance(lat1, lat2, lon1,lon2, el1, el2));;
+                    lat1 = newLatitude_double;
+                    lon1 = newLongitude_double;
+                    el1 = ele;
+                }
+
+                if(i==0){
+                    Inicio = punto;
+                }
+
+            }
+
+            fileInputStream.close();
+
+        } catch (ParserConfigurationException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SAXException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return distancia;
+    }
+
+    public static double distance(double lat1, double lat2, double lon1,
+                                  double lon2, double el1, double el2) {
+
+        final int R = 6371; // Radius of the earth
+
+        double latDistance = Math.toRadians(lat2 - lat1);
+        double lonDistance = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
+                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double distance = R * c * 1000; // convert to meters
+
+        double height = el1 - el2;
+
+        distance = Math.pow(distance, 2) + Math.pow(height, 2);
+
+        return Math.sqrt(distance);
+    }
 
 
 }

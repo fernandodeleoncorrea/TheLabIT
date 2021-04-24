@@ -10,6 +10,8 @@
         android:layout_height="fill_parent"
         android:scrollbars="none"
         android:layout_weight="1">
+
+        <!-- this is a comment -->
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -20,7 +22,106 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             tools:context="com.example.thelabit.vista" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+            <TableLayout
+                android:id="@+id/tabla"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tituloCorredor"
+                android:background="@drawable/border"
+                android:padding="10dp">
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="5dp"
+                >
+                <TextView
+                    android:id="@+id/textTituloDistancia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/border"
+                    android:text="Distancia" />
+                <TextView
+                    android:id="@+id/textTituloTiempo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/border"
+                    android:text="Tiempo" />
+                <TextView
+                    android:id="@+id/textTituloRitmo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/border"
+                    android:text="Ritmo Medio" />
+                <TextView
+                    android:id="@+id/textTituloPulso"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_weight="1"
+                    android:text="Pulso Medio"
+                    android:background="@drawable/border"
+                    android:gravity="center_horizontal" />
+            </TableRow>
 
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    >
+                    <TextView
+                        android:id="@+id/valueDistancia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:background="@drawable/border"
+                        android:text="Distancia" />
+                    <TextView
+                        android:id="@+id/valueTiempo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:background="@drawable/border"
+                        android:text="Tiempo" />
+                    <TextView
+                        android:id="@+id/valueRitmo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:background="@drawable/border"
+                        android:text="Ritmo Medio" />
+                    <TextView
+                        android:id="@+id/valuePulso"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:layout_weight="1"
+                        android:text="Pulso Medio"
+                        android:background="@drawable/border"
+                        android:gravity="center_horizontal" />
+                </TableRow>
+            </TableLayout>
+            </LinearLayout>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
@@ -72,6 +173,7 @@
                 android:layout_height="450dp" />
         </LinearLayout>
     </LinearLayout>
+
     </ScrollView>
-    <!-- this is a comment -->
+
 </RelativeLayout>
