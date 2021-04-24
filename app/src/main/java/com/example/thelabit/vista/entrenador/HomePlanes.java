@@ -44,7 +44,7 @@ public class HomePlanes extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         String logueado = b.getString("logueado");
         String nombreUsuario = b.getString("nombreUsuario");
-        Toast.makeText(HomePlanes.this, logueado, Toast.LENGTH_SHORT).show();
+       //Toast.makeText(HomePlanes.this, logueado, Toast.LENGTH_SHORT).show();
         viewPlanes();
 
         planes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -61,7 +61,7 @@ public class HomePlanes extends AppCompatActivity {
                 finish();
 
 
-                Toast.makeText(HomePlanes.this, nombrePlan, Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(HomePlanes.this, nombrePlan, Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -7,12 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="214dp"
+        app:srcCompat="@drawable/logo_g_sin_fondo" />
 
     <EditText
     android:id="@+id/username"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="150dp"
+    android:layout_marginTop="10dp"
+    android:layout_below="@+id/imageView"
     android:hint="@string/usuario"/>
 
     <EditText
@@ -43,21 +49,6 @@
         android:text="Registrarse"
         />
 
-    <Button
-        android:id="@+id/btnPremium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnSignUp"
-        android:layout_marginTop="20dp"
-        android:text="Premium"
-        />
 
-    <Button
-        android:id="@+id/btnMapa"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnPremium"
-        android:layout_marginTop="10dp"
-        android:text="BTN mapa"
-        />
+
 </RelativeLayout>

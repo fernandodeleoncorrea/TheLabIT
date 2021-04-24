@@ -51,7 +51,7 @@ public class ViewIniciarActividad extends AppCompatActivity implements OnMapRead
                     start = true;
                     btnIniciar.setText("Pausa");
                 }
-                Toast.makeText(ViewIniciarActividad.this, "error", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(ViewIniciarActividad.this, "error", Toast.LENGTH_SHORT).show();
             }
         });
 

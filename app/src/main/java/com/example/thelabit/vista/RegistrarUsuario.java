@@ -126,7 +126,7 @@ public class RegistrarUsuario extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(getApplicationContext(),TipoUsuario[position],Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),TipoUsuario[position],Toast.LENGTH_LONG).show();
         Tipo = TipoUsuario[position];
     }
 

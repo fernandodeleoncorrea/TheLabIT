@@ -38,7 +38,7 @@ public class ViewNuevoPlan extends AppCompatActivity {
         String logueado = b.getString("logueado");
         String nombreUsuario = b.getString("nombreUsuario");
 
-        Toast.makeText(ViewNuevoPlan.this, logueado, Toast.LENGTH_SHORT).show();
+     //   Toast.makeText(ViewNuevoPlan.this, logueado, Toast.LENGTH_SHORT).show();
 
         btnAceptarYContinuar.setOnClickListener(new View.OnClickListener() {
             @Override

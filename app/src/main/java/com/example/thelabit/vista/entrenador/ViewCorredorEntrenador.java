@@ -56,7 +56,7 @@ public class ViewCorredorEntrenador extends AppCompatActivity {
         //actividadesrecientes.addHeaderView(tituloLista);
 
         viewActividadesRecientes();
-        Toast.makeText(ViewCorredorEntrenador.this, nombreCorredor, Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(ViewCorredorEntrenador.this, nombreCorredor, Toast.LENGTH_SHORT).show();
 
         actividadesrecientes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView <? > arg0, View view, int position, long id) {
@@ -70,7 +70,7 @@ public class ViewCorredorEntrenador extends AppCompatActivity {
                 intent.putExtras(b);
                 startActivity(intent);
 
-                Toast.makeText(ViewCorredorEntrenador.this, nombreCorredor, Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(ViewCorredorEntrenador.this, nombreCorredor, Toast.LENGTH_SHORT).show();
             }
         });
 

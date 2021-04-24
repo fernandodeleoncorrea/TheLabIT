@@ -50,7 +50,7 @@ public class ViewListarEntrenadores extends AppCompatActivity {
                 intent.putExtras(b);
                 startActivity(intent);
 
-                Toast.makeText(ViewListarEntrenadores.this, "click", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(ViewListarEntrenadores.this, "click", Toast.LENGTH_SHORT).show();
             }
         });
     }

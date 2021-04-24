@@ -112,7 +112,7 @@ public class HomeEntrenador extends AppCompatActivity {
                 intent.putExtras(b);
                 startActivity(intent);
 
-                Toast.makeText(HomeEntrenador.this, idCorredor, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(HomeEntrenador.this, idCorredor, Toast.LENGTH_SHORT).show();
             }
         });
     }
