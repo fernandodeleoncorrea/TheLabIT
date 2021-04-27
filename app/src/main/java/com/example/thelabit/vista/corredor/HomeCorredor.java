@@ -54,7 +54,7 @@ public class HomeCorredor extends AppCompatActivity {
         actividades.addHeaderView(textView);
 
         //String logueado = sharedpreferences.getString(USERNAME_KEY, null);
-        Toast.makeText(HomeCorredor.this, logueado, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(HomeCorredor.this, logueado, Toast.LENGTH_SHORT).show();
         
         viewActividades();
 
@@ -113,7 +113,7 @@ public class HomeCorredor extends AppCompatActivity {
                 startActivity(intent);
 
 
-                Toast.makeText(HomeCorredor.this, "click", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(HomeCorredor.this, "click", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -130,7 +130,7 @@ public class HomeCorredor extends AppCompatActivity {
             String pdia = c.getString(c.getColumnIndex("DIA"));
             String pturno = c.getString(c.getColumnIndex("TURNO"));
             String pdescripcion = c.getString(c.getColumnIndex("DESCRIPCION"));
-            listitem.add(pid+pdescripcion);
+            listitem.add(pdescripcion);
             listitemID.add(String.valueOf(pid));
         }
 

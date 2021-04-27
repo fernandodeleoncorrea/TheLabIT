@@ -60,8 +60,8 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
     String[] labels = {"Freshness", "Dureza", "Clima", "Intensidad", "Recuperacion"};
     Double sumaDistance = 0.0;
     Double lat1, lat2, lon1,lon2, el1, el2;
-    TextView valuePulso, valueRitmo, valueTiempo, valueDistancia;
-    String Distancia, Tiempo, Ritmo, Pulso;
+    TextView valuePulso, valueRitmo, valueTiempo, valueDistancia, valueComentario;
+    String Distancia, Tiempo, Ritmo, Pulso, Comentario;
 
 
     @Override
@@ -80,6 +80,7 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
         valueRitmo = findViewById(R.id.valueRitmo);
         valueTiempo = findViewById(R.id.valueTiempo);
         valueDistancia = findViewById(R.id.valueDistancia);
+        valueComentario = findViewById(R.id.valueComentario);
 
         //textDistancia = findViewById(R.id.textDistancia);
         lat1 = 0.0;
@@ -164,6 +165,8 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
 
         XAxis xaxis = aranaChart.getXAxis();
         xaxis.setValueFormatter(new IndexAxisValueFormatter(labels));
+        xaxis.mAxisMinimum = 1;
+        xaxis.mAxisMaximum = 100;
         aranaChart.invalidate();
 
         List<Double> decodeDistance = decodeDistance(gpxFile);
@@ -174,6 +177,7 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
         valueRitmo.setText(Ritmo.toString());
         valueTiempo.setText(Tiempo.toString());
         valueDistancia.setText(Distancia.toString());
+        valueComentario.setText(Comentario.toString());
         /*
         Double sum = 0.0;
         for (int i = 0; i < decodeDistance.size(); i++) {
@@ -198,7 +202,7 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
 
         switch(idActividad) {
             case "1":
-                freshness = 99;
+                freshness = 80;
                 dureza = 65;
                 clima = 34;
                 intensidad = 50;
@@ -207,18 +211,20 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
                 Tiempo = "49m:25s";
                 Ritmo = "4:30m/km";
                 Pulso = "155ppm";
+                Comentario = "Me sentía descansado. Muy conforme en general";
                 break;
 
             case "2":
                 freshness = 48;
-                dureza = 55;
+                dureza = 80;
                 clima = 38;
-                intensidad = 20;
+                intensidad = 75;
                 recuperacion = 51;
                 Distancia = "9.3 km";
                 Tiempo = "41m:45s";
                 Ritmo = "4:46m/km";
                 Pulso = "149ppm";
+                Comentario = "Sesión bastante dura. Vamos por más!";
                 break;
             case "3":
                 freshness = 13;
@@ -230,6 +236,7 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
                 Tiempo = "53m:25s";
                 Ritmo = "4:21m/km";
                 Pulso = "167ppm";
+                Comentario = "Muy cómodo seguimos progresando";
                 break;
             case "4":
                 freshness = 90;
@@ -241,6 +248,7 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
                 Tiempo = "1h:12m:02s";
                 Ritmo = "4:53m/km";
                 Pulso = "147ppm";
+                Comentario = "Sesión muy dura, no creo soportar esto";
                 break;
             default:
         }

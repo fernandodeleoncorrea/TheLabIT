@@ -50,7 +50,7 @@ public class ViewListarCorredores extends AppCompatActivity {
                 intent.putExtras(b);
                 startActivity(intent);
 
-                Toast.makeText(ViewListarCorredores.this, "click", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(ViewListarCorredores.this, "click", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         password    = (EditText) findViewById(R.id.password);
         btnlogin    = (Button) findViewById(R.id.btnLogin);
         btnSignUp   = (Button) findViewById(R.id.btnSignUp);
-        btnMapa   = (Button) findViewById(R.id.btnMapa);
+        //btnMapa   = (Button) findViewById(R.id.btnMapa);
         DB = new DBTheLabIT(this);
 
 
@@ -99,28 +99,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnMapa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                /*
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                Uri uri = Uri.parse(""); // a directory
-                intent.setDataAndType(uri, "");
-                startActivity(Intent.createChooser(intent, "Open folder"));
-    */
-                //Toast.makeText(MainActivity.this, "error", Toast.LENGTH_SHORT).show();
 
-
-
-                Intent intent = new Intent(getApplicationContext(), ViewDetalleActividad.class);
-                Bundle b = new Bundle();
-                b.putString("idActividad", "3");
-                intent.putExtras(b);
-                startActivity(intent);
-                //Intent intent = new Intent(getApplicationContext(), EjemploLocation.class);
-                startActivity(intent);
-            }
-        });
     }
 }
 

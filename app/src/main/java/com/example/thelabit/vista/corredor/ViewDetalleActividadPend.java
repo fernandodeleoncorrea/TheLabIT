@@ -69,7 +69,7 @@ import com.example.thelabit.vista.entrenador.ViewPlanesDetalle;
         descripcion.setText("Detalle : " + actividad.getDescripcion());
 
 
-        Toast.makeText(ViewDetalleActividadPend.this, "llegue", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(ViewDetalleActividadPend.this, "llegue", Toast.LENGTH_SHORT).show();
 
 
         btnIniciar.setOnClickListener(new View.OnClickListener() {

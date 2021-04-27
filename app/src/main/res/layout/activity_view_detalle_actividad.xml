@@ -166,7 +166,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_below="@+id/LLcadenciaChart"
+            android:background="@drawable/border"
+            android:layout_marginTop="20dp"
             android:id="@+id/LLradarChart">
+            <TextView
+                android:id="@+id/valueComentario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="Ritmo Medio" />
             <com.github.mikephil.charting.charts.RadarChart
                 android:id="@+id/feedbackChart"
                 android:layout_width="match_parent"
