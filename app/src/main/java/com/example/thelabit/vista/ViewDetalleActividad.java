@@ -1,5 +1,6 @@
 package com.example.thelabit.vista;
 
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.thelabit.R;
+import com.example.thelabit.modelo.DBTheLabIT;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.RadarChart;
 import com.github.mikephil.charting.components.Description;
@@ -62,7 +64,10 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
     Double lat1, lat2, lon1,lon2, el1, el2;
     TextView valuePulso, valueRitmo, valueTiempo, valueDistancia, valueComentario;
     String Distancia, Tiempo, Ritmo, Pulso, Comentario;
+    DBTheLabIT DB;
 
+    List<Entry> gpxListele, gpxListHR, gpxListCAD;
+    List<LatLng> gpxList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +87,8 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
         valueDistancia = findViewById(R.id.valueDistancia);
         valueComentario = findViewById(R.id.valueComentario);
 
+        DB = new DBTheLabIT(this);
+
         //textDistancia = findViewById(R.id.textDistancia);
         lat1 = 0.0;
         lat2= 0.0;
@@ -93,12 +100,30 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
         Bundle b = getIntent().getExtras();
         String idActividad = b.getString("idActividad");
 
-        File gpxFile = new File(Environment.getDataDirectory().toString() + "/data/com.example.thelabit/"+idActividad+".gpx");
+        //File gpxFile = new File(Environment.getDataDirectory().toString() + "/data/com.example.thelabit/"+idActividad+".gpx");
 
+        List<Entry> gpxListele = new ArrayList();
+        List<Entry> gpxListHR = new ArrayList<>();
+        List<Entry> gpxListCAD = new ArrayList<>();
+        Cursor c = DB.leerActividad(idActividad);
+        Integer i = 1;
+        while (c.moveToNext()) {
 
+            Float ele = c.getFloat(c.getColumnIndex("ELE"));
+            Integer HR = c.getInt(c.getColumnIndex("HR"));
+            Integer CAD = c.getInt(c.getColumnIndex("CAD"));
+
+            gpxListele.add(new Entry(i,ele));
+            gpxListHR.add(new Entry(i,HR));
+            gpxListCAD.add(new Entry(i,CAD));
+
+            i++;
+        }
         //GRAFICO DESNIVEL
         //------------------------------------------------------------------------------------------
-        List<Entry> gpxListele = decodeGPXele(gpxFile);
+
+
+        //List<Entry> gpxListele = decodeGPXele(gpxFile);
         LineDataSet lineDataSet = new LineDataSet(gpxListele,"Elevacion");
         lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         lineDataSet.setDrawFilled(true);
@@ -116,7 +141,7 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
 
         //GRAFICO PULSACIONES
         //------------------------------------------------------------------------------------------
-        List<Entry> gpxListHR = decodeGPXhr(gpxFile);
+        //List<Entry> gpxListHR = decodeGPXhr(gpxFile);
         LineDataSet lineDataSet2 = new LineDataSet(gpxListHR,"Ritmo Cardiaco");
         lineDataSet2.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         lineDataSet2.setDrawFilled(true);
@@ -134,7 +159,7 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
 
         //GRAFICO CADENCIA
         //------------------------------------------------------------------------------------------
-        List<Entry> gpxListCAD = decodeGPXCAD(gpxFile);
+        //List<Entry> gpxListCAD = decodeGPXCAD(gpxFile);
         LineDataSet lineDataSet3 = new LineDataSet(gpxListCAD,"Cadencia");
         lineDataSet3.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         lineDataSet3.setDrawFilled(true);
@@ -169,7 +194,7 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
         xaxis.mAxisMaximum = 100;
         aranaChart.invalidate();
 
-        List<Double> decodeDistance = decodeDistance(gpxFile);
+        //List<Double> decodeDistance = decodeDistance(gpxFile);
 
 
 
@@ -460,9 +485,22 @@ public class ViewDetalleActividad extends FragmentActivity implements OnMapReady
         Bundle b = getIntent().getExtras();
         String idActividad = b.getString("idActividad");
 
-        File gpxFile = new File(Environment.getDataDirectory().toString() + "/data/com.example.thelabit/" + idActividad + ".gpx");
+        //File gpxFile = new File(Environment.getDataDirectory().toString() + "/data/com.example.thelabit/" + idActividad + ".gpx");
 
-        List<LatLng> gpxList = decodeGPX(gpxFile);
+        List<LatLng> gpxList = new ArrayList<>();
+        LatLng Inicio = null;
+        Cursor c = DB.leerActividad(idActividad);
+        Integer i = 1;
+        while (c.moveToNext()) {
+            Double lat = c.getDouble(c.getColumnIndex("LAT"));
+            Double lon = c.getDouble(c.getColumnIndex("LON"));
+
+            gpxList.add(new LatLng(lat, lon));
+            if (i == 1){
+                Inicio = new LatLng(lat, lon);
+            }
+            i++;
+        }
 
         mMap = googleMap;
         mMap.addPolyline(( new PolylineOptions()).addAll(gpxList).width(6).color(Color.RED).geodesic(true));
