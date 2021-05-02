@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     EditText username;
     EditText password;
     Button btnlogin;
-    Button btnSignUp, btnMapa;
+    Button btnSignUp, btnCosas;
     DBTheLabIT DB;
     Boolean LoginOK = false;
     SharedPreferences sharedpreferences;
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         password    = (EditText) findViewById(R.id.password);
         btnlogin    = (Button) findViewById(R.id.btnLogin);
         btnSignUp   = (Button) findViewById(R.id.btnSignUp);
-        //btnMapa   = (Button) findViewById(R.id.btnMapa);
+        //btnCosas   = (Button) findViewById(R.id.btnCosas);
         DB = new DBTheLabIT(this);
 
 
@@ -98,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
     }
 }
