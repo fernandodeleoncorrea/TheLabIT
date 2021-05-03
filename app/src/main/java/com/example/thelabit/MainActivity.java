@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.example.thelabit.modelo.Login;
@@ -83,8 +84,8 @@ public class MainActivity extends AppCompatActivity {
                     finish();
 
                 }else {
-                    //Toast.makeText(MainActivity.this, "nooo", Toast.LENGTH_SHORT).show();
-                    Snackbar.make(v, getResources().getString(R.string.mensaje), Snackbar.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Usuario o password incorrecto", Toast.LENGTH_LONG).show();
+                    //Snackbar.make(v, getResources().getString(R.string.mensaje), Snackbar.LENGTH_LONG).show();
 
                 }
             }

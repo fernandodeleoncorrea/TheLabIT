@@ -1,15 +1,19 @@
  package com.example.thelabit.vista.corredor;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -37,6 +41,8 @@ import com.example.thelabit.vista.entrenador.ViewPlanesDetalle;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_detalle_actividad_pend);
+
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         btnFinalizar = (Button) findViewById(R.id.btnFinalizar);
         btnFeedBack   = (Button) findViewById(R.id.btnFeedback);
@@ -75,6 +81,7 @@ import com.example.thelabit.vista.entrenador.ViewPlanesDetalle;
         btnIniciar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(ViewDetalleActividadPend.this, ViewIniciarActividad.class);
                 Bundle b = new Bundle();
                 b.putString("logueado", logueado);

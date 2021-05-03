@@ -17,6 +17,7 @@ import com.example.thelabit.R;
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -26,6 +27,7 @@ public class ViewIniciarActividad extends AppCompatActivity implements OnMapRead
 
     private GoogleMap mMap;
     private GpsTrackerCorredor gpsTracker;
+    protected SupportMapFragment mapFragment;
     Button btnIniciar, btnFinalizar;
     Boolean start = false;
     DBTheLabIT DB;
@@ -34,13 +36,15 @@ public class ViewIniciarActividad extends AppCompatActivity implements OnMapRead
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_iniciar_actividad);
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapView);
+
+        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapView);
         mapFragment.getMapAsync(this);
+
+
         btnIniciar    = (Button) findViewById(R.id.btnIniciar);
         btnFinalizar    = (Button) findViewById(R.id.btnFinalizar);
         Chronometer tiempo = (Chronometer) findViewById(R.id.txtReloj);
         tiempo.setTextSize(20);
-        tiempo.stop();
 
         Bundle b = getIntent().getExtras();
         String idActividad = b.getString("idActividad");
@@ -58,8 +62,6 @@ public class ViewIniciarActividad extends AppCompatActivity implements OnMapRead
                     start = true;
                     btnIniciar.setText("Pausa");
                 }
-
-
             }
         });
 
@@ -81,6 +83,7 @@ public class ViewIniciarActividad extends AppCompatActivity implements OnMapRead
             }
         });
 
+
     }
 
     public Boolean marcarActividad(String idActividad){
@@ -90,10 +93,15 @@ public class ViewIniciarActividad extends AppCompatActivity implements OnMapRead
         return marca;
     }
 
+
     public void onMapReady(GoogleMap googleMap) {
+
+        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapView);
+        mapFragment.getMapAsync(this);
 
         double latitude = 0.0;
         double longitude = 0.0;
+
         try {
             if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
                 ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
@@ -116,8 +124,9 @@ public class ViewIniciarActividad extends AppCompatActivity implements OnMapRead
 
         mMap = googleMap;
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 13));
         mMap.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 13));
+
     }
 
 
