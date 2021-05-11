@@ -678,6 +678,17 @@ public class DBTheLabIT extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor obtenerTotalPlanes(String ent, String corr){
+        SQLiteDatabase db =  this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT T2.ID, T2.NOMBRE " +
+                "FROM PLANES_DETALLE T1 JOIN PLANES_ENTRENAMIENTOS T2 ON T1.IDPLAN = T2.ID " +
+                "WHERE T1.IDENTRENADOR = ?  AND T1.IDCORREDOR <> ? ",new String[]{ent, corr});
+
+        Integer cantidad = cursor.getCount();
+        return cursor;
+    }
+
 
     public void insertarActividades(SQLiteDatabase db){
         queryInsert = "INSERT INTO DETALLE_ACTIVIDADES VALUES (1,-56.1467490,-34.9002240,25.7,'2021-03-31',91,57)"; db.execSQL(queryInsert);

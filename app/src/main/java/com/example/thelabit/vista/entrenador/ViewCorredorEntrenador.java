@@ -29,7 +29,7 @@ public class ViewCorredorEntrenador extends AppCompatActivity {
     ArrayList<String> listitem = new ArrayList<String>();
     ArrayList<String> listitemID = new ArrayList<String>();
     ArrayAdapter adapter;
-    Button btnHistorico, btnPerfil;
+    Button btnHistorico, btnPerfil, btnCambiarPlan;
 
 
     @Override
@@ -40,6 +40,7 @@ public class ViewCorredorEntrenador extends AppCompatActivity {
         actividadesrecientes = findViewById(R.id.actividadesrecientes);
         btnHistorico = findViewById(R.id.btnHistorico);
         btnPerfil = findViewById(R.id.btnPerfil);
+        btnCambiarPlan = findViewById(R.id.btnCambiarPlan);
         TextView titulocorredor_entrenador = (TextView) findViewById(R.id.titulocorredor_entrenador);
         TextView tituloLista = (TextView) findViewById(R.id.tituloLista);
 
@@ -95,6 +96,18 @@ public class ViewCorredorEntrenador extends AppCompatActivity {
                 Bundle b = new Bundle();
                 b.putString("tipo", "E");
                 b.putString("logueado", idCorredor);
+                intent.putExtras(b);
+                startActivity(intent);
+            }
+        });
+
+        btnCambiarPlan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ViewCorredorEntrenador.this, CorredorCambiarPlan.class);
+                Bundle b = new Bundle();
+                b.putString("idCorredor", idCorredor);
+                b.putString("logueado", logueado);
                 intent.putExtras(b);
                 startActivity(intent);
             }

@@ -104,7 +104,7 @@
                 android:id="@+id/btnAceptarDia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="10dp"
                 android:layout_below="@+id/descripcion"
                 android:text="@string/boton_aceptar_día"
                 />
@@ -113,7 +113,7 @@
                 android:id="@+id/btnFinalizar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="20dp"
                 android:layout_below="@+id/btnAceptarDia"
                 android:text="Finalizar"
                 />
@@ -121,7 +121,7 @@
                 android:id="@+id/btnImportarPlan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_below="@+id/btnAceptarDia"
                 android:text="@string/importar_plan"
                 />

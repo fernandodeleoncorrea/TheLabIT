@@ -10,9 +10,7 @@
     <TableLayout
         android:id="@+id/tabla"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
-
-
+        android:layout_height="wrap_content">
         <TableRow>
             <TextView
                 android:id="@+id/titulocorredor_entrenador"
@@ -28,7 +26,7 @@
                 android:id="@+id/btnPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/boton_perfil"
                 />
         </TableRow>
@@ -37,18 +35,28 @@
                 android:id="@+id/btnHistorico"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_below="@+id/btnPerfil"
                 android:text="@string/boton_historico"
                 />
         </TableRow>
+        <TableRow>
+            <Button
+                android:id="@+id/btnCambiarPlan"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/btnHistorico"
+                android:text="Cambiar Plan"
+                />
+        </TableRow>
     </TableLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/tabla">
         <TextView
             android:id="@+id/tituloLista"

@@ -2,9 +2,11 @@ package com.example.thelabit.vista.entrenador;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -17,6 +19,15 @@ import com.example.thelabit.R;
 import com.example.thelabit.modelo.Actividad;
 import com.example.thelabit.modelo.DBTheLabIT;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.InputStream;
+import java.nio.Buffer;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ViewPlanesDetalle extends AppCompatActivity {
 
@@ -119,7 +130,6 @@ public class ViewPlanesDetalle extends AppCompatActivity {
                 Uri uri = Uri.parse(""); // a directory
                 intent.setDataAndType(uri, "*/*");
                 startActivity(Intent.createChooser(intent, "Open folder"));
-
             }
         });
     }

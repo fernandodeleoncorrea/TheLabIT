@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheLabIT">
-        <activity android:name=".Beneficios"></activity>
+        <activity android:name=".vista.entrenador.CorredorCambiarPlan"></activity>
+        <activity android:name=".Beneficios" />
         <activity android:name=".ViewPremium" />
         <activity android:name=".vista.entrenador.ViewListarCorredores" />
         <activity android:name=".vista.entrenador.ViewContactarCorredor" />
