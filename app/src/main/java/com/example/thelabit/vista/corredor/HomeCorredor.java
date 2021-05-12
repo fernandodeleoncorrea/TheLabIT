@@ -111,6 +111,7 @@ public class HomeCorredor extends AppCompatActivity {
                 b.putString("nombreUsuario", nombreUsuario);
                 intent.putExtras(b);
                 startActivity(intent);
+                finish();
 
 
               //  Toast.makeText(HomeCorredor.this, "click", Toast.LENGTH_SHORT).show();

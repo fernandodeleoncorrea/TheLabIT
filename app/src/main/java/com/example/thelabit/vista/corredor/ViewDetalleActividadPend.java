@@ -87,9 +87,9 @@ import com.example.thelabit.vista.entrenador.ViewPlanesDetalle;
                 b.putString("logueado", logueado);
                 b.putString("idActividad", idActividad);
                 b.putBoolean("completada", true);
+                b.putString("nombreUsuario", nombreUsuario);
                 intent.putExtras(b);
                 startActivity(intent);
-                finish();
             }});
 
         btnFeedBack.setOnClickListener(new View.OnClickListener() {
